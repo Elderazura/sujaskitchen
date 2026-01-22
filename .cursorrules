@@ -1,0 +1,31 @@
+# Cursor Rules for Suja's Kitchen
+
+## Component Usage
+- ALWAYS use shadcn/ui components from `@/components/ui/*` for all UI elements
+- NEVER create custom components when a shadcn component exists
+- NEVER use emojis in code, text, or UI elements
+- Use shadcn Button, Card, Badge, Avatar, Input, Label, Textarea, Select, Dialog, etc.
+- Prefer shadcn components over custom styled divs
+
+## Styling
+- Use Tailwind CSS classes for styling
+- Primary color: #c91432
+- Use shadcn's built-in variants and styling props
+- Maintain consistent spacing and typography
+
+## Code Style
+- Use TypeScript for all components
+- Follow Next.js 16+ App Router patterns
+- Use 'use client' directive for client components
+- Keep components modular and reusable
+
+## File Structure
+- Components in `components/` directory
+- UI components in `components/ui/` (shadcn)
+- Custom components in `components/` (not in ui folder)
+
+## Best Practices
+- Use shadcn components with proper TypeScript types
+- Implement proper accessibility (aria labels, semantic HTML)
+- Optimize images with Next.js Image component
+- Use proper error boundaries and loading states
