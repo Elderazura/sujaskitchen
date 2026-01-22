@@ -104,7 +104,7 @@ export default function Snibbles() {
                 transform: `translateY(${scrollY * 0.2}px)`,
               }}
             >
-              <div className="relative w-80 h-20 mx-auto mb-8 animate-fade-in">
+              <div className="relative w-80 h-20 mx-auto mb-6 animate-fade-in">
                 <Image
                   src="/images/snibbles-logo-tm-scaled.png"
                   alt="Snibbles Logo"
@@ -113,9 +113,6 @@ export default function Snibbles() {
                   priority
                 />
               </div>
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 drop-shadow-2xl animate-slide-up">
-                Snibbles
-              </h1>
               <p className="text-xl md:text-2xl mb-4 text-gray-100 drop-shadow-lg animate-slide-up-delay">
                 by Suja&apos;s Kitchen
               </p>
