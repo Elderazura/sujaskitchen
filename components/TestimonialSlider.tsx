@@ -22,7 +22,7 @@ const fallbackTestimonials: Testimonial[] = [
     id: '1',
     name: 'Rajesh Kumar',
     location: 'Dubai',
-    text: 'The best Kerala food in UAE! Every dish reminds me of home. The Onam Sadya was absolutely authentic.',
+    text: 'The best Kerala food in UAE. Every dish reminds me of home. The Onam sadya was generous and carefully put together.',
     rating: 5,
   },
   {
@@ -36,14 +36,14 @@ const fallbackTestimonials: Testimonial[] = [
     id: '3',
     name: 'Mohammed Ali',
     location: 'Dubai',
-    text: 'Authentic flavors and traditional recipes. The fish curry is outstanding! Highly recommended.',
+    text: 'Traditional recipes done with care. The fish curry is outstanding. Highly recommended.',
     rating: 5,
   },
   {
     id: '4',
     name: 'Anita Nair',
     location: 'Dubai',
-    text: 'As someone from Kerala, I can vouch for the authenticity. The appam and beef curry combo is my favorite!',
+    text: 'As someone from Kerala, this is the appam and beef curry combo I order on repeat.',
     rating: 5,
   },
 ];

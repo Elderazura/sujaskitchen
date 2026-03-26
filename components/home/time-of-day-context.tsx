@@ -16,7 +16,8 @@ export function TimeOfDayProvider({ children }: { children: ReactNode }) {
   const value = useMemo(
     () => ({
       timeState,
-      isNight: timeState === "night",
+      /** Dark hero and below-fold surfaces: dinner and after-hours closed. */
+      isNight: timeState === "dinner" || timeState === "closed",
     }),
     [timeState],
   );

@@ -1,11 +1,18 @@
-export type TimeState = "morning" | "afternoon" | "evening" | "night";
+import { WHATSAPP_ORDER_URL } from "@/lib/constants";
+import { HERO_SLIDES, type TimeState } from "@/lib/heroMedia";
 
+export type { TimeState } from "@/lib/heroMedia";
+
+/**
+ * Dubai-local wall clock via the client device. Align `getTimeState` with TZ if you need strict Dubai time.
+ */
 export function getTimeState(): TimeState {
   const hour = new Date().getHours();
-  if (hour >= 6 && hour < 11) return "morning";
-  if (hour >= 11 && hour < 15) return "afternoon";
-  if (hour >= 15 && hour < 19) return "evening";
-  return "night";
+  if (hour >= 0 && hour < 7) return "closed";
+  if (hour >= 7 && hour < 11) return "breakfast";
+  if (hour >= 11 && hour < 15) return "lunch";
+  if (hour >= 15 && hour < 19) return "chaya";
+  return "dinner";
 }
 
 export type TimeConfig = {
@@ -20,50 +27,76 @@ export type TimeConfig = {
   ctaHref: string;
 };
 
+/** One-line labels for UI (e.g. hours strip). */
+export const TIME_SCHEDULE_COPY: Record<
+  Exclude<TimeState, "closed">,
+  { label: string; range: string }
+> = {
+  breakfast: { label: "Breakfast", range: "7:00 AM to 11:00 AM" },
+  lunch: { label: "Lunch", range: "11:00 AM to 3:00 PM" },
+  chaya: { label: "Chaya and Kerala snacks", range: "3:00 PM to 7:00 PM" },
+  dinner: { label: "Dinner", range: "7:00 PM to midnight" },
+};
+
 export const TIME_CONFIG: Record<TimeState, TimeConfig> = {
-  morning: {
+  breakfast: {
     headline: "Good morning. Sit down, it's ready.",
-    subtext: "Appam. Puttu. Chai. The way your morning used to start.",
-    heroSrc: "/images/Appam-Beef-Curry-Combo_1-1.jpg",
-    heroAlt: "Breakfast spread with appam and curry at Suja's Kitchen",
-    overlay: "rgba(245, 158, 11, 0.22)",
-    pageBg: "#FFFBEB",
-    textPrimary: "#1C1917",
+    subtext:
+      "Appam. Puttu. Chaya. The way a Kerala breakfast is supposed to feel.",
+    heroSrc: HERO_SLIDES.breakfast[0].src,
+    heroAlt: HERO_SLIDES.breakfast[0].alt,
+    overlay: "rgba(201, 20, 50, 0.14)",
+    pageBg: "#FEF9EC",
+    textPrimary: "#7c2d12",
     cta: "Order breakfast",
     ctaHref: "/kitchen/menu",
   },
-  afternoon: {
+  lunch: {
     headline: "The rice is ready. Everything else followed.",
-    subtext: "Kerala rice meal. The one you've been thinking about since Monday.",
-    heroSrc: "/images/Sujas-Kitch-Onam-17.jpg",
-    heroAlt: "Kerala rice meal and sadhya spread on banana leaf",
-    overlay: "rgba(217, 119, 6, 0.2)",
-    pageBg: "#FFFBF0",
-    textPrimary: "#1C1917",
+    subtext:
+      "Kerala rice meal, curries, and sides. The lunch you have been thinking about since morning.",
+    heroSrc: HERO_SLIDES.lunch[0].src,
+    heroAlt: HERO_SLIDES.lunch[0].alt,
+    overlay: "rgba(146, 64, 14, 0.18)",
+    pageBg: "#FFF6E8",
+    textPrimary: "#7c2d12",
     cta: "Order lunch",
     ctaHref: "/kitchen/menu",
   },
-  evening: {
-    headline: "4 o'clock. You know what this means.",
+  chaya: {
+    headline: "Chaya time. Kerala snacks on the table.",
     subtext:
-      "Chai. Something crispy. The non-negotiable part of any Kerala evening.",
-    heroSrc: "/images/Sujas-snacks.jpg",
-    heroAlt: "Kerala tea-time snacks and treats",
-    overlay: "rgba(180, 83, 9, 0.2)",
-    pageBg: "#FFF8F0",
-    textPrimary: "#1C1917",
-    cta: "Order evening snacks",
+      "Something hot to drink. Something crisp from the jar. The three-to-seven stretch, done right.",
+    heroSrc: HERO_SLIDES.chaya[0].src,
+    heroAlt: HERO_SLIDES.chaya[0].alt,
+    overlay: "rgba(160, 16, 38, 0.12)",
+    pageBg: "#FEF3C7",
+    textPrimary: "#7c2d12",
+    cta: "Order snacks",
     ctaHref: "/snibbles",
   },
-  night: {
+  dinner: {
     headline: "Long day. Dinner is handled.",
-    subtext: "Malabar biriyani. Mutton stew. Appam. Arriving at your door.",
-    heroSrc: "/images/Sujas-kitchen-best-kerala-food-in-UAE.jpeg",
-    heroAlt: "Evening Kerala meal, warm lighting",
-    overlay: "rgba(28, 10, 0, 0.38)",
-    pageBg: "#1C1410",
-    textPrimary: "#FEF3C7",
+    subtext:
+      "Malabar biriyani. Mutton stew. Appam. Cooked today and sent to your door.",
+    heroSrc: HERO_SLIDES.dinner[0].src,
+    heroAlt: HERO_SLIDES.dinner[0].alt,
+    overlay: "rgba(60, 25, 15, 0.45)",
+    pageBg: "#2a1410",
+    textPrimary: "#fef3c7",
     cta: "Order dinner",
     ctaHref: "/kitchen/menu",
+  },
+  closed: {
+    headline: "The kitchen is closed right now.",
+    subtext:
+      "We open again at 7:00 in the morning for breakfast. Message us on WhatsApp to plan your next order, or browse the menu for when we are back.",
+    heroSrc: HERO_SLIDES.closed[0].src,
+    heroAlt: HERO_SLIDES.closed[0].alt,
+    overlay: "rgba(45, 20, 12, 0.55)",
+    pageBg: "#23120e",
+    textPrimary: "#fef3c7",
+    cta: "Message on WhatsApp",
+    ctaHref: WHATSAPP_ORDER_URL,
   },
 };

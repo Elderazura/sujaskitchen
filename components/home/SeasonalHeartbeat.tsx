@@ -14,20 +14,20 @@ export default function SeasonalHeartbeat() {
   return (
     <section
       className={`px-6 py-16 md:px-16 ${
-        isNight ? "bg-[#17120e]" : "bg-[#FFFBF0]"
+        isNight ? "bg-brand-dark/90" : "bg-brand-light/30"
       }`}
     >
       <div className="mx-auto max-w-7xl">
         <p
           className={`font-sans text-sm uppercase tracking-widest ${
-            isNight ? "text-stone-500" : "text-stone-500"
+            isNight ? "text-brand-light/55" : "text-brand-mid"
           }`}
         >
           Seasonal
         </p>
         <h2
           className={`mt-2 font-serif text-3xl md:text-4xl ${
-            isNight ? "text-[#FEF3C7]" : "text-stone-900"
+            isNight ? "text-brand-light" : "text-brand-dark"
           }`}
         >
           What is coming up
@@ -35,7 +35,7 @@ export default function SeasonalHeartbeat() {
         {fallbackMessage && (
           <p
             className={`mt-3 max-w-2xl font-sans text-sm ${
-              isNight ? "text-stone-400" : "text-stone-600"
+              isNight ? "text-brand-light/70" : "text-brand-mid"
             }`}
           >
             {fallbackMessage}
@@ -52,8 +52,8 @@ export default function SeasonalHeartbeat() {
               transition={{ delay: i * 0.08, duration: 0.5 }}
               className={`w-[min(100%,20rem)] shrink-0 snap-start overflow-hidden rounded-xl border shadow-sm md:w-[22rem] ${
                 isNight
-                  ? "border-stone-700 bg-stone-900"
-                  : "border-stone-200 bg-white"
+                  ? "border-brand-mid/40 bg-brand-dark/80"
+                  : "border-brand-mid/20 bg-white"
               }`}
             >
               <div className="relative aspect-[4/3] w-full">
@@ -68,14 +68,14 @@ export default function SeasonalHeartbeat() {
               <div className="p-4">
                 <h3
                   className={`font-serif text-xl ${
-                    isNight ? "text-[#FEF3C7]" : "text-stone-900"
+                    isNight ? "text-brand-light" : "text-brand-dark"
                   }`}
                 >
                   {ev.name}
                 </h3>
                 <p
                   className={`mt-2 font-sans text-sm ${
-                    isNight ? "text-stone-400" : "text-stone-600"
+                    isNight ? "text-brand-light/70" : "text-brand-mid"
                   }`}
                 >
                   {ev.copy}

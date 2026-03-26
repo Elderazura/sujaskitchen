@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { normalizeGoogleStarRating } from '@/lib/googleReviewUtils';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 3600; // Revalidate every hour
@@ -138,7 +139,7 @@ export async function GET() {
       id: review.reviewId,
       name: review.reviewer.displayName || 'Anonymous',
       profilePhoto: review.reviewer.profilePhotoUrl || null,
-      rating: parseInt(review.starRating) || 5,
+      rating: normalizeGoogleStarRating(review.starRating),
       text: review.comment || '',
       date: formatDate(review.createTime),
       reply: review.reviewReply?.comment || null,
