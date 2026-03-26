@@ -169,7 +169,7 @@ export default function SocialFeed() {
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                 )}
-                <div className="absolute top-4 right-4 bg-[#c91432] text-white px-3 py-1 rounded-full text-sm font-semibold">
+                <div className="absolute top-4 right-4 bg-brand text-white px-3 py-1 rounded-full text-sm font-semibold">
                   Instagram
                 </div>
               </div>
@@ -177,7 +177,7 @@ export default function SocialFeed() {
                 <p className="text-gray-700 mb-4 line-clamp-2">{post.caption}</p>
                 <div className="flex items-center justify-between text-sm text-gray-500">
                   <div className="flex items-center gap-2">
-                    <Heart className="w-5 h-5 text-[#c91432] fill-[#c91432]" />
+                    <Heart className="w-5 h-5 text-brand fill-brand" />
                     <span>{post.likes}</span>
                   </div>
                   <span>{post.date}</span>
@@ -195,7 +195,7 @@ export default function SocialFeed() {
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`h-2 rounded-full transition-all duration-300 ${
-                index === currentIndex ? 'bg-[#c91432] w-8' : 'bg-gray-300 w-2'
+                index === currentIndex ? 'bg-brand w-8' : 'bg-gray-300 w-2'
               }`}
               aria-label={`Go to page ${index + 1}`}
             />

@@ -7,6 +7,9 @@
   --background-start-rgb: 255, 255, 255;
   --background-end-rgb: 255, 255, 255;
   --primary-color: #c91432;
+  --color-brand: #c91432;
+  --color-brand-hover: #a01026;
+  --color-brand-dark: #7c2d12;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -55,10 +58,12 @@ body {
   * {
     -webkit-tap-highlight-color: transparent;
   }
-  
-  button, a {
-    min-height: 44px; /* iOS touch target size */
-    min-width: 44px;
+
+  button,
+  [role="button"],
+  input[type="submit"],
+  input[type="button"] {
+    min-height: 44px;
   }
 }
 
@@ -124,15 +129,66 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c91432;
+  background: var(--color-brand);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a01026;
+  background: var(--color-brand-hover);
+}
+
+@keyframes steam {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(0) scaleX(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: translateY(-20px) scaleX(1.15);
+  }
+}
+
+.animate-steam {
+  animation: steam 3s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-steam,
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-slide-up-delay,
+  .animate-fade-in-delay {
+    animation: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Gradient band used across CTAs */
+.bg-brand-gradient {
+  background-image: linear-gradient(
+    135deg,
+    var(--color-brand) 0%,
+    var(--color-brand-hover) 45%,
+    var(--color-brand-dark) 100%
+  );
 }
 
 @theme inline {
+  /* Primary brand (Suja's Kitchen red) — use bg-brand, text-brand, etc. */
+  --color-brand: #c91432;
+  --color-brand-hover: #a01026;
+  /* Deep accent (headers, rich panels) */
+  --color-brand-dark: #7c2d12;
+  --color-brand-mid: #92400e;
+  --color-brand-light: #fef3c7;
+  --color-brand-gold: #d97706;
+  --color-brand-leaf: #365314;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

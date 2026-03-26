@@ -3,9 +3,10 @@
 ## Component Usage
 - ALWAYS use shadcn/ui components from `@/components/ui/*` for all UI elements
 - NEVER create custom components when a shadcn component exists
-- NEVER use emojis in code, text, or UI elements
-- Use shadcn Button, Card, Badge, Avatar, Input, Label, Textarea, Select, Dialog, etc.
+- NEVER use emojis in code, text, or UI elements - STRICTLY FORBIDDEN
+- Use ONLY shadcn components: Button, Card, Badge, Avatar, Input, Label, Textarea, Select, Dialog, Form, Command, etc.
 - Prefer shadcn components over custom styled divs
+- If a shadcn component exists for a UI pattern, you MUST use it
 
 ## Styling
 - Use Tailwind CSS classes for styling

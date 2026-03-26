@@ -56,17 +56,17 @@ export default function BlogGlimpse() {
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-500"
               />
-              <div className="absolute top-4 left-4 bg-[#c91432] text-white px-3 py-1 rounded-full text-sm font-semibold">
+              <div className="absolute top-4 left-4 bg-brand text-white px-3 py-1 rounded-full text-sm font-semibold">
                 {post.category}
               </div>
             </div>
             <div className="p-6">
               <p className="text-sm text-gray-500 mb-2">{post.date}</p>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#c91432] transition-colors">
+              <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand transition-colors">
                 {post.title}
               </h3>
               <p className="text-gray-600 leading-relaxed line-clamp-2">{post.excerpt}</p>
-              <div className="mt-4 flex items-center text-[#c91432] font-semibold group-hover:gap-2 transition-all">
+              <div className="mt-4 flex items-center text-brand font-semibold group-hover:gap-2 transition-all">
                 Read More
                 <svg className="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

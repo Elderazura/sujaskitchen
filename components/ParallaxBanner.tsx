@@ -18,7 +18,14 @@ export default function ParallaxBanner({ image, alt, children, className = '' }:
   useEffect(() => {
     const handleScroll = () => {
       if (!bannerRef.current || !imageRef.current) return;
-      
+      if (
+        window.innerWidth < 768 ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
+        setOffset(0);
+        return;
+      }
+
       const rect = bannerRef.current.getBoundingClientRect();
       const scrolled = window.pageYOffset;
       const bannerTop = rect.top + scrolled;

@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { PageCrossLinks } from '@/components/shared/PageCrossLinks';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -42,7 +43,7 @@ export default function Contact() {
       title: 'Location',
       content: 'Al Quoz Warehouse\nDubai, UAE',
       link: null,
-      color: 'from-[#c91432] to-[#a01026]',
+      color: 'from-brand to-brand-hover',
     },
     {
       icon: Mail,
@@ -97,7 +98,7 @@ export default function Contact() {
               <div>
                 <div className="mb-8">
                   <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Get in Touch</h2>
-                  <div className="w-24 h-1 bg-[#c91432] mb-6"></div>
+                  <div className="w-24 h-1 bg-brand mb-6"></div>
                   <p className="text-lg text-gray-600 leading-relaxed">
                     Have a question or want to place an order? We&apos;re here to help!
                   </p>
@@ -107,12 +108,12 @@ export default function Contact() {
                   {contactInfo.map((info, idx) => {
                     const IconComponent = info.icon;
                     const content = (
-                      <Card className="h-full hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-2 border-transparent hover:border-[#c91432] group">
+                      <Card className="h-full hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-2 border-transparent hover:border-brand group">
                         <CardHeader>
                           <div className={`bg-gradient-to-br ${info.color} rounded-full w-14 h-14 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                             <IconComponent className="w-7 h-7 text-white" />
                           </div>
-                          <CardTitle className="text-xl group-hover:text-[#c91432] transition-colors">
+                          <CardTitle className="text-xl group-hover:text-brand transition-colors">
                             {info.title}
                           </CardTitle>
                         </CardHeader>
@@ -135,9 +136,9 @@ export default function Contact() {
                   })}
                 </div>
 
-                <Card className="bg-gradient-to-br from-[#c91432]/10 to-[#a01026]/5 border-2 border-[#c91432]/20">
+                <Card className="bg-gradient-to-br from-brand/10 to-brand-hover/5 border-2 border-brand/20">
                   <CardHeader>
-                    <CardTitle className="text-xl text-[#c91432] flex items-center gap-2">
+                    <CardTitle className="text-xl text-brand flex items-center gap-2">
                       <MessageSquare className="w-5 h-5" />
                       For Catering Inquiries
                     </CardTitle>
@@ -155,7 +156,7 @@ export default function Contact() {
               <div>
                 <div className="mb-8">
                   <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Send us a Message</h2>
-                  <div className="w-24 h-1 bg-[#c91432] mb-6"></div>
+                  <div className="w-24 h-1 bg-brand mb-6"></div>
                   <p className="text-lg text-gray-600 leading-relaxed">
                     Fill out the form below and we&apos;ll get back to you as soon as possible.
                   </p>
@@ -174,7 +175,7 @@ export default function Contact() {
                           value={formData.name}
                           onChange={handleChange}
                           placeholder="Your name"
-                          className="focus:border-[#c91432] focus:ring-[#c91432]"
+                          className="focus:border-brand focus:ring-brand"
                         />
                       </div>
 
@@ -188,7 +189,7 @@ export default function Contact() {
                           value={formData.email}
                           onChange={handleChange}
                           placeholder="your.email@example.com"
-                          className="focus:border-[#c91432] focus:ring-[#c91432]"
+                          className="focus:border-brand focus:ring-brand"
                         />
                       </div>
 
@@ -201,7 +202,7 @@ export default function Contact() {
                           value={formData.phone}
                           onChange={handleChange}
                           placeholder="+971 XX XXX XXXX"
-                          className="focus:border-[#c91432] focus:ring-[#c91432]"
+                          className="focus:border-brand focus:ring-brand"
                         />
                       </div>
 
@@ -211,7 +212,7 @@ export default function Contact() {
                           value={formData.service}
                           onValueChange={(value) => setFormData({ ...formData, service: value })}
                         >
-                          <SelectTrigger className="focus:border-[#c91432] focus:ring-[#c91432]">
+                          <SelectTrigger className="focus:border-brand focus:ring-brand">
                             <SelectValue placeholder="Select a service" />
                           </SelectTrigger>
                           <SelectContent>
@@ -233,13 +234,13 @@ export default function Contact() {
                           value={formData.message}
                           onChange={handleChange}
                           placeholder="Tell us how we can help you..."
-                          className="focus:border-[#c91432] focus:ring-[#c91432] resize-none"
+                          className="focus:border-brand focus:ring-brand resize-none"
                         />
                       </div>
 
                       <Button
                         type="submit"
-                        className="w-full bg-[#c91432] hover:bg-[#a01026] text-white text-lg py-6 shadow-lg"
+                        className="w-full bg-brand hover:bg-brand-hover text-white text-lg py-6 shadow-lg"
                       >
                         <Send className="w-5 h-5 mr-2" />
                         Send Message
@@ -265,14 +266,14 @@ export default function Contact() {
                   </p>
                   <div className="space-y-4">
                     <div className="flex items-start gap-3">
-                      <MapPin className="w-5 h-5 text-[#c91432] mt-1 flex-shrink-0" />
+                      <MapPin className="w-5 h-5 text-brand mt-1 flex-shrink-0" />
                       <div>
                         <p className="font-semibold text-gray-900">Location</p>
                         <p className="text-gray-600">Al Quoz Warehouse, Dubai, UAE</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <Clock className="w-5 h-5 text-[#c91432] mt-1 flex-shrink-0" />
+                      <Clock className="w-5 h-5 text-brand mt-1 flex-shrink-0" />
                       <div>
                         <p className="font-semibold text-gray-900">Operating Hours</p>
                         <p className="text-gray-600">Monday - Sunday<br />Delivery and Catering Services Available</p>
@@ -292,6 +293,20 @@ export default function Contact() {
             </div>
           </div>
         </section>
+
+        <PageCrossLinks
+          omit={["/contact"]}
+          banner={{
+            image: "/images/Sujas-snacks.jpg",
+            alt: "Kerala snacks",
+            title: "While you are here, the kitchen is open",
+            subtitle:
+              "Order for today on the apps, grab snacks from Snibbles, or line up catering for the next big date.",
+            href: "/kitchen",
+            cta: "Cloud kitchen home",
+            tone: "dark",
+          }}
+        />
       </main>
       
       <Footer />

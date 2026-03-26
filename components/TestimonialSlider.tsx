@@ -120,7 +120,7 @@ export default function TestimonialSlider() {
             key={testimonial.id}
             className={`transition-all duration-500 ${
               index === currentIndex
-                ? 'scale-105 shadow-2xl border-[#c91432]'
+                ? 'scale-105 shadow-2xl border-brand'
                 : 'opacity-70 scale-95'
             }`}
           >
@@ -137,8 +137,8 @@ export default function TestimonialSlider() {
                 &quot;{testimonial.text}&quot;
               </p>
               {testimonial.reply && (
-                <div className="mb-4 p-3 bg-gray-50 rounded-lg border-l-4 border-[#c91432]">
-                  <p className="text-xs font-semibold text-[#c91432] mb-1">Owner Response</p>
+                <div className="mb-4 p-3 bg-gray-50 rounded-lg border-l-4 border-brand">
+                  <p className="text-xs font-semibold text-brand mb-1">Owner Response</p>
                   <p className="text-xs text-gray-600">{testimonial.reply}</p>
                 </div>
               )}
@@ -147,7 +147,7 @@ export default function TestimonialSlider() {
                   {testimonial.profilePhoto ? (
                     <AvatarImage src={testimonial.profilePhoto} alt={testimonial.name} />
                   ) : null}
-                  <AvatarFallback className="bg-[#c91432] text-white font-semibold">
+                  <AvatarFallback className="bg-brand text-white font-semibold">
                     {testimonial.name.charAt(0).toUpperCase()}
                   </AvatarFallback>
                 </Avatar>
@@ -173,7 +173,7 @@ export default function TestimonialSlider() {
             key={index}
             onClick={() => setCurrentIndex(index)}
             className={`h-2 rounded-full transition-all duration-300 ${
-              index === currentIndex ? 'bg-[#c91432] w-8' : 'bg-gray-300 w-2'
+              index === currentIndex ? 'bg-brand w-8' : 'bg-gray-300 w-2'
             }`}
             aria-label={`Go to testimonial ${index + 1}`}
           />

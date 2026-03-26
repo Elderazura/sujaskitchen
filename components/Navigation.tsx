@@ -20,10 +20,12 @@ export default function Navigation() {
 
   const navLinks = [
     { href: '/', label: 'Home' },
-    { href: '/our-story', label: 'Our Story' },
-    { href: '/menu', label: 'Menu' },
-    { href: '/snibbles', label: 'Snibbles' },
+    { href: '/kitchen', label: 'Kitchen' },
+    { href: '/kitchen/menu', label: 'Menu' },
     { href: '/catering', label: 'Catering' },
+    { href: '/snibbles', label: 'Snibbles' },
+    { href: '/seasonal', label: 'Seasonal' },
+    { href: '/our-story', label: 'Our Story' },
     { href: '/blog', label: 'Blog' },
     { href: '/contact', label: 'Contact' },
   ];
@@ -32,7 +34,7 @@ export default function Navigation() {
 
   return (
     <nav className={`bg-white/95 backdrop-blur-sm shadow-md sticky top-0 z-50 border-b transition-all duration-300 ${
-      scrolled ? 'border-[#c91432]/20 shadow-lg' : 'border-gray-100'
+      scrolled ? 'border-brand/20 shadow-lg' : 'border-gray-100'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
@@ -57,7 +59,7 @@ export default function Navigation() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-gray-700 hover:text-[#c91432] px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-[#c91432]/10"
+                  className="text-gray-700 hover:text-brand px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-brand/10"
                 >
                   {link.label}
                 </Link>
@@ -65,7 +67,7 @@ export default function Navigation() {
             </div>
             <a
               href={`tel:${phoneNumber}`}
-              className="flex items-center gap-2 bg-[#c91432] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#a01026] transition-all duration-200 ml-4"
+              className="flex items-center gap-2 bg-brand text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-hover transition-all duration-200 ml-4"
             >
               <Phone className="w-4 h-4" />
               <span className="hidden lg:inline">Call Us</span>
@@ -76,14 +78,14 @@ export default function Navigation() {
           <div className="md:hidden flex items-center gap-3">
             <a
               href={`tel:${phoneNumber}`}
-              className="flex items-center justify-center w-10 h-10 bg-[#c91432] text-white rounded-lg hover:bg-[#a01026] transition-colors"
+              className="flex items-center justify-center w-10 h-10 bg-brand text-white rounded-lg hover:bg-brand-hover transition-colors"
               aria-label="Call us"
             >
               <Phone className="w-5 h-5" />
             </a>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-lg text-gray-700 hover:text-[#c91432] hover:bg-[#c91432]/10 focus:outline-none transition-colors"
+              className="inline-flex items-center justify-center p-2 rounded-lg text-gray-700 hover:text-brand hover:bg-brand/10 focus:outline-none transition-colors"
               aria-label="Toggle menu"
             >
               <svg
@@ -121,7 +123,7 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-gray-700 hover:text-[#c91432] block px-3 py-3 rounded-lg text-base font-medium hover:bg-[#c91432]/10 transition-colors"
+                className="text-gray-700 hover:text-brand block px-3 py-3 rounded-lg text-base font-medium hover:bg-brand/10 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
@@ -129,7 +131,7 @@ export default function Navigation() {
             ))}
             <a
               href={`tel:${phoneNumber}`}
-              className="flex items-center gap-2 text-white bg-[#c91432] hover:bg-[#a01026] block px-3 py-3 rounded-lg text-base font-medium transition-colors mt-2"
+              className="flex items-center gap-2 text-white bg-brand hover:bg-brand-hover block px-3 py-3 rounded-lg text-base font-medium transition-colors mt-2"
               onClick={() => setIsOpen(false)}
             >
               <Phone className="w-5 h-5" />

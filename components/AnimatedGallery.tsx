@@ -59,7 +59,7 @@ export default function AnimatedGallery({ images, altPrefix = 'Gallery', interva
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-20"></div>
         
         {/* Image Counter */}
-        <div className="absolute bottom-4 right-4 bg-[#c91432]/90 text-white px-4 py-2 rounded-full text-sm font-semibold z-30">
+        <div className="absolute bottom-4 right-4 bg-brand/90 text-white px-4 py-2 rounded-full text-sm font-semibold z-30">
           {currentIndex + 1} / {images.length}
         </div>
       </div>
@@ -72,7 +72,7 @@ export default function AnimatedGallery({ images, altPrefix = 'Gallery', interva
             onClick={() => goToSlide(idx)}
             className={`relative aspect-square rounded-lg overflow-hidden transition-all duration-300 ${
               idx === currentIndex
-                ? 'ring-4 ring-[#c91432] scale-105 shadow-lg'
+                ? 'ring-4 ring-brand scale-105 shadow-lg'
                 : 'opacity-60 hover:opacity-100 hover:scale-105'
             }`}
           >
@@ -92,7 +92,7 @@ export default function AnimatedGallery({ images, altPrefix = 'Gallery', interva
         className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 shadow-lg transition-all duration-300 z-30 hidden md:flex items-center justify-center"
         aria-label="Previous image"
       >
-        <svg className="w-6 h-6 text-[#c91432]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-6 h-6 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
         </svg>
       </button>
@@ -101,7 +101,7 @@ export default function AnimatedGallery({ images, altPrefix = 'Gallery', interva
         className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 shadow-lg transition-all duration-300 z-30 hidden md:flex items-center justify-center"
         aria-label="Next image"
       >
-        <svg className="w-6 h-6 text-[#c91432]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-6 h-6 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
         </svg>
       </button>

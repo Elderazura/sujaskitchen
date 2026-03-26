@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Package, Heart, Leaf, Clock, ShoppingCart, Sparkles, Star, Truck } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { PageCrossLinks } from '@/components/shared/PageCrossLinks';
 
 export default function Snibbles() {
   const [scrollY, setScrollY] = useState(0);
@@ -62,7 +63,7 @@ export default function Snibbles() {
       icon: Heart,
       title: 'Made with Love',
       description: 'Each product is crafted with the same care and attention as our restaurant meals',
-      color: 'from-[#c91432] to-[#a01026]',
+      color: 'from-brand to-brand-hover',
     },
     {
       icon: Leaf,
@@ -121,7 +122,7 @@ export default function Snibbles() {
                 each bite is crafted to bring Kerala a little closer, wherever you are.
               </p>
               <Link href="#products" className="animate-fade-in-delay">
-                <Button size="lg" className="bg-[#c91432] hover:bg-[#a01026] text-white text-lg px-10 py-6 shadow-xl">
+                <Button size="lg" className="bg-brand hover:bg-brand-hover text-white text-lg px-10 py-6 shadow-xl">
                   Explore Products
                 </Button>
               </Link>
@@ -136,7 +137,7 @@ export default function Snibbles() {
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                 Why Snibbles?
               </h2>
-              <div className="w-24 h-1 bg-[#c91432] mx-auto mb-6"></div>
+              <div className="w-24 h-1 bg-brand mx-auto mb-6"></div>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
                 Freshly made, lovingly packed, and ready to reach your doorstep
               </p>
@@ -148,7 +149,7 @@ export default function Snibbles() {
                 return (
                   <Card
                     key={idx}
-                    className="text-center p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-2 border-transparent hover:border-[#c91432] group"
+                    className="text-center p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-2 border-transparent hover:border-brand group"
                     style={{
                       animationDelay: `${idx * 150}ms`,
                     }}
@@ -159,7 +160,7 @@ export default function Snibbles() {
                       </div>
                     </div>
                     <CardHeader>
-                      <CardTitle className="text-xl group-hover:text-[#c91432] transition-colors">
+                      <CardTitle className="text-xl group-hover:text-brand transition-colors">
                         {benefit.title}
                       </CardTitle>
                     </CardHeader>
@@ -182,7 +183,7 @@ export default function Snibbles() {
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                 Our Product Range
               </h2>
-              <div className="w-24 h-1 bg-[#c91432] mx-auto mb-6"></div>
+              <div className="w-24 h-1 bg-brand mx-auto mb-6"></div>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
                 Traditional Kerala snacks, packed fresh and ready to enjoy
               </p>
@@ -192,7 +193,7 @@ export default function Snibbles() {
               {products.map((product, idx) => (
                 <Card
                   key={product.id}
-                  className="overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group border-2 border-transparent hover:border-[#c91432]"
+                  className="overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group border-2 border-transparent hover:border-brand"
                   style={{
                     animationDelay: `${idx * 100}ms`,
                   }}
@@ -200,7 +201,7 @@ export default function Snibbles() {
                   <div className="relative h-72 bg-gradient-to-br from-gray-50 to-gray-100">
                     {product.popular && (
                       <div className="absolute top-4 right-4 z-10">
-                        <Badge className="bg-[#c91432] text-white flex items-center gap-1">
+                        <Badge className="bg-brand text-white flex items-center gap-1">
                           <Star className="w-3 h-3 fill-white" />
                           Popular
                         </Badge>
@@ -212,10 +213,10 @@ export default function Snibbles() {
                       fill
                       className="object-contain p-6 group-hover:scale-110 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#c91432]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
                   <CardHeader>
-                    <CardTitle className="text-xl group-hover:text-[#c91432] transition-colors">
+                    <CardTitle className="text-xl group-hover:text-brand transition-colors">
                       {product.name}
                     </CardTitle>
                     <CardDescription className="line-clamp-2 leading-relaxed">
@@ -226,12 +227,12 @@ export default function Snibbles() {
                     <ul className="space-y-2 mb-6">
                       {product.features.map((feature, featureIdx) => (
                         <li key={featureIdx} className="flex items-center gap-2 text-sm text-gray-600">
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#c91432] flex-shrink-0"></div>
+                          <div className="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0"></div>
                           <span>{feature}</span>
                         </li>
                       ))}
                     </ul>
-                    <Button className="w-full bg-[#c91432] hover:bg-[#a01026] text-white group/btn">
+                    <Button className="w-full bg-brand hover:bg-brand-hover text-white group/btn">
                       <ShoppingCart className="w-4 h-4 mr-2 group-hover/btn:translate-x-1 transition-transform" />
                       Order Now
                     </Button>
@@ -253,16 +254,16 @@ export default function Snibbles() {
             <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-2xl">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">
-                  <div className="bg-[#c91432] rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <div className="bg-brand rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <Sparkles className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Premium Quality</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Small batches</h3>
                   <p className="text-gray-600 text-sm">
-                    Made with the finest ingredients and traditional recipes
+                    Packed from the same kitchen standards as the restaurant line
                   </p>
                 </div>
                 <div className="text-center">
-                  <div className="bg-[#c91432] rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <div className="bg-brand rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <Truck className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">Fast Delivery</h3>
@@ -271,7 +272,7 @@ export default function Snibbles() {
                   </p>
                 </div>
                 <div className="text-center">
-                  <div className="bg-[#c91432] rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <div className="bg-brand rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <Star className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">Customer Favorite</h3>
@@ -295,24 +296,23 @@ export default function Snibbles() {
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#c91432]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-brand/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               <div className="space-y-6">
-                <div className="inline-block bg-[#c91432]/10 text-[#c91432] px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                <div className="inline-block bg-brand/10 text-brand px-4 py-2 rounded-full text-sm font-semibold mb-4">
                   The Snibbles Story
                 </div>
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
                   Bringing Home Closer
                 </h2>
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  Snibbles was born from a simple idea: to bring the authentic flavors of Kerala 
-                  to your home, no matter where you are. Each product is a piece of our culinary 
-                  heritage, carefully crafted and lovingly packed.
+                  Snibbles came from the four o&apos;clock table: something crisp, something sweet,
+                  and chai. Each pack leaves the same Al Quoz kitchen where Suja still approves
+                  recipes.
                 </p>
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  Using the same traditional recipes and quality ingredients that make our restaurant 
-                  meals special, Snibbles ensures that every bite reminds you of home. Whether you&apos;re 
-                  in Dubai, Abu Dhabi, or anywhere in the UAE, a taste of Kerala is just an order away.
+                  Same spices from Wayanad and Idukki, same coconut, smaller format. Dubai, Abu
+                  Dhabi, or anywhere we deliver — it should taste like you remembered.
                 </p>
                 <div className="flex items-center gap-4 pt-4">
                   <div className="flex items-center gap-2">
@@ -328,7 +328,7 @@ export default function Snibbles() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-[#c91432] to-[#a01026] text-white">
+        <section className="py-20 bg-brand-gradient text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Order Your Snibbles Today
@@ -340,7 +340,7 @@ export default function Snibbles() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
-                <Button size="lg" variant="secondary" className="bg-white text-[#c91432] hover:bg-gray-100 shadow-xl">
+                <Button size="lg" variant="secondary" className="bg-white text-brand hover:bg-gray-100 shadow-xl">
                   Contact Us
                 </Button>
               </Link>
@@ -352,6 +352,20 @@ export default function Snibbles() {
             </div>
           </div>
         </section>
+
+        <PageCrossLinks
+          omit={["/snibbles"]}
+          banner={{
+            image: "/images/Appam-Beef-Curry-Combo_1-1.jpg",
+            alt: "Appam and curry meal",
+            title: "Dinner still lives on the main menu",
+            subtitle:
+              "When you need more than a snack — rice meals, curries, and full boxes from the cloud kitchen.",
+            href: "/kitchen/menu",
+            cta: "Browse full menu",
+            tone: "dark",
+          }}
+        />
       </main>
       
       <Footer />

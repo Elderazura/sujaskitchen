@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Calendar, ArrowRight, BookOpen } from 'lucide-react';
 import { useState } from 'react';
+import { PageCrossLinks } from '@/components/shared/PageCrossLinks';
 
 export default function Blog() {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -96,7 +97,7 @@ export default function Blog() {
         >
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/60 z-10"></div>
           <div className="relative z-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <div className="inline-block bg-[#c91432]/20 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+            <div className="inline-block bg-brand/20 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
               <BookOpen className="w-6 h-6 inline-block mr-2" />
               <span className="text-sm font-semibold">Our Blog</span>
             </div>
@@ -120,8 +121,8 @@ export default function Blog() {
                   onClick={() => setSelectedCategory(category)}
                   className={
                     selectedCategory === category
-                      ? 'bg-[#c91432] hover:bg-[#a01026] text-white'
-                      : 'border-gray-300 hover:border-[#c91432] hover:text-[#c91432]'
+                      ? 'bg-brand hover:bg-brand-hover text-white'
+                      : 'border-gray-300 hover:border-brand hover:text-brand'
                   }
                 >
                   {category}
@@ -142,7 +143,7 @@ export default function Blog() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredPosts.map((post, idx) => (
                   <Link key={post.id} href={`/blog/${post.slug}`}>
-                    <Card className="h-full overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-2 border-transparent hover:border-[#c91432] group">
+                    <Card className="h-full overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-2 border-transparent hover:border-brand group">
                       <div className="relative h-56 overflow-hidden">
                         <Image
                           src={post.image}
@@ -152,11 +153,11 @@ export default function Blog() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         <div className="absolute top-4 left-4">
-                          <Badge className="bg-[#c91432] text-white">{post.category}</Badge>
+                          <Badge className="bg-brand text-white">{post.category}</Badge>
                         </div>
                         <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           <div className="bg-white/90 backdrop-blur-sm rounded-full p-2">
-                            <ArrowRight className="w-5 h-5 text-[#c91432]" />
+                            <ArrowRight className="w-5 h-5 text-brand" />
                           </div>
                         </div>
                       </div>
@@ -169,7 +170,7 @@ export default function Blog() {
                           <div className="h-4 w-px bg-gray-300"></div>
                           <span>{post.readTime}</span>
                         </div>
-                        <CardTitle className="text-xl group-hover:text-[#c91432] transition-colors line-clamp-2">
+                        <CardTitle className="text-xl group-hover:text-brand transition-colors line-clamp-2">
                           {post.title}
                         </CardTitle>
                         <CardDescription className="line-clamp-3 leading-relaxed">
@@ -179,7 +180,7 @@ export default function Blog() {
                       <CardContent>
                         <Button
                           variant="ghost"
-                          className="text-[#c91432] hover:text-[#a01026] hover:bg-[#c91432]/10 p-0 group/btn"
+                          className="text-brand hover:text-brand-hover hover:bg-brand/10 p-0 group/btn"
                         >
                           Read More
                           <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
@@ -194,7 +195,7 @@ export default function Blog() {
         </section>
 
         {/* Newsletter CTA */}
-        <section className="py-20 bg-gradient-to-r from-[#c91432] to-[#a01026] text-white">
+        <section className="py-20 bg-brand-gradient text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">Stay Updated</h2>
             <div className="w-24 h-1 bg-white/50 mx-auto mb-8"></div>
@@ -207,12 +208,26 @@ export default function Blog() {
                 placeholder="Enter your email"
                 className="flex-1 px-6 py-4 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
               />
-              <Button size="lg" variant="secondary" className="bg-white text-[#c91432] hover:bg-gray-100 shadow-xl">
+              <Button size="lg" variant="secondary" className="bg-white text-brand hover:bg-gray-100 shadow-xl">
                 Subscribe
               </Button>
             </div>
           </div>
         </section>
+
+        <PageCrossLinks
+          omit={["/blog"]}
+          banner={{
+            image: "/images/FISH-CURRY-bnr-1.jpg",
+            alt: "Kerala fish curry",
+            title: "Reading is slow. Lunch is faster.",
+            subtitle:
+              "When you are done browsing, the cloud kitchen menu is one tap away on Talabat or Noon.",
+            href: "/kitchen/menu",
+            cta: "Open menu",
+            tone: "dark",
+          }}
+        />
       </main>
       
       <Footer />

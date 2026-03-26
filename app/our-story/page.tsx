@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { Leaf, Star, Building2, Heart, Calendar, Users, MapPin, Award } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useEffect, useRef, useState } from 'react';
+import { PageCrossLinks } from '@/components/shared/PageCrossLinks';
 
 export default function OurStory() {
   const [scrollY, setScrollY] = useState(0);
@@ -127,10 +128,10 @@ export default function OurStory() {
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#c91432]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-brand/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               <div className="space-y-6">
-                <div className="inline-block bg-[#c91432]/10 text-[#c91432] px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                <div className="inline-block bg-brand/10 text-brand px-4 py-2 rounded-full text-sm font-semibold mb-4">
                   Founded in 1999
                 </div>
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -181,7 +182,7 @@ export default function OurStory() {
                 return (
                   <Card
                     key={idx}
-                    className="bg-white/95 backdrop-blur-sm overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group border-2 border-transparent hover:border-[#c91432]"
+                    className="bg-white/95 backdrop-blur-sm overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group border-2 border-transparent hover:border-brand"
                     style={{
                       animationDelay: `${idx * 150}ms`,
                     }}
@@ -193,16 +194,16 @@ export default function OurStory() {
                         fill
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#c91432]/80 to-transparent"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-brand/80 to-transparent"></div>
                       <div className="absolute top-4 left-4">
                         <div className="bg-white/90 backdrop-blur-sm rounded-full p-3">
-                          <IconComponent className="w-6 h-6 text-[#c91432]" />
+                          <IconComponent className="w-6 h-6 text-brand" />
                         </div>
                       </div>
                     </div>
                     <CardContent className="p-6">
-                      <div className="text-[#c91432] font-bold text-lg mb-2">{milestone.year}</div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#c91432] transition-colors">
+                      <div className="text-brand font-bold text-lg mb-2">{milestone.year}</div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand transition-colors">
                         {milestone.title}
                       </h3>
                       <p className="text-gray-600 leading-relaxed text-sm">{milestone.description}</p>
@@ -221,7 +222,7 @@ export default function OurStory() {
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Our Philosophy
               </h2>
-              <div className="w-24 h-1 bg-[#c91432] mx-auto mb-6"></div>
+              <div className="w-24 h-1 bg-brand mx-auto mb-6"></div>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
@@ -250,7 +251,7 @@ export default function OurStory() {
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#c91432]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-brand/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
             </div>
 
@@ -259,17 +260,17 @@ export default function OurStory() {
               {values.map((value, idx) => (
                 <Card
                   key={idx}
-                  className="bg-gradient-to-br from-gray-50 to-white rounded-xl p-8 text-center shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-2 border-transparent hover:border-[#c91432] group"
+                  className="bg-gradient-to-br from-gray-50 to-white rounded-xl p-8 text-center shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-2 border-transparent hover:border-brand group"
                   style={{
                     animationDelay: `${idx * 100}ms`,
                   }}
                 >
                   <div className="flex justify-center mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                    <div className="bg-[#c91432]/10 rounded-full p-4 group-hover:bg-[#c91432]/20 transition-colors">
-                      <value.Icon className="w-8 h-8 text-[#c91432]" />
+                    <div className="bg-brand/10 rounded-full p-4 group-hover:bg-brand/20 transition-colors">
+                      <value.Icon className="w-8 h-8 text-brand" />
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#c91432] transition-colors">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand transition-colors">
                     {value.title}
                   </h3>
                   <p className="text-gray-700 leading-relaxed text-sm">{value.description}</p>
@@ -289,7 +290,7 @@ export default function OurStory() {
               <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-2">
                 Where tradition meets modern efficiency
               </p>
-              <div className="w-24 h-1 bg-[#c91432] mx-auto"></div>
+              <div className="w-24 h-1 bg-brand mx-auto"></div>
             </div>
             
             <AnimatedGallery 
@@ -350,7 +351,7 @@ export default function OurStory() {
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Catering Services
               </h2>
-              <div className="w-24 h-1 bg-[#c91432] mx-auto mb-6"></div>
+              <div className="w-24 h-1 bg-brand mx-auto mb-6"></div>
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -361,7 +362,7 @@ export default function OurStory() {
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#c91432]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-brand/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               <div className="space-y-6">
                 <p className="text-lg text-gray-700 leading-relaxed">
@@ -377,7 +378,7 @@ export default function OurStory() {
                 </p>
                 <Link
                   href="/catering"
-                  className="inline-block bg-[#c91432] text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-[#a01026] transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  className="inline-block bg-brand text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-hover transition-all duration-300 transform hover:scale-105 shadow-lg"
                 >
                   Learn More About Catering
                 </Link>
@@ -387,27 +388,25 @@ export default function OurStory() {
         </section>
 
         {/* Looking Forward Section */}
-        <section className="py-20 bg-gradient-to-r from-[#c91432] to-[#a01026] text-white">
+        <section className="py-20 bg-brand-gradient text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Looking Forward
             </h2>
             <div className="w-24 h-1 bg-white/50 mx-auto mb-8"></div>
             <p className="text-xl mb-8 text-white/90 leading-relaxed">
-              As we continue to grow, our commitment to authenticity and quality remains 
-              unwavering. We are proud to serve the Kerala community in the UAE and to 
-              introduce our rich culinary heritage to new audiences. Every dish tells a story, 
-              and we are honored to be part of yours.
+              As we grow, the rule stays the same: Suja still decides what goes into the pot.
+              We are proud to cook for the Malayali community in the UAE and for anyone who
+              wants the food they grew up with. Every dish carries a name and a memory.
             </p>
             <p className="text-xl mb-10 text-white/90 leading-relaxed">
-              From our humble beginnings in 1999 to serving Dubai and Abu Dhabi today, 
-              Suja&apos;s Kitchen remains dedicated to bringing you the authentic flavors 
-              of Kerala - just like Amma used to make.
+              From four friends in Sharjah in 1999 to Dubai and Abu Dhabi today, the kitchen
+              is bigger. The recipe is not. Still the way Amma used to make it.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/menu"
-                className="bg-white text-[#c91432] px-10 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-xl"
+                href="/kitchen/menu"
+                className="bg-white text-brand px-10 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-xl"
               >
                 Explore Our Menu
               </Link>
@@ -420,6 +419,20 @@ export default function OurStory() {
             </div>
           </div>
         </section>
+
+        <PageCrossLinks
+          omit={["/our-story"]}
+          banner={{
+            image: "/images/Sujas-Kitch-Onam-17.jpg",
+            alt: "Kerala feast on banana leaf",
+            title: "The story ends on your table",
+            subtitle:
+              "Seasonal sadhyas, daily cloud kitchen orders, and halls full of people — all from the same recipes.",
+            href: "/kitchen/menu",
+            cta: "See what we cook",
+            tone: "dark",
+          }}
+        />
       </main>
       
       <Footer />

@@ -1,18 +1,26 @@
 import type { Metadata } from "next";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Suja's Kitchen - Authentic Kerala Cuisine",
-  description: "Authentic Kerala cuisine delivered fresh from our cloud kitchen. Traditional meals, snacks, and catering services in Dubai and Abu Dhabi.",
-  icons: {
-    icon: [
-      { url: '/logo/Sujas_logo.png', type: 'image/png', sizes: 'any' },
-    ],
-    apple: [
-      { url: '/logo/Sujas_logo.png', type: 'image/png', sizes: '180x180' },
-    ],
-    shortcut: '/logo/Sujas_logo.png',
+  title: {
+    default: "Suja's Kitchen",
+    template: "%s | Suja's Kitchen",
   },
+  description:
+    "Kerala meals, snacks, and catering in Dubai and Abu Dhabi. Since 1999.",
 };
 
 export default function RootLayout({
@@ -22,7 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
+      <body
+        className={`${inter.variable} ${playfair.variable} ${inter.className} antialiased`}
+      >
         {children}
       </body>
     </html>
