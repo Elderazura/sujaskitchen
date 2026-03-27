@@ -1,10 +1,16 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { useRef } from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  useScroll,
+} from "framer-motion";
 import { CookingPot, Leaf, HandPlatter } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import FeaturedItems from "@/components/home/FeaturedItems";
@@ -16,6 +22,7 @@ import HomeOrderStrip from "@/components/home/HomeOrderStrip";
 import HomeParallaxBlock from "@/components/home/HomeParallaxBlock";
 import HomePromoBanner from "@/components/home/HomePromoBanner";
 import HomeSnibblesPreview from "@/components/home/HomeSnibblesPreview";
+import SujaStoryTicker from "@/components/home/SujaStoryTicker";
 import SeasonalHeartbeat from "@/components/home/SeasonalHeartbeat";
 import SnibblesBand from "@/components/home/SnibblesBand";
 import { useRotatingIndex } from "@/components/home/useRotatingIndex";
@@ -51,6 +58,13 @@ export default function HomeBelowFold() {
   );
   const howLine = HOW_WE_MAKE_ROTATIONS[howIndex] ?? HOW_WE_MAKE_ROTATIONS[0];
 
+  /** Full “The kitchen” block: same scroll span as Framer Ticker Scroll demo (section vs viewport). */
+  const kitchenSectionRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: kitchenStoryScrollProgress } = useScroll({
+    target: kitchenSectionRef,
+    offset: ["start end", "end start"],
+  });
+
   return (
     <div
       className="min-w-0 transition-[background-color] duration-[1500ms] ease-in-out"
@@ -60,36 +74,42 @@ export default function HomeBelowFold() {
 
       <HomeDivider variant={isNight ? "gold" : "brand"} />
 
-      <HomeParallaxBlock range={36} className="will-change-transform">
-        <Reveal>
-          <section className="px-6 py-20 text-center md:px-16">
-            <p
-              className={`font-sans text-xs font-semibold uppercase tracking-[0.25em] ${isNight ? "text-brand-gold" : "text-brand"}`}
-            >
-              The kitchen
-            </p>
-            <h2
-              className={`mx-auto mt-3 max-w-4xl font-serif text-3xl leading-snug md:text-5xl ${heading}`}
-            >
-              Since 1999, every dish has been Suja&apos;s decision.
-            </h2>
-            <div className="mx-auto mt-6 min-h-[4.5rem] max-w-2xl md:min-h-[3.75rem]">
-              <AnimatePresence initial={false} mode="wait">
-                <motion.p
-                  key={storyIndex}
-                  initial={reduce ? false : { opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={reduce ? undefined : { opacity: 0, y: -8 }}
-                  transition={{ duration: reduce ? 0 : 0.45 }}
-                  className={`font-sans text-base leading-relaxed md:text-lg ${muted}`}
-                >
-                  {storyLine}
-                </motion.p>
-              </AnimatePresence>
-            </div>
-          </section>
-        </Reveal>
-      </HomeParallaxBlock>
+      <div ref={kitchenSectionRef} className="min-w-0">
+        <HomeParallaxBlock range={36} className="will-change-transform">
+          <Reveal>
+            <section className="px-6 py-20 text-center md:px-16 md:pb-24">
+              <p
+                className={`font-sans text-xs font-semibold uppercase tracking-[0.25em] ${isNight ? "text-brand-gold" : "text-brand"}`}
+              >
+                The kitchen
+              </p>
+              <h2
+                className={`mx-auto mt-3 max-w-4xl font-serif text-3xl leading-snug md:text-5xl ${heading}`}
+              >
+                Since 1999, every dish has been Suja&apos;s decision.
+              </h2>
+              <SujaStoryTicker
+                isNight={isNight}
+                sectionScrollProgress={kitchenStoryScrollProgress}
+              />
+              <div className="mx-auto mt-6 min-h-[4.5rem] max-w-2xl md:min-h-[3.75rem]">
+                <AnimatePresence initial={false} mode="wait">
+                  <motion.p
+                    key={storyIndex}
+                    initial={reduce ? false : { opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={reduce ? undefined : { opacity: 0, y: -8 }}
+                    transition={{ duration: reduce ? 0 : 0.45 }}
+                    className={`font-sans text-base leading-relaxed md:text-lg ${muted}`}
+                  >
+                    {storyLine}
+                  </motion.p>
+                </AnimatePresence>
+              </div>
+            </section>
+          </Reveal>
+        </HomeParallaxBlock>
+      </div>
 
       <HomeExploreStrip />
 

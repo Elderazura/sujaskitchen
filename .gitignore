@@ -43,3 +43,6 @@ next-env.d.ts
 # scraped data
 /scraped-data
 /public/images/scraped
+
+# Suja reel sources (repo keeps WebM only; re-encode with npm run video:suja)
+public/Suja/*.mp4

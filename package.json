@@ -11,7 +11,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "scrape": "node scripts/scrape-website.js"
+    "scrape": "node scripts/scrape-website.js",
+    "video:webm": "bash scripts/encode-public-videos-webm.sh",
+    "video:suja": "bash scripts/encode-suja-webm-fast.sh"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
