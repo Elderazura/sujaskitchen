@@ -20,8 +20,8 @@ export async function GET() {
 
     if (!accessToken || !instagramBusinessId) {
       return NextResponse.json(
-        { error: 'Instagram credentials not configured' },
-        { status: 500 }
+        { posts: [], configured: false as const },
+        { status: 200 }
       );
     }
 
@@ -33,18 +33,18 @@ export async function GET() {
     });
 
     if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Instagram API Error:', errorData);
+      const errorData = await response.json().catch(() => ({}));
+      console.error("Instagram API Error:", errorData);
       return NextResponse.json(
-        { error: 'Failed to fetch Instagram posts', details: errorData },
-        { status: response.status }
+        { posts: [], configured: true as const, fetchFailed: true as const },
+        { status: 200 },
       );
     }
 
     const data = await response.json();
-    
-    // Transform the data to match our component's interface
-    const posts = data.data.map((post: InstagramPost) => ({
+    const raw = Array.isArray(data.data) ? data.data : [];
+
+    const posts = raw.map((post: InstagramPost) => ({
       id: post.id,
       image: post.media_url,
       caption: post.caption ? post.caption.split('\n')[0].substring(0, 100) : '',
@@ -54,12 +54,12 @@ export async function GET() {
       mediaType: post.media_type,
     }));
 
-    return NextResponse.json({ posts });
+    return NextResponse.json({ posts, configured: true as const });
   } catch (error) {
-    console.error('Error fetching Instagram feed:', error);
+    console.error("Error fetching Instagram feed:", error);
     return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
+      { posts: [], configured: false as const, fetchFailed: true as const },
+      { status: 200 },
     );
   }
 }

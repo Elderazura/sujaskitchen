@@ -28,8 +28,8 @@ export default function HomePromoBanner({
   const { isNight } = useTimeOfDay();
   const gradient =
     align === "right"
-      ? "bg-gradient-to-l from-black/80 via-black/50 to-transparent"
-      : "bg-gradient-to-r from-black/80 via-black/55 to-black/25";
+      ? "bg-gradient-to-l from-brand-dark/92 via-brand-dark/55 to-transparent"
+      : "bg-gradient-to-r from-brand-dark/92 via-brand-dark/50 to-transparent";
 
   return (
     <section className="px-0">
@@ -52,10 +52,10 @@ export default function HomePromoBanner({
               align === "right" ? "items-end text-right" : "items-start text-left"
             }`}
           >
-            <h2 className="max-w-xl font-serif text-2xl leading-tight text-white md:text-4xl">
+            <h2 className="max-w-xl font-serif text-2xl leading-tight text-brand-light md:text-4xl">
               {title}
             </h2>
-            <p className="mt-3 max-w-lg font-sans text-sm leading-relaxed text-white/90 md:text-base">
+            <p className="mt-3 max-w-lg font-sans text-sm leading-relaxed text-brand-light/90 md:text-base">
               {description}
             </p>
             <Button
@@ -64,7 +64,7 @@ export default function HomePromoBanner({
               className={`mt-6 border-0 shadow-md ${
                 isNight
                   ? "bg-brand-light text-brand-dark hover:bg-brand-light/90"
-                  : "bg-white text-brand-dark hover:bg-brand-light/50"
+                  : "bg-brand-light text-brand-dark hover:bg-brand-gold/35"
               }`}
             >
               <Link href={href}>{ctaLabel}</Link>

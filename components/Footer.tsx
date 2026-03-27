@@ -16,37 +16,39 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-stone-950 text-stone-300">
+    <footer className="bg-brand-dark text-brand-light/80">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
           <div>
-            <h3 className="font-serif text-2xl text-[#FEF3C7]">Suja&apos;s Kitchen</h3>
-            <p className="mt-3 max-w-sm font-sans text-sm leading-relaxed text-stone-400">
+            <h3 className="font-serif text-2xl text-brand-light">
+              Suja&apos;s Kitchen
+            </h3>
+            <p className="mt-3 max-w-sm font-sans text-sm leading-relaxed text-brand-light/65">
               Kerala food from a cloud kitchen in Dubai, catering across the UAE
               since 1999.
             </p>
             <div className="mt-6 flex gap-4">
-              <div className="relative h-20 w-20 overflow-hidden rounded-lg">
+              <div className="relative h-20 w-20 overflow-hidden rounded-lg border border-brand-mid/30">
                 <Image
                   src="/images/Dubai-Municipality-Accredited-Photoroom.png"
                   alt="Dubai Municipality accredited"
                   fill
-                  className="bg-white/10 object-contain p-2"
+                  className="bg-brand-dark/50 object-contain p-2"
                 />
               </div>
-              <div className="relative h-20 w-20 overflow-hidden rounded-lg">
+              <div className="relative h-20 w-20 overflow-hidden rounded-lg border border-brand-mid/30">
                 <Image
                   src="/images/iso-22000-e1729347891555.webp"
                   alt="ISO 22000 certification"
                   fill
-                  className="bg-white/10 object-contain p-2"
+                  className="bg-brand-dark/50 object-contain p-2"
                 />
               </div>
             </div>
           </div>
 
           <div>
-            <h4 className="font-sans text-sm font-semibold uppercase tracking-wider text-stone-500">
+            <h4 className="font-sans text-sm font-semibold uppercase tracking-wider text-brand-gold/90">
               Navigate
             </h4>
             <ul className="mt-4 space-y-2 font-sans text-sm">
@@ -54,7 +56,7 @@ export default function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-stone-400 transition-colors hover:text-[#FEF3C7]"
+                    className="text-brand-light/70 transition-colors hover:text-brand-light"
                   >
                     {l.label}
                   </Link>
@@ -64,10 +66,10 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-sans text-sm font-semibold uppercase tracking-wider text-stone-500">
+            <h4 className="font-sans text-sm font-semibold uppercase tracking-wider text-brand-gold/90">
               Contact
             </h4>
-            <ul className="mt-4 space-y-3 font-sans text-sm text-stone-400">
+            <ul className="mt-4 space-y-3 font-sans text-sm text-brand-light/70">
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-brand-gold" />
                 <span>
@@ -80,7 +82,7 @@ export default function Footer() {
                 <Mail className="mt-0.5 h-5 w-5 shrink-0 text-brand-gold" />
                 <a
                   href={`mailto:${CONTACT.email}`}
-                  className="hover:text-[#FEF3C7]"
+                  className="hover:text-brand-light"
                 >
                   {CONTACT.email}
                 </a>
@@ -89,7 +91,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-stone-800 pt-8 text-center font-sans text-sm text-stone-500">
+        <div className="mt-12 border-t border-brand-mid/35 pt-8 text-center font-sans text-sm text-brand-light/50">
           <p>&copy; {new Date().getFullYear()} Suja&apos;s Kitchen</p>
         </div>
       </div>

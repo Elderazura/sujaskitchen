@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
@@ -9,8 +10,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import FeaturedItems from "@/components/home/FeaturedItems";
 import HomeExploreStrip from "@/components/home/HomeExploreStrip";
 import HomeGoogleReviews from "@/components/home/HomeGoogleReviews";
+import HomeInstagramFeed from "@/components/home/HomeInstagramFeed";
 import HomeMenuShowcase from "@/components/home/HomeMenuShowcase";
 import HomeOrderStrip from "@/components/home/HomeOrderStrip";
+import HomeParallaxBlock from "@/components/home/HomeParallaxBlock";
 import HomePromoBanner from "@/components/home/HomePromoBanner";
 import HomeSnibblesPreview from "@/components/home/HomeSnibblesPreview";
 import SeasonalHeartbeat from "@/components/home/SeasonalHeartbeat";
@@ -19,7 +22,7 @@ import { useRotatingIndex } from "@/components/home/useRotatingIndex";
 import { useTimeConfig, useTimeOfDay } from "@/components/home/time-of-day-context";
 import CTAButton from "@/components/shared/CTAButton";
 import { ClosingCtaBand } from "@/components/shared/PageCrossLinks";
-import { Reveal } from "@/components/motion/Reveal";
+import { Reveal, RevealScale, RevealX } from "@/components/motion/Reveal";
 import { HOME_STORY_ROTATIONS } from "@/lib/heroMedia";
 import { HOW_WE_MAKE_ROTATIONS } from "@/lib/homeSectionCopy";
 
@@ -55,29 +58,38 @@ export default function HomeBelowFold() {
     >
       <FeaturedItems />
 
-      <Reveal>
-      <section className="px-6 py-20 text-center md:px-16">
-        <h2
-          className={`mx-auto max-w-4xl font-serif text-3xl leading-snug md:text-5xl ${heading}`}
-        >
-          Since 1999, every dish has been Suja&apos;s decision.
-        </h2>
-        <div className="mx-auto mt-6 min-h-[4.5rem] max-w-2xl md:min-h-[3.75rem]">
-          <AnimatePresence initial={false} mode="wait">
-            <motion.p
-              key={storyIndex}
-              initial={reduce ? false : { opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={reduce ? undefined : { opacity: 0, y: -8 }}
-              transition={{ duration: reduce ? 0 : 0.45 }}
-              className={`font-sans text-base leading-relaxed md:text-lg ${muted}`}
+      <HomeDivider variant={isNight ? "gold" : "brand"} />
+
+      <HomeParallaxBlock range={36} className="will-change-transform">
+        <Reveal>
+          <section className="px-6 py-20 text-center md:px-16">
+            <p
+              className={`font-sans text-xs font-semibold uppercase tracking-[0.25em] ${isNight ? "text-brand-gold" : "text-brand"}`}
             >
-              {storyLine}
-            </motion.p>
-          </AnimatePresence>
-        </div>
-      </section>
-      </Reveal>
+              The kitchen
+            </p>
+            <h2
+              className={`mx-auto mt-3 max-w-4xl font-serif text-3xl leading-snug md:text-5xl ${heading}`}
+            >
+              Since 1999, every dish has been Suja&apos;s decision.
+            </h2>
+            <div className="mx-auto mt-6 min-h-[4.5rem] max-w-2xl md:min-h-[3.75rem]">
+              <AnimatePresence initial={false} mode="wait">
+                <motion.p
+                  key={storyIndex}
+                  initial={reduce ? false : { opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={reduce ? undefined : { opacity: 0, y: -8 }}
+                  transition={{ duration: reduce ? 0 : 0.45 }}
+                  className={`font-sans text-base leading-relaxed md:text-lg ${muted}`}
+                >
+                  {storyLine}
+                </motion.p>
+              </AnimatePresence>
+            </div>
+          </section>
+        </Reveal>
+      </HomeParallaxBlock>
 
       <HomeExploreStrip />
 
@@ -134,25 +146,30 @@ export default function HomeBelowFold() {
                 title: "Suja still decides what goes in.",
                 body: "Twenty-five years in, the woman who started this in her home kitchen still decides every recipe, every portion, every standard.",
               },
-            ].map(({ Icon, title, body: copy }) => (
-              <Card
+            ].map(({ Icon, title, body: copy }, idx) => (
+              <RevealX
                 key={title}
-                className={
-                  isNight
-                    ? "border-brand-mid/40 bg-brand-dark/70"
-                    : "border-brand-mid/25 bg-white"
-                }
+                from={idx % 2 === 0 ? "left" : "right"}
+                delay={0.08 * idx}
               >
-                <CardContent className="p-6">
-                  <Icon
-                    className={`h-10 w-10 ${isNight ? "text-brand-gold" : "text-brand-dark"}`}
-                  />
-                  <h3 className={`mt-4 font-serif text-xl ${heading}`}>{title}</h3>
-                  <p className={`mt-2 font-sans text-sm leading-relaxed ${bodyClass}`}>
-                    {copy}
-                  </p>
-                </CardContent>
-              </Card>
+                <Card
+                  className={
+                    isNight
+                      ? "h-full border-brand-mid/40 bg-brand-dark/70"
+                      : "h-full border-brand-mid/25 bg-white shadow-sm"
+                  }
+                >
+                  <CardContent className="p-6">
+                    <Icon
+                      className={`h-10 w-10 ${isNight ? "text-brand-gold" : "text-brand-dark"}`}
+                    />
+                    <h3 className={`mt-4 font-serif text-xl ${heading}`}>{title}</h3>
+                    <p className={`mt-2 font-sans text-sm leading-relaxed ${bodyClass}`}>
+                      {copy}
+                    </p>
+                  </CardContent>
+                </Card>
+              </RevealX>
             ))}
           </div>
         </div>
@@ -160,6 +177,10 @@ export default function HomeBelowFold() {
       </Reveal>
 
       <HomeMenuShowcase />
+
+      <HomeDivider variant="muted" />
+
+      <HomeInstagramFeed />
 
       <HomeSnibblesPreview />
 
@@ -204,12 +225,12 @@ export default function HomeBelowFold() {
               </CTAButton>
             </CardContent>
           </Card>
-          <Card className="border-0 bg-brand-dark text-white shadow-lg">
+          <Card className="border-0 bg-brand-dark text-brand-light shadow-lg">
             <CardContent className="flex h-full flex-col p-8">
-              <h3 className="font-serif text-2xl text-white">
+              <h3 className="font-serif text-2xl text-brand-light">
                 Feeding your gathering.
               </h3>
-              <p className="mt-3 flex-1 font-sans text-sm leading-relaxed text-white/85">
+              <p className="mt-3 flex-1 font-sans text-sm leading-relaxed text-brand-light/85">
                 Weddings. Corporate events. Onam feasts. Community celebrations.
                 Up to 2,000 guests.
               </p>
@@ -228,15 +249,17 @@ export default function HomeBelowFold() {
       <Reveal delay={0.05}>
       <section className={`px-0 py-16 ${isNight ? "bg-brand-dark/35" : "bg-brand-light/25"}`}>
         <div className="relative mx-auto max-w-6xl px-6 md:px-16">
-          <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl md:aspect-[21/9]">
-            <Image
-              src="/images/suja-maam_1.jpg"
-              alt="Suja Alex in the kitchen at Suja's Kitchen"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 1152px"
-            />
-          </div>
+          <RevealScale>
+            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-brand-mid/25 shadow-xl md:aspect-[21/9]">
+              <Image
+                src="/images/suja-maam_1.jpg"
+                alt="Suja Alex in the kitchen at Suja's Kitchen"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 1152px"
+              />
+            </div>
+          </RevealScale>
           <div className={`mx-auto mt-10 max-w-2xl text-center`}>
             <p className={`font-sans text-base leading-relaxed md:text-lg ${bodyClass}`}>
               In 1999, four friends were tired of hotel food. Suja cooked for
@@ -264,9 +287,23 @@ function ButtonAsLinkLight({ href, children }: { href: string; children: ReactNo
   return (
     <Link
       href={href}
-      className="mt-6 inline-flex min-h-11 w-fit items-center justify-center rounded-lg border border-white/40 bg-white/10 px-8 py-2 font-sans text-base font-medium text-white backdrop-blur hover:bg-white/20"
+      className="mt-6 inline-flex min-h-11 w-fit items-center justify-center rounded-lg border border-brand-light/45 bg-brand/15 px-8 py-2 font-sans text-base font-medium text-brand-light backdrop-blur hover:bg-brand/25"
     >
       {children}
     </Link>
+  );
+}
+
+function HomeDivider({ variant }: { variant: "gold" | "brand" | "muted" }) {
+  const bar =
+    variant === "gold"
+      ? "bg-gradient-to-r from-transparent via-brand-gold/45 to-transparent"
+      : variant === "brand"
+        ? "bg-gradient-to-r from-transparent via-brand/50 to-transparent"
+        : "bg-gradient-to-r from-transparent via-brand-hover/40 to-transparent";
+  return (
+    <div className="px-6 py-2 md:px-16">
+      <div className={cn("mx-auto h-0.5 max-w-5xl", bar)} />
+    </div>
   );
 }

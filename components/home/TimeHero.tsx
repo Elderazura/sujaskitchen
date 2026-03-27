@@ -10,14 +10,22 @@ import {
 import SteamEffect from "@/components/home/SteamEffect";
 import CTAButton from "@/components/shared/CTAButton";
 import Link from "next/link";
-import {
-  HERO_CAPTION_ROTATIONS,
-  HERO_SLIDES,
-} from "@/lib/heroMedia";
+import { HERO_CAPTION_ROTATIONS, HERO_SLIDES } from "@/lib/heroMedia";
 import { useRotatingIndex } from "@/components/home/useRotatingIndex";
+import { cn } from "@/lib/utils";
 
-const IMAGE_INTERVAL_MS = 8000;
-const CAPTION_INTERVAL_MS = 6500;
+const IMAGE_INTERVAL_MS = 14_000;
+const CAPTION_INTERVAL_MS = 11_000;
+
+/** Calm, slow eases */
+const easeCrossfade = [0.4, 0, 0.2, 1] as const;
+const easeCaption = [0.22, 1, 0.36, 1] as const;
+
+/** Layered shadows for light text on photos (no extra BG scrim). */
+const heroHeadlineShadow =
+  "[text-shadow:0_0_1px_rgba(45,20,12,0.98),0_1px_2px_rgba(45,20,12,0.92),0_2px_14px_rgba(45,20,12,0.72),0_5px_44px_rgba(45,20,12,0.42)]";
+const heroSubtextShadow =
+  "[text-shadow:0_1px_2px_rgba(45,20,12,0.92),0_2px_18px_rgba(45,20,12,0.55)]";
 
 export default function TimeHero() {
   const config = useTimeConfig();
@@ -55,21 +63,29 @@ export default function TimeHero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: liveMotion ? 0.85 : 0, ease: "easeInOut" }}
+          transition={{
+            duration: liveMotion ? 1.65 : 0,
+            ease: easeCrossfade,
+          }}
           className="absolute inset-0"
         >
           <motion.div
-            className="absolute inset-0"
+            className="absolute inset-0 will-change-transform"
             initial={false}
             animate={
               liveMotion
-                ? { scale: [1, 1.045, 1] }
-                : { scale: 1 }
+                ? {
+                    scale: [1, 1.018, 1.012, 1],
+                    x: ["0%", "0.2%", "-0.12%", "0%"],
+                    y: ["0%", "-0.22%", "0.1%", "0%"],
+                  }
+                : { scale: 1, x: "0%", y: "0%" }
             }
             transition={{
-              duration: 22,
+              duration: 42,
               repeat: liveMotion ? Infinity : 0,
               ease: "easeInOut",
+              times: [0, 0.38, 0.74, 1],
             }}
           >
             <Image
@@ -86,7 +102,7 @@ export default function TimeHero() {
       </AnimatePresence>
 
       <div
-        className="absolute inset-0 z-[1] transition-[background-color] duration-[1000ms] ease-in-out"
+        className="absolute inset-0 z-[1] transition-[background-color] duration-[1800ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
         style={{ backgroundColor: config.overlay }}
         aria-hidden
       />
@@ -97,65 +113,91 @@ export default function TimeHero() {
         {slides.map((s, i) => (
           <span
             key={s.src}
-            className={`h-1.5 rounded-full transition-all duration-500 ${
+            className={cn(
+              "h-1.5 rounded-full transition-all duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
               i === slideIndex
-                ? "w-6 bg-brand-light"
-                : "w-1.5 bg-brand-light/40"
-            }`}
+                ? "w-7 bg-brand-light"
+                : "w-1.5 bg-brand-light/40",
+            )}
             aria-hidden
           />
         ))}
       </div>
 
-      <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-24 pt-32 md:px-16 md:pb-28">
-        <div className="max-w-3xl">
+      {/* Upper-middle: fixed band, left-aligned */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-start px-6 pt-[min(18vh,5.5rem)] md:px-16 md:pt-[min(22vh,6.5rem)]">
+        <div className="pointer-events-auto w-full max-w-3xl text-left">
           <AnimatePresence initial={false} mode="wait">
             <motion.div
               key={`cap-${timeState}-${captionIndex}`}
               initial={
-                liveMotion ? { opacity: 0, y: 14 } : false
+                liveMotion ? { opacity: 0, y: 18 } : false
               }
               animate={{ opacity: 1, y: 0 }}
-              exit={
-                liveMotion ? { opacity: 0, y: -10 } : undefined
-              }
-              transition={{ duration: liveMotion ? 0.45 : 0, ease: "easeOut" }}
+              exit={liveMotion ? { opacity: 0, y: -12 } : undefined}
+              transition={{
+                duration: liveMotion ? 1.35 : 0,
+                ease: easeCaption,
+              }}
             >
-              <p className="font-serif text-4xl leading-tight text-white drop-shadow-md md:text-6xl md:leading-tight">
+              <p
+                className={cn(
+                  "max-w-4xl font-serif text-4xl leading-[1.12] tracking-[-0.02em] text-brand-light antialiased md:text-5xl md:leading-[1.1] lg:text-6xl lg:leading-[1.08]",
+                  heroHeadlineShadow,
+                )}
+              >
                 {caption.headline}
               </p>
-              <p className="mt-4 max-w-xl font-sans text-base text-white/88 md:text-lg">
+              <p
+                className={cn(
+                  "mt-5 max-w-2xl font-sans text-base font-medium leading-relaxed text-brand-light md:text-lg",
+                  heroSubtextShadow,
+                )}
+              >
                 {caption.subtext}
               </p>
             </motion.div>
           </AnimatePresence>
 
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+          <motion.div
+            className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:justify-start"
+            initial={false}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: liveMotion ? 0.2 : 0,
+              duration: liveMotion ? 1.1 : 0,
+              ease: easeCaption,
+            }}
+          >
             <CTAButton href={config.ctaHref}>{config.cta}</CTAButton>
             {timeState === "closed" && (
               <CTAButton
                 href="/kitchen/menu"
                 variant="outline"
-                className="border-white/70 bg-white/10 text-white shadow-none hover:bg-white/20 hover:text-white"
+                className="border-brand-light/80 bg-brand-dark/35 text-brand-light shadow-none hover:bg-brand-dark/55 hover:text-brand-light"
               >
                 Browse the menu
               </CTAButton>
             )}
-          </div>
+          </motion.div>
 
           {timeState === "chaya" && (
             <motion.div
-              initial={liveMotion ? { opacity: 0, y: 8 } : false}
+              initial={liveMotion ? { opacity: 0, y: 14 } : false}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.35, duration: liveMotion ? 0.55 : 0 }}
-              className="mt-6 max-w-md"
+              transition={{
+                delay: liveMotion ? 0.35 : 0,
+                duration: liveMotion ? 1.15 : 0,
+                ease: easeCaption,
+              }}
+              className="mt-8 max-w-md"
             >
-              <Card className="border-brand-light/35 bg-black/40 text-white backdrop-blur-md">
+              <Card className="border-brand-light/40 bg-brand-dark/50 text-brand-light backdrop-blur-md">
                 <CardContent className="p-4 md:p-5">
                   <p className="font-sans text-sm font-medium text-brand-light">
                     Meet Snibbles
                   </p>
-                  <p className="mt-1 font-sans text-sm text-white/85">
+                  <p className="mt-1 font-sans text-sm text-brand-light/88">
                     Our snack brand. Built for chaya time.
                   </p>
                   <Link

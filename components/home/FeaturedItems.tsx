@@ -45,7 +45,7 @@ export default function FeaturedItems() {
             <Button
               asChild
               size="lg"
-              className="min-h-11 bg-brand text-white hover:bg-brand-hover"
+              className="min-h-11 bg-brand text-brand-light hover:bg-brand-hover"
             >
               <Link href="/kitchen/menu">Browse the menu</Link>
             </Button>

@@ -65,7 +65,12 @@ export default function HomeExploreStrip() {
     >
       <div className="mx-auto max-w-7xl">
         <Reveal>
-          <h2 className={`font-serif text-3xl md:text-4xl ${heading}`}>
+          <p
+            className={`font-sans text-xs font-semibold uppercase tracking-[0.2em] ${isNight ? "text-brand-gold" : "text-brand"}`}
+          >
+            More to open
+          </p>
+          <h2 className={`mt-2 font-serif text-3xl md:text-4xl ${heading}`}>
             Explore the kitchen
           </h2>
           <p className={`mt-2 max-w-2xl font-sans text-sm md:text-base ${muted}`}>
@@ -91,13 +96,13 @@ export default function HomeExploreStrip() {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-90 transition-opacity group-hover:opacity-100" />
-                    <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/85 via-brand-dark/25 to-transparent opacity-95 transition-opacity group-hover:opacity-100" />
+                    <div className="absolute bottom-0 left-0 right-0 p-4 text-brand-light">
                       <p className="font-serif text-lg">{item.title}</p>
-                      <p className="mt-1 line-clamp-2 font-sans text-xs text-white/88">
+                      <p className="mt-1 line-clamp-2 font-sans text-xs text-brand-light/90">
                         {item.line}
                       </p>
-                      <span className="mt-2 inline-flex items-center gap-1 font-sans text-xs font-medium text-brand-light">
+                      <span className="mt-2 inline-flex items-center gap-1 font-sans text-xs font-medium text-brand-gold">
                         Open
                         <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
                       </span>

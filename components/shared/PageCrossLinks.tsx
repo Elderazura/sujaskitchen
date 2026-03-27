@@ -214,7 +214,7 @@ export function ClosingCtaBand({
 }) {
   const reduce = useReducedMotion();
   return (
-    <section className="bg-brand-gradient px-4 py-14 text-white sm:px-6 md:py-20">
+    <section className="bg-brand-gradient px-4 py-14 text-brand-light sm:px-6 md:py-20">
       <div className="mx-auto max-w-4xl text-center">
         <motion.h2
           className="font-serif text-3xl md:text-5xl"
@@ -226,7 +226,7 @@ export function ClosingCtaBand({
           {title}
         </motion.h2>
         <motion.p
-          className="mx-auto mt-4 max-w-2xl font-sans text-sm text-white/90 md:text-base"
+          className="mx-auto mt-4 max-w-2xl font-sans text-sm text-brand-light/90 md:text-base"
           initial={reduce ? false : { opacity: 0, y: 12 }}
           whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -251,7 +251,7 @@ export function ClosingCtaBand({
           <Button
             size="lg"
             variant="outline"
-            className="min-h-12 border-2 border-white/70 bg-transparent text-white hover:bg-white/10"
+            className="min-h-12 border-2 border-brand-light/80 bg-transparent text-brand-light hover:bg-brand-dark/30"
             asChild
           >
             <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer">
@@ -261,7 +261,7 @@ export function ClosingCtaBand({
           <Button
             size="lg"
             variant="outline"
-            className="min-h-12 border-2 border-white/70 bg-transparent text-white hover:bg-white/10"
+            className="min-h-12 border-2 border-brand-light/80 bg-transparent text-brand-light hover:bg-brand-dark/30"
             asChild
           >
             <Link href="/contact">Contact</Link>

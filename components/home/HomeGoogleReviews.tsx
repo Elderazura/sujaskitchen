@@ -5,7 +5,7 @@ import { Star } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Reveal } from "@/components/motion/Reveal";
+import { Reveal, RevealX } from "@/components/motion/Reveal";
 import { pickBestGoogleReviews } from "@/lib/googleReviewUtils";
 import { useTimeOfDay } from "@/components/home/time-of-day-context";
 
@@ -151,13 +151,21 @@ export default function HomeGoogleReviews() {
               >
                 <CardContent className="space-y-3 p-6">
                   <div className="flex items-center gap-3">
-                    <Skeleton className="h-11 w-11 rounded-full" />
+                    <Skeleton
+                      className={`h-11 w-11 rounded-full ${isNight ? "bg-brand-mid/30" : "bg-brand-mid/20"}`}
+                    />
                     <div className="space-y-2">
-                      <Skeleton className="h-4 w-28" />
-                      <Skeleton className="h-3 w-20" />
+                      <Skeleton
+                        className={`h-4 w-28 ${isNight ? "bg-brand-mid/25" : "bg-brand-mid/15"}`}
+                      />
+                      <Skeleton
+                        className={`h-3 w-20 ${isNight ? "bg-brand-mid/25" : "bg-brand-mid/15"}`}
+                      />
                     </div>
                   </div>
-                  <Skeleton className="h-16 w-full" />
+                  <Skeleton
+                    className={`h-16 w-full ${isNight ? "bg-brand-mid/25" : "bg-brand-mid/15"}`}
+                  />
                 </CardContent>
               </Card>
             ))}
@@ -165,7 +173,11 @@ export default function HomeGoogleReviews() {
         ) : (
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {list.map((r, i) => (
-              <Reveal key={r.id} delay={0.04 * (i % 3)}>
+              <RevealX
+                key={r.id}
+                from={i % 2 === 0 ? "left" : "right"}
+                delay={0.05 * (i % 3)}
+              >
                 <Card
                   className={
                     isNight
@@ -202,7 +214,7 @@ export default function HomeGoogleReviews() {
                     </p>
                   </CardContent>
                 </Card>
-              </Reveal>
+              </RevealX>
             ))}
           </div>
         )}

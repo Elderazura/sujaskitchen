@@ -116,3 +116,35 @@ export function RevealStaggerItem({
     </motion.div>
   );
 }
+
+export function RevealX({
+  children,
+  className,
+  delay = 0,
+  from = "left",
+  x = 40,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+  from?: "left" | "right";
+  x?: number;
+}) {
+  const reduce = useReducedMotion();
+  const x0 = from === "left" ? -x : x;
+  return (
+    <motion.div
+      className={cn(className)}
+      initial={reduce ? false : { opacity: 0, x: x0 }}
+      whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: "-56px", amount: 0.12 }}
+      transition={{
+        duration: reduce ? 0 : 0.58,
+        delay: reduce ? 0 : delay,
+        ease: easeOut,
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+}

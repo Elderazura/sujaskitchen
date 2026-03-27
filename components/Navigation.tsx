@@ -43,8 +43,8 @@ export default function Navigation() {
   const phoneNumber = '+971501234567'; // Update with actual phone number
 
   return (
-    <nav className={`bg-white/95 backdrop-blur-sm shadow-md sticky top-0 z-50 border-b transition-all duration-300 ${
-      scrolled ? 'border-brand/20 shadow-lg' : 'border-gray-100'
+    <nav className={`sticky top-0 z-50 border-b bg-white/95 shadow-md backdrop-blur-sm transition-all duration-300 ${
+      scrolled ? "border-brand/25 shadow-lg" : "border-brand-mid/10"
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
@@ -69,7 +69,7 @@ export default function Navigation() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-gray-700 hover:text-brand px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-brand/10"
+                  className="rounded-lg px-4 py-2 text-sm font-medium text-brand-dark/90 transition-all duration-200 hover:bg-brand/10 hover:text-brand"
                 >
                   {link.label}
                 </Link>
@@ -77,7 +77,7 @@ export default function Navigation() {
             </div>
             <a
               href={`tel:${phoneNumber}`}
-              className="flex items-center gap-2 bg-brand text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-hover transition-all duration-200 ml-4"
+              className="ml-4 flex items-center gap-2 rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-brand-light transition-all duration-200 hover:bg-brand-hover"
             >
               <Phone className="w-4 h-4" />
               <span className="hidden lg:inline">Call Us</span>
@@ -88,14 +88,14 @@ export default function Navigation() {
           <div className="md:hidden flex items-center gap-3">
             <a
               href={`tel:${phoneNumber}`}
-              className="flex items-center justify-center w-10 h-10 bg-brand text-white rounded-lg hover:bg-brand-hover transition-colors"
+              className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand text-brand-light transition-colors hover:bg-brand-hover"
               aria-label="Call us"
             >
               <Phone className="w-5 h-5" />
             </a>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-lg text-gray-700 hover:text-brand hover:bg-brand/10 focus:outline-none transition-colors"
+              className="inline-flex items-center justify-center rounded-lg p-2 text-brand-dark/90 transition-colors hover:bg-brand/10 hover:text-brand focus:outline-none"
               aria-label="Toggle menu"
             >
               <svg
@@ -127,13 +127,13 @@ export default function Navigation() {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="md:hidden border-t border-gray-100">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white">
+        <div className="border-t border-brand-mid/10 md:hidden">
+          <div className="space-y-1 bg-white px-2 pb-3 pt-2 sm:px-3">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-gray-700 hover:text-brand block px-3 py-3 rounded-lg text-base font-medium hover:bg-brand/10 transition-colors"
+                className="block rounded-lg px-3 py-3 text-base font-medium text-brand-dark/90 transition-colors hover:bg-brand/10 hover:text-brand"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
@@ -141,7 +141,7 @@ export default function Navigation() {
             ))}
             <a
               href={`tel:${phoneNumber}`}
-              className="flex items-center gap-2 text-white bg-brand hover:bg-brand-hover block px-3 py-3 rounded-lg text-base font-medium transition-colors mt-2"
+              className="mt-2 flex items-center gap-2 rounded-lg bg-brand px-3 py-3 text-base font-medium text-brand-light transition-colors hover:bg-brand-hover"
               onClick={() => setIsOpen(false)}
             >
               <Phone className="w-5 h-5" />

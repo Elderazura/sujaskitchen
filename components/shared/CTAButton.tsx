@@ -18,7 +18,7 @@ export default function CTAButton({
   const isExternal = /^https?:\/\//i.test(href);
   const classes = cn(
     "min-h-11 rounded-lg px-8 font-sans text-base shadow-md",
-    variant === "default" && "bg-brand text-white hover:bg-brand-hover",
+    variant === "default" && "bg-brand text-brand-light hover:bg-brand-hover",
     className,
   );
 

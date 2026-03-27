@@ -104,7 +104,7 @@ export default function HomeSnibblesPreview() {
                     <div className="flex items-start justify-between gap-2">
                       <p className={`font-serif text-lg ${heading}`}>{p.name}</p>
                       {p.popular ? (
-                        <Badge className="shrink-0 bg-brand text-white hover:bg-brand-hover">
+                        <Badge className="shrink-0 bg-brand text-brand-light hover:bg-brand-hover">
                           Popular
                         </Badge>
                       ) : null}

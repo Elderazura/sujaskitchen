@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { HOME_MENU_SHOWCASE } from "@/lib/menuData";
-import { Reveal } from "@/components/motion/Reveal";
+import { Reveal, RevealX } from "@/components/motion/Reveal";
 import { useTimeOfDay } from "@/components/home/time-of-day-context";
 
 export default function HomeMenuShowcase() {
@@ -45,7 +45,11 @@ export default function HomeMenuShowcase() {
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {HOME_MENU_SHOWCASE.map((item, i) => (
-            <Reveal key={item.name} delay={0.04 * (i % 3)}>
+            <RevealX
+              key={item.name}
+              from={i % 2 === 0 ? "left" : "right"}
+              delay={0.05 * (i % 3)}
+            >
               <Card
                 className={
                   isNight
@@ -86,7 +90,7 @@ export default function HomeMenuShowcase() {
                   </CardContent>
                 </Link>
               </Card>
-            </Reveal>
+            </RevealX>
           ))}
         </div>
       </div>
