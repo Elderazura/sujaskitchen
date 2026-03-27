@@ -1,0 +1,12 @@
+# Next.js on Netlify (App Router, API routes, SSR).
+# In Netlify: Site configuration → Build & deploy → set Publish directory to
+# EMPTY / blank (not "out", not ".next", not "public"). The plugin sets outputs.
+
+[build]
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
