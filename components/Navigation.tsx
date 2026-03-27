@@ -11,11 +11,21 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    let raf = 0;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      if (raf) return;
+      raf = window.requestAnimationFrame(() => {
+        raf = 0;
+        const next = window.scrollY > 20;
+        setScrolled((prev) => (prev === next ? prev : next));
+      });
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, []);
 
   const navLinks = [

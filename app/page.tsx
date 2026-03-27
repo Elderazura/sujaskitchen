@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import HomePageClient from "@/components/home/HomePageClient";
+import HomeGate from "@/components/home/HomeGate";
 
 export const metadata: Metadata = {
   title: "Kerala food delivery Dubai | Suja's Kitchen",
@@ -17,5 +17,5 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <HomePageClient />;
+  return <HomeGate />;
 }

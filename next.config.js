@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Reduces dev-only double-mount issues with animation libs (Framer, etc.)
+  reactStrictMode: false,
   turbopack: {
     root: __dirname,
   },
@@ -13,6 +15,7 @@ const nextConfig = {
     ];
   },
   images: {
+    qualities: [75, 85, 88, 90],
     remotePatterns: [
       {
         protocol: 'https',
