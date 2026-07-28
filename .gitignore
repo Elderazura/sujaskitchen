@@ -19,6 +19,7 @@
 # misc
 .claude/
 .superpowers/
+.worktrees/
 .DS_Store
 *.pem
 
