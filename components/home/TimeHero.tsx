@@ -178,16 +178,14 @@ export default function TimeHero() {
               ease: easeCaption,
             }}
           >
-            <CTAButton href={config.ctaHref}>{config.cta}</CTAButton>
-            {timeState === "closed" && (
-              <CTAButton
-                href="/kitchen/menu"
-                variant="outline"
-                className="border-brand-light/80 bg-brand-dark/35 text-brand-light shadow-none hover:bg-brand-dark/55 hover:text-brand-light"
-              >
-                Browse the menu
-              </CTAButton>
-            )}
+            <CTAButton href="/kitchen/menu">Order from the kitchen</CTAButton>
+            <CTAButton
+              href="/catering"
+              variant="outline"
+              className="border-brand-light/80 bg-brand-dark/35 text-brand-light shadow-none hover:bg-brand-dark/55 hover:text-brand-light"
+            >
+              Plan catering
+            </CTAButton>
           </motion.div>
 
           {timeState === "chaya" && (
