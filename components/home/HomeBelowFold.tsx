@@ -18,7 +18,8 @@ import SeasonalHeartbeat from "@/components/home/SeasonalHeartbeat";
 import SnibblesBand from "@/components/home/SnibblesBand";
 import { useRotatingIndex } from "@/components/home/useRotatingIndex";
 import { useTimeConfig, useTimeOfDay } from "@/components/home/time-of-day-context";
-import { SectionEyebrow } from "@/components/shared/SectionEyebrow";
+import { PageShell, PageSection } from "@/components/shared/PageShell";
+import { SectionHeader } from "@/components/shared/SectionHeader";
 import { ClosingCtaBand } from "@/components/shared/PageCrossLinks";
 import { cn } from "@/lib/utils";
 import { Reveal, RevealX } from "@/components/motion/Reveal";
@@ -67,22 +68,20 @@ export default function HomeBelowFold() {
       <div ref={kitchenSectionRef} className="min-w-0">
         <HomeParallaxBlock range={36} className="will-change-transform">
           <Reveal>
-            <section className="px-6 py-20 text-center md:px-16 md:pb-24">
-              <p
-                className={`font-sans text-xs font-semibold uppercase tracking-[0.25em] ${isNight ? "text-brand-gold" : "text-brand"}`}
-              >
-                The kitchen
-              </p>
-              <h2
-                className={`mx-auto mt-3 max-w-4xl font-serif text-3xl leading-snug md:text-5xl ${heading}`}
-              >
-                Since 1999, every dish has been Suja&apos;s decision.
-              </h2>
-              <SujaStoryTicker
-                isNight={isNight}
-                sectionScrollProgress={kitchenStoryScrollProgress}
-              />
-              <div className="mx-auto mt-6 min-h-[4.5rem] max-w-2xl md:min-h-[3.75rem]">
+            <section className="section-y">
+              <PageShell>
+                <SectionHeader
+                  eyebrow="The kitchen"
+                  title="Since 1999, every dish has been Suja&apos;s decision."
+                  eyebrowClassName={isNight ? "text-brand-gold" : "text-brand"}
+                  titleClassName={cn("text-3xl md:text-5xl leading-snug", heading)}
+                  className="max-w-4xl"
+                />
+                <SujaStoryTicker
+                  isNight={isNight}
+                  sectionScrollProgress={kitchenStoryScrollProgress}
+                />
+                <div className="mt-6 min-h-[4.5rem] max-w-2xl md:min-h-[3.75rem]">
                 <AnimatePresence initial={false} mode="wait">
                   <motion.p
                     key={storyIndex}
@@ -95,27 +94,24 @@ export default function HomeBelowFold() {
                     {storyLine}
                   </motion.p>
                 </AnimatePresence>
-              </div>
+                </div>
+              </PageShell>
             </section>
           </Reveal>
         </HomeParallaxBlock>
       </div>
 
       <Reveal delay={0.05}>
-        <section
-          className={cn(
-            "section-y px-6 md:px-16",
-            isNight ? "bg-brand-dark/25" : "bg-white/60",
-          )}
+        <PageSection
+          className={isNight ? "bg-brand-dark/25" : "bg-white/60"}
         >
-          <div className="mx-auto max-w-7xl">
-            <SectionEyebrow className={isNight ? "text-brand-gold" : "text-brand"}>
-              How we make food
-            </SectionEyebrow>
-            <h2 className={cn("text-section mt-3 text-3xl md:text-4xl", heading)}>
-              Three truths. No shortcuts.
-            </h2>
-            <div className="relative mt-3 min-h-[2.75rem] max-w-2xl">
+            <SectionHeader
+              eyebrow="How we make food"
+              title="Three truths. No shortcuts."
+              eyebrowClassName={isNight ? "text-brand-gold" : "text-brand"}
+              titleClassName={heading}
+            />
+            <div className="relative mt-2 min-h-[2.75rem] max-w-2xl">
               <AnimatePresence initial={false} mode="wait">
                 <motion.p
                   key={`${howIndex}-${timeState}`}
@@ -173,8 +169,7 @@ export default function HomeBelowFold() {
                 </RevealX>
               ))}
             </div>
-          </div>
-        </section>
+        </PageSection>
       </Reveal>
 
       <HomeEatGather />

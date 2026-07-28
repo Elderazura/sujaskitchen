@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Reveal, RevealScale } from "@/components/motion/Reveal";
+import { PageSection } from "@/components/shared/PageShell";
+import { SectionHeader } from "@/components/shared/SectionHeader";
 import { useTimeOfDay } from "@/components/home/time-of-day-context";
 import { INSTAGRAM_HANDLE, INSTAGRAM_PROFILE_URL } from "@/lib/constants";
 import { HOME_FEED_PORTRAIT_VIDEOS } from "@/lib/homeFeedVideos";
@@ -82,29 +84,25 @@ export default function HomeInstagramFeed() {
   const scrollItems: ScrollItem[] = [...videoItems, ...igItems];
 
   return (
-    <section className={`px-6 py-20 md:px-16 ${rail}`}>
-      <div className="mx-auto max-w-7xl">
+    <PageSection className={rail}>
         <Reveal>
-          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p
-                className={`font-sans text-xs font-semibold uppercase tracking-[0.2em] ${isNight ? "text-brand-gold" : "text-brand"}`}
-              >
-                From the feed
-              </p>
-              <h2 className={`mt-2 font-serif text-3xl md:text-4xl ${heading}`}>
-                Instagram
-              </h2>
-              <p className={`mt-2 max-w-xl font-sans text-sm md:text-base ${muted}`}>
-                {hasFeed
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <SectionHeader
+              eyebrow="From the feed"
+              title="Instagram"
+              description={
+                hasFeed
                   ? "Reels from the kitchen, then fresh posts from the feed."
-                  : "Portrait clips from the pass, plus more on Instagram when the API is connected."}
-              </p>
-            </div>
+                  : "Portrait clips from the pass, plus more on Instagram when the API is connected."
+              }
+              eyebrowClassName={isNight ? "text-brand-gold" : "text-brand"}
+              titleClassName={heading}
+              descriptionClassName={muted}
+            />
             <Button
               asChild
               size="lg"
-              className="w-full bg-brand text-brand-light hover:bg-brand-hover md:w-auto"
+              className="shrink-0 bg-brand text-brand-light hover:bg-brand-hover md:mb-1"
             >
               <a href={INSTAGRAM_PROFILE_URL} target="_blank" rel="noopener noreferrer">
                 Open Instagram
@@ -125,8 +123,8 @@ export default function HomeInstagramFeed() {
             ))}
           </div>
         ) : (
-          <div className="mt-12 -mx-2 md:-mx-4">
-            <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-2 pb-4 pt-1 md:gap-5 md:px-4">
+          <div className="mt-12 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+            <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 pt-1 md:gap-5">
               {scrollItems.map((item, i) =>
                 item.kind === "video" ? (
                   <RevealScale key={item.id} delay={0.04 * (i % 6)}>
@@ -245,11 +243,10 @@ export default function HomeInstagramFeed() {
         )}
 
         {!reduce && scrollItems.length > 1 ? (
-          <p className={`mt-2 text-center font-sans text-xs ${muted}`}>
+          <p className={`mt-2 font-sans text-xs ${muted}`}>
             Scroll sideways for more
           </p>
         ) : null}
-      </div>
-    </section>
+    </PageSection>
   );
 }

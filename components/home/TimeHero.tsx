@@ -9,6 +9,8 @@ import {
 } from "@/components/home/time-of-day-context";
 import SteamEffect from "@/components/home/SteamEffect";
 import CTAButton from "@/components/shared/CTAButton";
+import { SectionEyebrow } from "@/components/shared/SectionEyebrow";
+import { PageShell } from "@/components/shared/PageShell";
 import Link from "next/link";
 import { HERO_CAPTION_ROTATIONS, HERO_SLIDES } from "@/lib/heroMedia";
 import { SITE } from "@/lib/constants";
@@ -125,17 +127,13 @@ export default function TimeHero() {
         ))}
       </div>
 
-      {/* Upper-middle: fixed band, left-aligned */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-start px-6 pt-[min(18vh,5.5rem)] md:px-16 md:pt-[min(22vh,6.5rem)]">
-        <div className="pointer-events-auto w-full max-w-3xl text-left">
-          <p
-            className={cn(
-              "font-serif text-lg font-medium tracking-wide text-brand-light/95 md:text-xl",
-              heroSubtextShadow,
-            )}
-          >
+      {/* Upper-middle: aligned to site grid */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 pt-[min(18vh,5.5rem)] md:pt-[min(22vh,6.5rem)]">
+        <PageShell className="pointer-events-auto">
+          <div className="max-w-3xl text-left">
+          <SectionEyebrow className={cn("text-brand-light/90", heroSubtextShadow)}>
             {SITE.name}
-          </p>
+          </SectionEyebrow>
           <AnimatePresence initial={false} mode="wait">
             <motion.div
               key={`cap-${timeState}-${captionIndex}`}
@@ -151,7 +149,7 @@ export default function TimeHero() {
             >
               <p
                 className={cn(
-                  "max-w-4xl font-serif text-4xl leading-[1.12] tracking-[-0.02em] text-brand-light antialiased md:text-5xl md:leading-[1.1] lg:text-6xl lg:leading-[1.08]",
+                  "text-display mt-4 max-w-4xl text-4xl text-brand-light md:text-5xl lg:text-6xl",
                   heroHeadlineShadow,
                 )}
               >
@@ -217,7 +215,8 @@ export default function TimeHero() {
               </Card>
             </motion.div>
           )}
-        </div>
+          </div>
+        </PageShell>
       </div>
     </section>
   );

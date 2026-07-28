@@ -5,6 +5,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { getSeasonalDisplayEvents } from "@/lib/seasonalData";
 import { Button } from "@/components/ui/button";
+import { PageSection } from "@/components/shared/PageShell";
+import { SectionHeader } from "@/components/shared/SectionHeader";
 import { useTimeOfDay } from "@/components/home/time-of-day-context";
 
 export default function SeasonalHeartbeat() {
@@ -12,37 +14,17 @@ export default function SeasonalHeartbeat() {
   const { isNight } = useTimeOfDay();
 
   return (
-    <section
-      className={`px-6 py-16 md:px-16 ${
-        isNight ? "bg-brand-dark/90" : "bg-brand-light/30"
-      }`}
-    >
-      <div className="mx-auto max-w-7xl">
-        <p
-          className={`font-sans text-sm uppercase tracking-widest ${
-            isNight ? "text-brand-light/55" : "text-brand-mid"
-          }`}
-        >
-          Seasonal
-        </p>
-        <h2
-          className={`mt-2 font-serif text-3xl md:text-4xl ${
-            isNight ? "text-brand-light" : "text-brand-dark"
-          }`}
-        >
-          What is coming up
-        </h2>
-        {fallbackMessage && (
-          <p
-            className={`mt-3 max-w-2xl font-sans text-sm ${
-              isNight ? "text-brand-light/70" : "text-brand-mid"
-            }`}
-          >
-            {fallbackMessage}
-          </p>
-        )}
+    <PageSection className={isNight ? "bg-brand-dark/90" : "bg-brand-light/30"}>
+        <SectionHeader
+          eyebrow="Seasonal"
+          title="What is coming up"
+          description={fallbackMessage ?? undefined}
+          eyebrowClassName={isNight ? "text-brand-light/55" : "text-brand-mid"}
+          titleClassName={isNight ? "text-brand-light" : "text-brand-dark"}
+          descriptionClassName={isNight ? "text-brand-light/70" : "text-brand-mid"}
+        />
 
-        <div className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 md:gap-6">
+        <div className="-mx-4 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 md:gap-6">
           {events.map((ev, i) => (
             <motion.article
               key={ev.slug}
@@ -90,7 +72,6 @@ export default function SeasonalHeartbeat() {
             </motion.article>
           ))}
         </div>
-      </div>
-    </section>
+    </PageSection>
   );
 }

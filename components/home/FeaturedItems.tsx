@@ -10,8 +10,9 @@ import {
   useTimeOfDay,
 } from "@/components/home/time-of-day-context";
 import { useRotatingIndex } from "@/components/home/useRotatingIndex";
-import { SectionEyebrow } from "@/components/shared/SectionEyebrow";
 import CTAButton from "@/components/shared/CTAButton";
+import { PageSection } from "@/components/shared/PageShell";
+import { SectionHeader } from "@/components/shared/SectionHeader";
 import { cn } from "@/lib/utils";
 
 export default function FeaturedItems() {
@@ -23,38 +24,25 @@ export default function FeaturedItems() {
 
   if (timeState === "closed") {
     return (
-      <section
-        className="section-y border-t border-brand-dark/15 px-6 md:px-16"
+      <PageSection
+        className="border-t border-brand-dark/15"
         style={{
           backgroundColor: config.pageBg,
           transition: "background-color 1.5s ease-in-out, color 1.5s ease-in-out",
         }}
       >
-        <div className="mx-auto max-w-2xl text-center">
-          <SectionEyebrow className={isNight ? "text-brand-gold" : "text-brand"}>
-            Right now
-          </SectionEyebrow>
-          <h2
-            className={cn(
-              "text-section mt-3 text-2xl md:text-3xl",
-              heading,
-            )}
-          >
-            Closed now. Opens at 7:00 AM for breakfast.
-          </h2>
-          <p
-            className={cn(
-              "text-body-editorial mt-4 md:text-base",
-              muted,
-            )}
-          >
-            Browse the menu for later or contact us to plan your next order.
-          </p>
-          <CTAButton href="/kitchen/menu" className="mt-8">
-            Browse the menu
-          </CTAButton>
-        </div>
-      </section>
+        <SectionHeader
+          eyebrow="Right now"
+          title="Closed now. Opens at 7:00 AM for breakfast."
+          description="Browse the menu for later or contact us to plan your next order."
+          eyebrowClassName={isNight ? "text-brand-gold" : "text-brand"}
+          titleClassName={heading}
+          descriptionClassName={muted}
+        />
+        <CTAButton href="/kitchen/menu" className="mt-8">
+          Browse the menu
+        </CTAButton>
+      </PageSection>
     );
   }
 
@@ -71,24 +59,25 @@ export default function FeaturedItems() {
   const introLine = intros[introIndex] ?? intros[0];
 
   return (
-    <section
-      className="section-y border-t border-brand-dark/10 px-6 md:px-16"
+    <PageSection
+      className="border-t border-brand-dark/10"
       style={{
         backgroundColor: config.pageBg,
         transition: "background-color 1.5s ease-in-out, color 1.5s ease-in-out",
       }}
     >
-      <div className="mx-auto max-w-7xl">
-        <SectionEyebrow className={isNight ? "text-brand-gold" : "text-brand"}>
-          Right now
-        </SectionEyebrow>
-        <p className={cn("text-caption mt-1", muted)}>
-          {schedule.label} · {schedule.range}
-        </p>
-        <h2 className={cn("text-section mt-3 text-2xl md:text-3xl", heading)}>
-          Featured for this part of the day
-        </h2>
-        <div className="relative mt-3 min-h-[3rem] max-w-2xl md:min-h-[2.75rem]">
+        <SectionHeader
+          eyebrow="Right now"
+          title="Featured for this part of the day"
+          meta={
+            <p className={cn("text-caption", muted)}>
+              {schedule.label} · {schedule.range}
+            </p>
+          }
+          eyebrowClassName={isNight ? "text-brand-gold" : "text-brand"}
+          titleClassName={cn("text-2xl md:text-3xl", heading)}
+        />
+        <div className="relative mt-2 min-h-[3rem] max-w-2xl md:min-h-[2.75rem]">
           <AnimatePresence initial={false} mode="wait">
             <motion.p
               key={`${timeState}-${introIndex}`}
@@ -132,7 +121,6 @@ export default function FeaturedItems() {
         <CTAButton href="/kitchen/menu" className="mt-10">
           See today&apos;s menu
         </CTAButton>
-      </div>
-    </section>
+    </PageSection>
   );
 }

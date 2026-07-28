@@ -6,6 +6,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Reveal, RevealX } from "@/components/motion/Reveal";
+import { PageSection } from "@/components/shared/PageShell";
+import { SectionHeader } from "@/components/shared/SectionHeader";
 import { pickBestGoogleReviews } from "@/lib/googleReviewUtils";
 import { useTimeOfDay } from "@/components/home/time-of-day-context";
 
@@ -127,15 +129,14 @@ export default function HomeGoogleReviews() {
   const list = reviews ?? [];
 
   return (
-    <section className="px-6 py-16 md:px-16">
-      <div className="mx-auto max-w-7xl">
+    <PageSection>
         <Reveal>
-          <h2 className={`font-serif text-3xl md:text-4xl ${heading}`}>
-            What people say on Google
-          </h2>
-          <p className={`mt-2 max-w-2xl font-sans text-sm md:text-base ${muted}`}>
-            We highlight longer, recent-style feedback with four- and five-star ratings. Full listings live on Google Maps.
-          </p>
+          <SectionHeader
+            title="What people say on Google"
+            description="We highlight longer, recent-style feedback with four- and five-star ratings. Full listings live on Google Maps."
+            titleClassName={heading}
+            descriptionClassName={muted}
+          />
         </Reveal>
 
         {loading ? (
@@ -219,10 +220,9 @@ export default function HomeGoogleReviews() {
           </div>
         )}
 
-        <p className={`mt-8 text-center font-sans text-xs ${muted}`}>
+        <p className={`mt-8 font-sans text-xs ${muted}`}>
           Ratings and reviews are from Google and shown for convenience. Experience may vary.
         </p>
-      </div>
-    </section>
+    </PageSection>
   );
 }
