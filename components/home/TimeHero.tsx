@@ -26,11 +26,11 @@ const CAPTION_INTERVAL_MS = 11_000;
 const easeCrossfade = [0.4, 0, 0.2, 1] as const;
 const easeCaption = [0.22, 1, 0.36, 1] as const;
 
-/** Soft shadows for light text — the .hero-scrim carries most of the contrast. */
+/** Crisp text halo so light copy stays legible over bright food without a heavy scrim. */
 const heroHeadlineShadow =
-  "[text-shadow:0_1px_20px_rgba(20,11,8,0.55),0_1px_2px_rgba(20,11,8,0.4)]";
+  "[text-shadow:0_1px_2px_rgba(0,0,0,0.6),0_2px_16px_rgba(20,11,8,0.82),0_0_46px_rgba(20,11,8,0.5)]";
 const heroSubtextShadow =
-  "[text-shadow:0_1px_16px_rgba(20,11,8,0.5)]";
+  "[text-shadow:0_1px_3px_rgba(0,0,0,0.6),0_1px_18px_rgba(20,11,8,0.7)]";
 
 export default function TimeHero() {
   const config = useTimeConfig();
@@ -117,7 +117,7 @@ export default function TimeHero() {
         className="absolute inset-0 z-[2]"
         style={{
           backgroundImage:
-            "linear-gradient(94deg, rgba(22,12,8,0.72) 0%, rgba(22,12,8,0.54) 30%, rgba(22,12,8,0.3) 48%, rgba(22,12,8,0.08) 64%, rgba(22,12,8,0) 80%), linear-gradient(to top, rgba(22,12,8,0.42) 0%, rgba(22,12,8,0) 32%)",
+            "linear-gradient(94deg, rgba(22,12,8,0.78) 0%, rgba(22,12,8,0.6) 28%, rgba(22,12,8,0.38) 46%, rgba(22,12,8,0.12) 62%, rgba(22,12,8,0) 80%), linear-gradient(to top, rgba(22,12,8,0.45) 0%, rgba(22,12,8,0) 34%)",
         }}
         aria-hidden
       />
