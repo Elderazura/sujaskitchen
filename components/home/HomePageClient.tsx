@@ -9,11 +9,11 @@ import { TimeOfDayProvider } from "@/components/home/time-of-day-context";
 
 export default function HomePageClient() {
   return (
-    <div className="flex min-h-screen flex-col font-sans">
+    <div className="flex min-h-screen min-w-0 flex-col overflow-x-clip font-sans">
       <HomeScrollProgress />
       <Navigation />
       <TimeOfDayProvider>
-        <main className="flex-1">
+        <main className="min-w-0 flex-1 overflow-x-clip">
           <TimeHero />
           <HomeBelowFold />
         </main>

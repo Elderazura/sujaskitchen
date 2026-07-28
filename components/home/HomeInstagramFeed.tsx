@@ -123,8 +123,8 @@ export default function HomeInstagramFeed() {
             ))}
           </div>
         ) : (
-          <div className="mt-12 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-            <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 pt-1 md:gap-5">
+          <div className="scroll-rail mt-12 pb-4 pt-1">
+            <div className="scroll-rail-inner snap-x snap-mandatory md:gap-5">
               {scrollItems.map((item, i) =>
                 item.kind === "video" ? (
                   <RevealScale key={item.id} delay={0.04 * (i % 6)}>
@@ -132,7 +132,7 @@ export default function HomeInstagramFeed() {
                       href={INSTAGRAM_PROFILE_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group block w-[min(78vw,14rem)] shrink-0 snap-center sm:w-52 md:w-56"
+                      className="group block w-48 shrink-0 snap-center sm:w-52 md:w-56"
                     >
                       <Card
                         className={`overflow-hidden border-2 transition-all duration-300 group-hover:border-brand group-hover:shadow-lg ${
@@ -174,7 +174,7 @@ export default function HomeInstagramFeed() {
                       href={item.permalink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group block w-[min(85vw,16rem)] shrink-0 snap-center sm:w-60 md:w-64"
+                      className="group block w-52 shrink-0 snap-center sm:w-60 md:w-64"
                     >
                       <Card
                         className={`overflow-hidden border-2 transition-all duration-300 group-hover:border-brand group-hover:shadow-lg ${
@@ -217,7 +217,7 @@ export default function HomeInstagramFeed() {
                           href={INSTAGRAM_PROFILE_URL}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="block w-[min(85vw,16rem)] shrink-0 snap-center sm:w-60 md:w-64"
+                          className="block w-52 shrink-0 snap-center sm:w-60 md:w-64"
                         >
                           <Card
                             className={`flex aspect-square flex-col items-center justify-center border-2 border-dashed p-6 text-center transition-colors hover:border-brand ${

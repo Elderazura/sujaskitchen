@@ -60,7 +60,7 @@ export default function HomeBelowFold() {
 
   return (
     <div
-      className="min-w-0 transition-[background-color] duration-[1500ms] ease-in-out"
+      className="min-w-0 overflow-x-clip transition-[background-color] duration-[1500ms] ease-in-out"
       style={{ backgroundColor: config.pageBg }}
     >
       <FeaturedItems />

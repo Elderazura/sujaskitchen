@@ -24,7 +24,8 @@ export default function SeasonalHeartbeat() {
           descriptionClassName={isNight ? "text-brand-light/70" : "text-brand-mid"}
         />
 
-        <div className="-mx-4 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 md:gap-6">
+        <div className="scroll-rail mt-10 pb-4 md:gap-6">
+          <div className="scroll-rail-inner snap-x snap-mandatory">
           {events.map((ev, i) => (
             <motion.article
               key={ev.slug}
@@ -32,7 +33,7 @@ export default function SeasonalHeartbeat() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-20px" }}
               transition={{ delay: i * 0.08, duration: 0.5 }}
-              className={`w-[min(100%,20rem)] shrink-0 snap-start overflow-hidden rounded-xl border shadow-sm md:w-[22rem] ${
+              className={`w-72 shrink-0 snap-start overflow-hidden rounded-xl border shadow-sm md:w-[22rem] ${
                 isNight
                   ? "border-brand-mid/40 bg-brand-dark/80"
                   : "border-brand-mid/20 bg-white"
@@ -71,6 +72,7 @@ export default function SeasonalHeartbeat() {
               </div>
             </motion.article>
           ))}
+          </div>
         </div>
     </PageSection>
   );

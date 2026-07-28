@@ -15,7 +15,7 @@ export function PageShell({
   return (
     <Component
       className={cn(
-        "mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8",
+        "mx-auto w-full min-w-0 max-w-7xl px-4 sm:px-6 lg:px-8",
         className,
       )}
     >
@@ -39,7 +39,7 @@ export function PageSection({
   style,
 }: PageSectionProps) {
   return (
-    <section className={cn("section-y", className)} style={style}>
+    <section className={cn("section-y overflow-x-clip", className)} style={style}>
       <PageShell className={innerClassName}>{children}</PageShell>
     </section>
   );

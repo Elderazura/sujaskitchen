@@ -56,13 +56,13 @@ export default function Navigation() {
 
   return (
     <nav
-      className={`sticky top-0 z-50 border-b bg-white/95 backdrop-blur-sm transition-all duration-300 ${
+      className={`sticky top-0 z-50 min-w-0 overflow-x-clip border-b bg-white/95 backdrop-blur-sm transition-all duration-300 ${
         scrolled
           ? 'border-brand-mid/15 shadow-sm'
           : 'border-brand-mid/5 shadow-none'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full min-w-0 max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0">
             <Link

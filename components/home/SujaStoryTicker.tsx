@@ -86,7 +86,7 @@ export default function SujaStoryTicker({
       role="region"
       aria-label="Short clips of Suja in the kitchen"
       className={cn(
-        "relative mt-10 w-full overflow-hidden rounded-2xl border border-transparent",
+        "relative isolate mt-10 w-full min-w-0 max-w-full overflow-x-clip rounded-2xl border border-transparent",
         className,
       )}
     >
@@ -103,7 +103,7 @@ export default function SujaStoryTicker({
         )}
       />
 
-      <div className="overflow-hidden py-1 md:flex md:items-center">
+      <div className="overflow-x-clip py-1 md:flex md:items-center">
         {reduce ? (
           <div className="flex w-max gap-3 md:gap-4">{trackInner}</div>
         ) : autoMove ? (
