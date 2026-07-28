@@ -22,8 +22,8 @@ export function SeasonalPageExtras({
               How orders work
             </h2>
             <p className="mt-3 max-w-2xl font-sans text-sm text-stone-600 md:text-base">
-              Festival food needs time. We confirm headcount, date, and delivery or pickup on
-              WhatsApp, then lock the kitchen schedule.
+              Festival food needs time. We confirm headcount, date, and delivery or pickup by
+              email, then lock the kitchen schedule.
             </p>
             <div className="mt-8 grid gap-4 md:grid-cols-3">
               {[

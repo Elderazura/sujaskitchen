@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import CTAButton from "@/components/shared/CTAButton";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -50,7 +51,7 @@ export default function SeasonalExperience({
   const badge = modeBadge(mode);
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#FFFBF0] font-sans text-foreground">
+    <div className="flex min-h-screen flex-col bg-[#FFFBF0] text-foreground">
       <Navigation />
       <main className="flex-1">
         <section className="relative min-h-[45vh] overflow-hidden md:min-h-[50vh]">
@@ -65,7 +66,7 @@ export default function SeasonalExperience({
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-transparent" />
           <div className="relative z-10 mx-auto flex min-h-[45vh] max-w-4xl flex-col justify-end px-6 py-14 md:min-h-[50vh] md:px-16">
             <div className="flex flex-wrap items-center gap-2">
-              <Badge className={cn("font-sans text-xs", badge.className)}>
+              <Badge className={cn("text-caption", badge.className)}>
                 {badge.label}
               </Badge>
               {viewIsOverride && (
@@ -74,13 +75,13 @@ export default function SeasonalExperience({
                 </Badge>
               )}
             </div>
-            <h1 className="mt-3 font-serif text-4xl text-white md:text-6xl">
+            <h1 className="text-display mt-3 text-[clamp(1.75rem,5vw,3.75rem)] text-white">
               {content.displayName}
             </h1>
-            <p className="mt-2 max-w-2xl font-sans text-lg text-white/90 md:text-xl">
+            <p className="text-body-editorial mt-2 max-w-2xl text-lg text-white/90 md:text-xl">
               {content.tagline}
             </p>
-            <p className="mt-3 max-w-2xl font-sans text-base text-white/85 md:text-lg">
+            <p className="text-body-editorial mt-3 max-w-2xl text-white/85 md:text-lg">
               {content.description}
             </p>
           </div>
@@ -95,9 +96,9 @@ export default function SeasonalExperience({
                 on the contact page for the daily menu or catering. The page will move
                 to the next festival automatically.
               </AlertDescription>
-              <Button className="mt-4 bg-brand hover:bg-brand-hover" asChild>
-                <Link href="/contact">Contact the kitchen</Link>
-              </Button>
+              <CTAButton href="/contact" className="mt-4">
+                Contact the kitchen
+              </CTAButton>
             </Alert>
           )}
 
@@ -107,12 +108,12 @@ export default function SeasonalExperience({
                 {isEarly ? "Ordering opens soon" : "Dates for this season"}
               </AlertTitle>
               <AlertDescription className="space-y-2">
-                <p>
+                <p className="text-body-editorial">
                   {isEarly
                     ? `We usually open orders for ${content.displayName} from ${formatDayUAE(instance.orderStart)}.`
                     : `Peak days run ${formatDayUAE(instance.eventStart)} to ${formatDayUAE(instance.eventEnd)}.`}
                 </p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-caption text-muted-foreground">
                   Order window: {formatDayUAE(instance.orderStart)} –{" "}
                   {formatDayUAE(instance.orderEnd)} (Dubai dates).
                 </p>
@@ -121,7 +122,7 @@ export default function SeasonalExperience({
           )}
 
           {(mode === "notify" || mode === "ordering") && (
-            <p className="mb-8 font-sans text-sm text-muted-foreground">
+            <p className="text-caption mb-8 text-muted-foreground">
               Order window: {formatDayUAE(instance.orderStart)} –{" "}
               {formatDayUAE(instance.orderEnd)}. Peak:{" "}
               {formatDayUAE(instance.eventStart)} –{" "}
@@ -129,27 +130,27 @@ export default function SeasonalExperience({
             </p>
           )}
 
-          <h2 className="font-serif text-2xl">For the community</h2>
-          <p className="mt-3 leading-relaxed text-muted-foreground">
+          <h2 className="text-section text-2xl">For the community</h2>
+          <p className="text-body-editorial mt-3 text-muted-foreground">
             {content.communityBlurb}
           </p>
 
-          <h2 className="mt-12 font-serif text-2xl">{content.offerTitle}</h2>
-          <ul className="mt-4 list-disc space-y-2 pl-5 text-muted-foreground">
+          <h2 className="text-section mt-12 text-2xl">{content.offerTitle}</h2>
+          <ul className="text-body-editorial mt-4 list-disc space-y-2 pl-5 text-muted-foreground">
             {content.offerLines.map((line) => (
               <li key={line}>{line}</li>
             ))}
           </ul>
 
-          <h2 className="mt-12 font-serif text-2xl">Menu highlights</h2>
-          <ul className="mt-4 list-disc space-y-2 pl-5 text-muted-foreground">
+          <h2 className="text-section mt-12 text-2xl">Menu highlights</h2>
+          <ul className="text-body-editorial mt-4 list-disc space-y-2 pl-5 text-muted-foreground">
             {content.menuHighlights.map((line) => (
               <li key={line}>{line}</li>
             ))}
           </ul>
 
-          <h2 className="mt-12 font-serif text-2xl">From previous years</h2>
-          <p className="mt-2 text-sm text-muted-foreground">
+          <h2 className="text-section mt-12 text-2xl">From previous years</h2>
+          <p className="text-caption mt-2 text-muted-foreground">
             A few snapshots from past spreads. Final menu and pricing are
             confirmed when each window opens.
           </p>
@@ -192,16 +193,16 @@ export default function SeasonalExperience({
 
           <Card className="mt-12 border-border">
             <CardContent className="space-y-3 p-6">
-              <p className="text-sm">{content.pricingNote}</p>
-              <p className="text-sm">{content.orderNote}</p>
-              <p className="text-sm font-medium text-brand">{content.deadlineNote}</p>
+              <p className="text-body-editorial text-sm">{content.pricingNote}</p>
+              <p className="text-body-editorial text-sm">{content.orderNote}</p>
+              <p className="text-body-editorial text-sm font-medium text-brand">
+                {content.deadlineNote}
+              </p>
               <div className="flex flex-wrap gap-3 pt-2">
-                <Button className="bg-brand hover:bg-brand-hover" asChild>
-                  <Link href="/contact">Contact us to order</Link>
-                </Button>
-                <Button variant="outline" asChild>
-                  <Link href="/catering">Catering enquiry</Link>
-                </Button>
+                <CTAButton href="/contact">Contact us to order</CTAButton>
+                <CTAButton href="/catering" variant="outline">
+                  Catering enquiry
+                </CTAButton>
               </div>
             </CardContent>
           </Card>
@@ -215,8 +216,8 @@ export default function SeasonalExperience({
 
         <section className="border-t border-border bg-white px-6 py-12 md:px-16">
           <div className="mx-auto max-w-4xl">
-            <h2 className="font-serif text-2xl">Other festivals</h2>
-            <p className="mt-2 text-sm text-muted-foreground">
+            <h2 className="text-section text-2xl">Other festivals</h2>
+            <p className="text-caption mt-2 text-muted-foreground">
               Jump to a specific page. The main seasonal view still follows the
               calendar automatically.
             </p>

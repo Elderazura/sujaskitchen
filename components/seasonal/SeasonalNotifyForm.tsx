@@ -82,8 +82,8 @@ export function SeasonalNotifyForm({
       <Alert>
         <AlertTitle>Notifications unavailable</AlertTitle>
         <AlertDescription>
-          Email alerts are not configured yet. Use WhatsApp from the kitchen
-          menu or contact page to ask about this festival.
+          Email alerts are not configured yet. Contact us by email or on the
+          contact page to ask about this festival.
         </AlertDescription>
       </Alert>
     );
