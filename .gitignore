@@ -18,6 +18,7 @@
 
 # misc
 .claude/
+.superpowers/
 .DS_Store
 *.pem
 
