@@ -5,12 +5,11 @@ import Footer from '@/components/Footer';
 import ParallaxBanner from '@/components/ParallaxBanner';
 import AnimatedGallery from '@/components/AnimatedGallery';
 import Image from 'next/image';
-import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Users, Briefcase, Calendar, CheckCircle2, Phone, Mail, Clock, ChefHat } from 'lucide-react';
 import { PageCrossLinks } from '@/components/shared/PageCrossLinks';
+import CTAButton from '@/components/shared/CTAButton';
 
 export default function Catering() {
   const services = [
@@ -28,7 +27,7 @@ export default function Catering() {
       features: ['Bulk orders', 'Professional service', 'On-time delivery', 'Customized packages'],
       image: '/images/Sujas-Catering-1-scaled.jpg',
       icon: Briefcase,
-      color: 'from-blue-500 to-blue-600',
+      color: 'from-brand-mid to-brand-dark',
     },
     {
       title: 'Large Events',
@@ -36,7 +35,7 @@ export default function Catering() {
       features: ['Full-service catering', 'Event planning support', 'Multiple menu options', 'Dedicated team'],
       image: '/images/sujas-banquet.webp',
       icon: Calendar,
-      color: 'from-purple-500 to-purple-600',
+      color: 'from-brand-hover to-brand-dark',
     }
   ];
 
@@ -86,7 +85,7 @@ export default function Catering() {
     {
       number: '01',
       title: 'Contact Us',
-      description: 'Reach out with your event details, date, number of guests, and any special requirements',
+      description: 'Email or call with your event details, date, number of guests, and any special requirements',
       icon: Phone,
     },
     {
@@ -122,18 +121,16 @@ export default function Catering() {
         >
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/60 z-10"></div>
           <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 drop-shadow-2xl animate-fade-in">
+            <h1 className="text-display text-5xl md:text-7xl lg:text-8xl mb-6 drop-shadow-2xl animate-fade-in">
               Catering Services
             </h1>
-            <p className="text-xl md:text-2xl lg:text-3xl text-gray-100 drop-shadow-lg max-w-3xl mx-auto leading-relaxed animate-slide-up">
+            <p className="text-body-editorial text-xl md:text-2xl lg:text-3xl text-gray-100 drop-shadow-lg max-w-3xl mx-auto animate-slide-up">
               Bringing authentic Kerala cuisine to your special events
             </p>
             <div className="mt-10 animate-fade-in-delay">
-              <Link href="#contact">
-                <Button size="lg" className="bg-brand hover:bg-brand-hover text-white text-lg px-10 py-6 shadow-xl">
-                  Get a Quote
-                </Button>
-              </Link>
+              <CTAButton href="#contact">
+                Get a Quote
+              </CTAButton>
             </div>
           </div>
         </ParallaxBanner>
@@ -142,11 +139,11 @@ export default function Catering() {
         <section className="py-20 bg-gradient-to-b from-white to-gray-50">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              <h2 className="text-section text-4xl md:text-5xl text-gray-900 mb-4">
                 Your Event, Our Expertise
               </h2>
               <div className="w-24 h-1 bg-brand mx-auto mb-6"></div>
-              <p className="text-gray-700 text-lg max-w-3xl mx-auto leading-relaxed">
+              <p className="text-body-editorial text-gray-700 text-lg max-w-3xl mx-auto">
                 Whether you&apos;re planning an intimate family gathering or a large corporate event, 
                 we offer customized catering services that bring the authentic flavors of Kerala to your 
                 celebration. Our team works closely with you to create a menu that perfectly suits your 
@@ -181,10 +178,10 @@ export default function Catering() {
                       </div>
                     </div>
                     <CardHeader>
-                      <CardTitle className="text-2xl group-hover:text-brand transition-colors">
+                      <CardTitle className="text-section text-2xl group-hover:text-brand transition-colors">
                         {service.title}
                       </CardTitle>
-                      <CardDescription className="leading-relaxed">
+                      <CardDescription className="text-body-editorial">
                         {service.description}
                       </CardDescription>
                     </CardHeader>
@@ -193,7 +190,7 @@ export default function Catering() {
                         {service.features.map((feature, featureIndex) => (
                           <li key={featureIndex} className="flex items-start gap-3">
                             <CheckCircle2 className="w-5 h-5 text-brand mt-0.5 flex-shrink-0" />
-                            <span className="text-gray-700">{feature}</span>
+                            <span className="text-body-editorial text-gray-700">{feature}</span>
                           </li>
                         ))}
                       </ul>
@@ -209,11 +206,11 @@ export default function Catering() {
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              <h2 className="text-section text-4xl md:text-5xl text-gray-900 mb-4">
                 Events We Cater
               </h2>
               <div className="w-24 h-1 bg-brand mx-auto mb-6"></div>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              <p className="text-body-editorial text-xl text-gray-600 max-w-2xl mx-auto">
                 From intimate gatherings to grand celebrations, we bring Kerala&apos;s authentic flavors to every occasion
               </p>
             </div>
@@ -237,8 +234,8 @@ export default function Catering() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <h3 className="text-2xl font-bold mb-2">{event.name}</h3>
-                    <p className="text-gray-200">{event.description}</p>
+                    <h3 className="text-section text-2xl text-white mb-2">{event.name}</h3>
+                    <p className="text-body-editorial text-gray-200">{event.description}</p>
                   </div>
                 </div>
               ))}
@@ -250,11 +247,11 @@ export default function Catering() {
         <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              <h2 className="text-section text-4xl md:text-5xl text-gray-900 mb-4">
                 Our Catering Events
               </h2>
               <div className="w-24 h-1 bg-brand mx-auto mb-6"></div>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              <p className="text-body-editorial text-xl text-gray-600 max-w-2xl mx-auto">
                 A glimpse into our successful catering events across Dubai and Abu Dhabi
               </p>
             </div>
@@ -271,11 +268,11 @@ export default function Catering() {
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              <h2 className="text-section text-4xl md:text-5xl text-gray-900 mb-4">
                 How It Works
               </h2>
               <div className="w-24 h-1 bg-brand mx-auto mb-6"></div>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              <p className="text-body-editorial text-xl text-gray-600 max-w-2xl mx-auto">
                 Simple steps to make your event memorable
               </p>
             </div>
@@ -299,10 +296,10 @@ export default function Catering() {
                         {step.number}
                       </div>
                     </div>
-                    <h4 className="font-bold text-xl mb-3 text-gray-900 group-hover:text-brand transition-colors">
+                    <h4 className="text-section text-xl mb-3 text-gray-900 group-hover:text-brand transition-colors">
                       {step.title}
                     </h4>
-                    <p className="text-gray-600 text-sm leading-relaxed">
+                    <p className="text-body-editorial text-gray-600 text-sm">
                       {step.description}
                     </p>
                   </div>
@@ -326,8 +323,8 @@ export default function Catering() {
                   <div className="bg-brand rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <ChefHat className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Expert Chefs</h3>
-                  <p className="text-gray-600 text-sm">
+                  <h3 className="text-section text-xl text-gray-900 mb-2">Expert Chefs</h3>
+                  <p className="text-body-editorial text-gray-600 text-sm">
                     Experienced team specializing in authentic Kerala cuisine
                   </p>
                 </div>
@@ -335,8 +332,8 @@ export default function Catering() {
                   <div className="bg-brand rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <Clock className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">On-Time Delivery</h3>
-                  <p className="text-gray-600 text-sm">
+                  <h3 className="text-section text-xl text-gray-900 mb-2">On-Time Delivery</h3>
+                  <p className="text-body-editorial text-gray-600 text-sm">
                     Punctual service ensuring your event runs smoothly
                   </p>
                 </div>
@@ -344,8 +341,8 @@ export default function Catering() {
                   <div className="bg-brand rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <CheckCircle2 className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Customized Menus</h3>
-                  <p className="text-gray-600 text-sm">
+                  <h3 className="text-section text-xl text-gray-900 mb-2">Customized Menus</h3>
+                  <p className="text-body-editorial text-gray-600 text-sm">
                     Tailored to your preferences and dietary requirements
                   </p>
                 </div>
@@ -357,23 +354,19 @@ export default function Catering() {
         {/* CTA Section */}
         <section id="contact" className="py-20 bg-brand-gradient text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Plan Your Event?</h2>
+            <h2 className="text-section text-4xl md:text-5xl mb-6">Ready to Plan Your Event?</h2>
             <div className="w-24 h-1 bg-white/50 mx-auto mb-8"></div>
-            <p className="text-xl mb-10 text-white/90 leading-relaxed">
+            <p className="text-body-editorial text-xl mb-10 text-white/90">
               Contact us today to discuss your event. We handle the food so you can handle the room.
               Minimum forty-eight hours notice for most catering orders.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
-                <Button size="lg" variant="secondary" className="bg-white text-brand hover:bg-gray-100 shadow-xl">
-                  Get a Quote
-                </Button>
-              </Link>
-              <Link href="/kitchen/menu">
-                <Button size="lg" variant="outline" className="border-2 border-white text-white bg-transparent hover:bg-white/20">
-                  View Menu
-                </Button>
-              </Link>
+              <CTAButton href="/contact" variant="secondary" className="bg-white text-brand hover:bg-gray-100 shadow-xl">
+                Get a Quote
+              </CTAButton>
+              <CTAButton href="/kitchen/menu" variant="outline" className="border-2 border-white text-white hover:bg-white/20">
+                View Menu
+              </CTAButton>
             </div>
           </div>
         </section>

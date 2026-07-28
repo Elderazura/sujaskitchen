@@ -4,13 +4,13 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import ParallaxBanner from '@/components/ParallaxBanner';
 import Image from 'next/image';
-import Link from 'next/link';
 import { Download, ShoppingCart, Users, UtensilsCrossed, ChefHat, Sparkles } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useEffect, useState } from 'react';
 import { PageCrossLinks } from '@/components/shared/PageCrossLinks';
+import CTAButton from '@/components/shared/CTAButton';
 import { Reveal } from '@/components/motion/Reveal';
 
 export default function Menu() {
@@ -138,10 +138,10 @@ export default function Menu() {
         >
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent z-10"></div>
           <div className="relative z-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 drop-shadow-2xl animate-fade-in">
+            <h1 className="text-display text-5xl md:text-7xl mb-6 drop-shadow-2xl animate-fade-in">
               Our Menu
             </h1>
-            <p className="text-xl md:text-2xl text-gray-100 drop-shadow-lg max-w-2xl mx-auto animate-slide-up">
+            <p className="text-body-editorial text-xl md:text-2xl text-gray-100 drop-shadow-lg max-w-2xl mx-auto animate-slide-up">
               Discover our diverse culinary offerings across multiple cuisines
             </p>
           </div>
@@ -152,11 +152,11 @@ export default function Menu() {
         <section className="py-20 bg-gradient-to-b from-white to-gray-50">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <h2 className="text-section text-4xl md:text-5xl text-gray-900 mb-6">
                 A World of Flavors
               </h2>
               <div className="w-24 h-1 bg-brand mx-auto mb-6"></div>
-              <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-body-editorial text-xl text-gray-700 max-w-3xl mx-auto">
                 At Suja&apos;s Kitchen, we cook across cuisines without cutting corners. Kerala,
                 North Indian, Continental, and Arabic — each line is held to the same small-batch
                 standard Suja set in 1999.
@@ -169,9 +169,9 @@ export default function Menu() {
                   <div className="bg-brand/10 rounded-full p-3">
                     <UtensilsCrossed className="w-8 h-8 text-brand" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900">Fresh Daily Preparation</h3>
+                  <h3 className="text-section text-2xl text-gray-900">Fresh Daily Preparation</h3>
                 </div>
-                <p className="text-gray-700 leading-relaxed">
+                <p className="text-body-editorial text-gray-700">
                   Every dish is prepared fresh that day using recipes Suja still signs off on, and
                   ingredients we would use at home. No compromises on taste or freshness.
                 </p>
@@ -182,9 +182,9 @@ export default function Menu() {
                   <div className="bg-brand/10 rounded-full p-3">
                     <ChefHat className="w-8 h-8 text-brand" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900">Expert Chefs</h3>
+                  <h3 className="text-section text-2xl text-gray-900">Expert Chefs</h3>
                 </div>
-                <p className="text-gray-700 leading-relaxed">
+                <p className="text-body-editorial text-gray-700">
                   Our team brings years of practice in each cuisine, so the details — spice level,
                   texture, timing — land where they should.
                 </p>
@@ -198,10 +198,10 @@ export default function Menu() {
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              <h2 className="text-section text-4xl md:text-5xl text-gray-900 mb-4">
                 Explore Our Menus
               </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              <p className="text-body-editorial text-xl text-gray-600 max-w-2xl mx-auto">
                 Download our complete menus and discover the variety we offer
               </p>
             </div>
@@ -230,10 +230,10 @@ export default function Menu() {
                     </div>
                   </div>
                   <CardHeader>
-                    <CardTitle className="text-2xl group-hover:text-brand transition-colors">
+                    <CardTitle className="text-section text-2xl group-hover:text-brand transition-colors">
                       {menu.name}
                     </CardTitle>
-                    <CardDescription className="text-base leading-relaxed">
+                    <CardDescription className="text-body-editorial">
                       {menu.description}
                     </CardDescription>
                   </CardHeader>
@@ -264,10 +264,10 @@ export default function Menu() {
         <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              <h2 className="text-section text-4xl md:text-5xl text-gray-900 mb-4">
                 Our Signature Dishes
               </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              <p className="text-body-editorial text-xl text-gray-600 max-w-2xl mx-auto">
                 Customer favorites that define our culinary excellence
               </p>
               <div className="w-24 h-1 bg-brand mx-auto mt-6"></div>
@@ -291,8 +291,8 @@ export default function Menu() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                   <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                     <Badge className="bg-brand text-white text-xs mb-2">{dish.category}</Badge>
-                    <h3 className="text-white font-bold text-sm md:text-base">{dish.name}</h3>
-                    <p className="text-gray-200 text-xs mt-1 line-clamp-1">{dish.description}</p>
+                    <h3 className="text-section text-white text-sm md:text-base">{dish.name}</h3>
+                    <p className="text-caption text-gray-200 mt-1 line-clamp-1">{dish.description}</p>
                   </div>
                 </div>
               ))}
@@ -304,10 +304,10 @@ export default function Menu() {
         <section className="py-20 bg-brand-gradient text-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              <h2 className="text-section text-4xl md:text-5xl mb-4">
                 Order Online Now
               </h2>
-              <p className="text-xl text-white/90 max-w-2xl mx-auto mb-8">
+              <p className="text-body-editorial text-xl text-white/90 max-w-2xl mx-auto mb-8">
                 We&apos;re available on all major delivery platforms. Order your favorite dishes 
                 and have them delivered fresh to your doorstep.
               </p>
@@ -367,11 +367,11 @@ export default function Menu() {
                 <div className="bg-brand rounded-full p-4">
                   <ShoppingCart className="w-8 h-8 text-white" />
                 </div>
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                <h2 className="text-section text-4xl md:text-5xl text-gray-900">
                   Bulk Orders
                 </h2>
               </div>
-              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+              <p className="text-body-editorial text-lg text-gray-700 mb-6">
                 Planning a large gathering or office lunch? We offer special pricing and dedicated 
                 service for bulk orders. Perfect for corporate events, family celebrations, or 
                 community gatherings.
@@ -379,22 +379,20 @@ export default function Menu() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-brand"></div>
-                  <span className="text-gray-700">Minimum 10 portions</span>
+                  <span className="text-body-editorial text-gray-700">Minimum 10 portions</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-brand"></div>
-                  <span className="text-gray-700">Special pricing available</span>
+                  <span className="text-body-editorial text-gray-700">Special pricing available</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-brand"></div>
-                  <span className="text-gray-700">Advance booking required</span>
+                  <span className="text-body-editorial text-gray-700">Advance booking required</span>
                 </div>
               </div>
-              <Link href="/contact">
-                <Button size="lg" className="bg-brand hover:bg-brand-hover text-white">
-                  Request Bulk Order Quote
-                </Button>
-              </Link>
+              <CTAButton href="/contact">
+                Request Bulk Order Quote
+              </CTAButton>
             </div>
           </div>
         </ParallaxBanner>
@@ -408,11 +406,11 @@ export default function Menu() {
                   <div className="bg-brand rounded-full p-4">
                     <Users className="w-8 h-8 text-white" />
                   </div>
-                  <h2 className="text-4xl md:text-5xl font-bold">
+                  <h2 className="text-section text-4xl md:text-5xl">
                     Catering Services
                   </h2>
                 </div>
-                <p className="text-xl text-gray-300 mb-6 leading-relaxed">
+                <p className="text-body-editorial text-xl text-gray-300 mb-6">
                   Make your event memorable with our professional catering services. From intimate 
                   family gatherings to large corporate events, we create customized menus that 
                   showcase the best of our diverse cuisine offerings.
@@ -420,22 +418,20 @@ export default function Menu() {
                 <div className="space-y-4 mb-8">
                   <div className="flex items-center gap-3">
                     <Sparkles className="w-5 h-5 text-brand" />
-                    <span className="text-gray-300">Customized menus for every occasion</span>
+                    <span className="text-body-editorial text-gray-300">Customized menus for every occasion</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Sparkles className="w-5 h-5 text-brand" />
-                    <span className="text-gray-300">Professional setup and service</span>
+                    <span className="text-body-editorial text-gray-300">Professional setup and service</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Sparkles className="w-5 h-5 text-brand" />
-                    <span className="text-gray-300">Multiple cuisine options available</span>
+                    <span className="text-body-editorial text-gray-300">Multiple cuisine options available</span>
                   </div>
                 </div>
-                <Link href="/catering">
-                  <Button size="lg" className="bg-brand hover:bg-brand-hover text-white">
-                    Explore Catering Options
-                  </Button>
-                </Link>
+                <CTAButton href="/catering">
+                  Explore Catering Options
+                </CTAButton>
               </div>
               <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-2xl group">
                 <Image
@@ -453,7 +449,7 @@ export default function Menu() {
         <section className="py-20 bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              <h2 className="text-section text-4xl md:text-5xl text-gray-900 mb-4">
                 Why Choose Our Menus?
               </h2>
               <div className="w-24 h-1 bg-brand mx-auto mb-6"></div>
@@ -464,8 +460,8 @@ export default function Menu() {
                 <div className="bg-brand/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <UtensilsCrossed className="w-8 h-8 text-brand" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Diverse Cuisines</h3>
-                <p className="text-gray-600 text-sm">
+                <h3 className="text-section text-xl text-gray-900 mb-3">Diverse Cuisines</h3>
+                <p className="text-body-editorial text-gray-600 text-sm">
                   From Kerala to North Indian, Continental to Arabic - we offer something for everyone
                 </p>
               </div>
@@ -474,8 +470,8 @@ export default function Menu() {
                 <div className="bg-brand/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <ChefHat className="w-8 h-8 text-brand" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Held recipes</h3>
-                <p className="text-gray-600 text-sm">
+                <h3 className="text-section text-xl text-gray-900 mb-3">Held recipes</h3>
+                <p className="text-body-editorial text-gray-600 text-sm">
                   Dishes traced to family kitchens and Kerala tables, cooked the slow way
                 </p>
               </div>
@@ -484,8 +480,8 @@ export default function Menu() {
                 <div className="bg-brand/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <Sparkles className="w-8 h-8 text-brand" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Fresh Ingredients</h3>
-                <p className="text-gray-600 text-sm">
+                <h3 className="text-section text-xl text-gray-900 mb-3">Fresh Ingredients</h3>
+                <p className="text-body-editorial text-gray-600 text-sm">
                   Sourced from suppliers we trust, with freshness you can taste in every dish
                 </p>
               </div>
@@ -494,36 +490,11 @@ export default function Menu() {
                 <div className="bg-brand/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <ShoppingCart className="w-8 h-8 text-brand" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Easy Ordering</h3>
-                <p className="text-gray-600 text-sm">
+                <h3 className="text-section text-xl text-gray-900 mb-3">Easy Ordering</h3>
+                <p className="text-body-editorial text-gray-600 text-sm">
                   Available on all major delivery platforms for your convenience
                 </p>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Final CTA */}
-        <section className="py-20 bg-brand-gradient text-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Ready to Order?
-            </h2>
-            <p className="text-xl mb-10 text-white/90 leading-relaxed">
-              Download our menus, explore our dishes, and order from your favorite delivery platform. 
-              We are here to put the food you miss on your table.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
-                <Button size="lg" variant="secondary" className="bg-white text-brand hover:bg-gray-100">
-                  Contact Us
-                </Button>
-              </Link>
-              <Link href="/kitchen/menu">
-                <Button size="lg" variant="outline" className="border-2 border-white text-white bg-transparent hover:bg-white/20">
-                  Browse menu
-                </Button>
-              </Link>
             </div>
           </div>
         </section>
