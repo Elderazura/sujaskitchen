@@ -12,7 +12,6 @@ import {
 import { useRotatingIndex } from "@/components/home/useRotatingIndex";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { WHATSAPP_ORDER_URL } from "@/lib/constants";
 
 export default function FeaturedItems() {
   const config = useTimeConfig();
@@ -39,7 +38,7 @@ export default function FeaturedItems() {
             Closed now. Opens at 7:00 AM for breakfast.
           </h2>
           <p className={`mt-4 font-sans text-sm leading-relaxed md:text-base ${muted}`}>
-            Browse the menu for later or message us on WhatsApp to plan your next order.
+            Browse the menu for later or contact us to plan your next order.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button
@@ -55,9 +54,7 @@ export default function FeaturedItems() {
               variant="outline"
               className={`min-h-11 border-brand-light/40 bg-brand-dark/50 text-brand-light hover:bg-brand-dark hover:text-brand-light`}
             >
-              <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noopener noreferrer">
-                WhatsApp
-              </a>
+              <Link href="/contact">Contact us</Link>
             </Button>
           </div>
         </div>

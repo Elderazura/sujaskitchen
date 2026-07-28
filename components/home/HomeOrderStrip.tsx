@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { WHATSAPP_ORDER_URL } from "@/lib/constants";
 import { Reveal } from "@/components/motion/Reveal";
 import { useTimeOfDay } from "@/components/home/time-of-day-context";
 
@@ -28,7 +27,7 @@ export default function HomeOrderStrip() {
             Order today
           </h2>
           <p className={`mx-auto mt-2 max-w-xl font-sans text-sm md:text-base ${muted}`}>
-            Same kitchen on every channel. Pick Talabat, Noon, or message us on WhatsApp for bulk or custom requests.
+            Same kitchen on every channel. Pick Talabat, Noon, or contact us for bulk or custom requests.
           </p>
           <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <Button asChild size="lg" variant="default" className="min-h-11 bg-brand hover:bg-brand-hover">
@@ -42,9 +41,7 @@ export default function HomeOrderStrip() {
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className={`min-h-11 ${btnClass}`}>
-              <Link href={WHATSAPP_ORDER_URL} target="_blank" rel="noopener noreferrer">
-                WhatsApp
-              </Link>
+              <Link href="/contact">Contact us</Link>
             </Button>
             <Button
               asChild

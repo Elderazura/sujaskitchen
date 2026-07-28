@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -27,7 +28,6 @@ import {
 } from "@/components/ui/select";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { WHATSAPP_ORDER_URL } from "@/lib/constants";
 
 type Props = {
   festivalSlug: SeasonalOrderFormValues["festivalSlug"];
@@ -82,13 +82,10 @@ export function SeasonalOrderForm({
         <AlertTitle className="text-brand">Order request sent</AlertTitle>
         <AlertDescription className="text-muted-foreground">
           We received your details for {festivalLabel}. The kitchen will
-          confirm by email or phone. If you need an immediate answer, use
-          WhatsApp.
+          confirm by email. If you need an immediate answer, contact us.
         </AlertDescription>
         <Button className="mt-4 bg-brand hover:bg-brand-hover" asChild>
-          <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer">
-            Open WhatsApp
-          </a>
+          <Link href="/contact">Contact us</Link>
         </Button>
       </Alert>
     );
@@ -97,16 +94,14 @@ export function SeasonalOrderForm({
   if (!mailConfigured) {
     return (
       <Alert>
-        <AlertTitle>Order by WhatsApp</AlertTitle>
+        <AlertTitle>Order by email</AlertTitle>
         <AlertDescription className="space-y-3">
           <p>
-            Web orders by email are not configured yet. Tap below to order{" "}
-            {festivalLabel} on WhatsApp.
+            Web orders by email are not configured yet. Contact us to order{" "}
+            {festivalLabel}.
           </p>
           <Button className="bg-brand hover:bg-brand-hover" asChild>
-            <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer">
-              Order on WhatsApp
-            </a>
+            <Link href="/contact">Contact us to order</Link>
           </Button>
         </AlertDescription>
       </Alert>

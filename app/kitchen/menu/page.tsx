@@ -519,11 +519,11 @@ export default function Menu() {
                   Contact Us
                 </Button>
               </Link>
-              <a href="tel:+971501234567">
+              <Link href="/kitchen/menu">
                 <Button size="lg" variant="outline" className="border-2 border-white text-white bg-transparent hover:bg-white/20">
-                  Call to Order
+                  Browse menu
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
         </section>

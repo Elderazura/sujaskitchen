@@ -8,7 +8,6 @@ import { Card } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
 import { Reveal, RevealStagger, RevealStaggerItem } from "@/components/motion/Reveal";
 import ScrollParallaxMedia from "@/components/motion/ScrollParallaxMedia";
-import { WHATSAPP_ORDER_URL } from "@/lib/constants";
 
 const LINKS = [
   {
@@ -71,7 +70,7 @@ const LINKS = [
     href: "/contact",
     key: "contact",
     title: "Contact",
-    line: "WhatsApp, email, or the form. We reply during kitchen hours.",
+    line: "Email or the contact page. We reply during kitchen hours.",
     image: "/images/Sujas-Kitchen-scaled.jpg",
     alt: "Suja's Kitchen contact and orders",
   },
@@ -207,7 +206,7 @@ export function ExploreMoreGrid({
 
 export function ClosingCtaBand({
   title = "Ready when you are",
-  body = "Order on the apps, WhatsApp for bulk, or talk to us about a hall full of people.",
+  body = "Order on the apps, email for bulk, or talk to us about a hall full of people.",
 }: {
   title?: string;
   body?: string;
@@ -254,9 +253,7 @@ export function ClosingCtaBand({
             className="min-h-12 border-2 border-brand-light/80 bg-transparent text-brand-light hover:bg-brand-dark/30"
             asChild
           >
-            <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer">
-              WhatsApp
-            </a>
+            <Link href="/contact">Email us</Link>
           </Button>
           <Button
             size="lg"

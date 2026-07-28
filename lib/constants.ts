@@ -14,10 +14,6 @@ export const CONTACT = {
   city: "Dubai",
   country: "UAE",
   email: "info@sujaskitchen.com",
-  phoneDisplay: "+971 50 123 4567",
-  phoneTel: "+971501234567",
 } as const;
 
-export const WHATSAPP_ORDER_URL =
-  "https://wa.me/971501234567?text=" +
-  encodeURIComponent("Hi, I would like to order from Suja's Kitchen");
+export const CONTACT_MAILTO = `mailto:${CONTACT.email}`;

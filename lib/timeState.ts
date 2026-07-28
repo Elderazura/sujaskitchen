@@ -1,4 +1,3 @@
-import { WHATSAPP_ORDER_URL } from "@/lib/constants";
 import { HERO_SLIDES, type TimeState } from "@/lib/heroMedia";
 
 export type { TimeState } from "@/lib/heroMedia";
@@ -90,13 +89,13 @@ export const TIME_CONFIG: Record<TimeState, TimeConfig> = {
   closed: {
     headline: "The kitchen is closed right now.",
     subtext:
-      "We open again at 7:00 in the morning for breakfast. Message us on WhatsApp to plan your next order, or browse the menu for when we are back.",
+      "We open again at 7:00 in the morning for breakfast. Browse the menu for when we are back, or contact us to plan your next order.",
     heroSrc: HERO_SLIDES.closed[0].src,
     heroAlt: HERO_SLIDES.closed[0].alt,
     overlay: "rgba(45, 20, 12, 0.55)",
     pageBg: "#23120e",
     textPrimary: "#fef3c7",
-    cta: "Message on WhatsApp",
-    ctaHref: WHATSAPP_ORDER_URL,
+    cta: "Contact us",
+    ctaHref: "/contact",
   },
 };

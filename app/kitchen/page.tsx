@@ -5,14 +5,13 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { WHATSAPP_ORDER_URL } from "@/lib/constants";
-import { Reveal } from "@/components/motion/Reveal";
 import { PageCrossLinks } from "@/components/shared/PageCrossLinks";
+import { Reveal } from "@/components/motion/Reveal";
 
 export const metadata: Metadata = {
   title: "Kerala meals delivered in Dubai and Abu Dhabi",
   description:
-    "Cloud kitchen in Al Quoz. Fresh daily menu, delivery across Dubai and Abu Dhabi. Order on Talabat, Noon, or WhatsApp.",
+    "Cloud kitchen in Al Quoz. Fresh daily menu, delivery across Dubai and Abu Dhabi. Order on Talabat, Noon, or contact us.",
 };
 
 const platforms = [
@@ -67,9 +66,7 @@ export default function KitchenPage() {
                 className="min-h-12 border-white/60 bg-transparent text-white hover:bg-white/10"
                 asChild
               >
-                <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer">
-                  WhatsApp order
-                </a>
+                <Link href="/contact">Contact us</Link>
               </Button>
             </div>
           </div>
@@ -210,9 +207,7 @@ export default function KitchenPage() {
                   </Button>
                 ))}
                 <Button variant="outline" className="min-h-12 border-brand/30" asChild>
-                  <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer">
-                    Bulk or custom on WhatsApp
-                  </a>
+                  <Link href="/contact">Bulk or custom orders</Link>
                 </Button>
               </div>
             </div>

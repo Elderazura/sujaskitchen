@@ -154,12 +154,12 @@ export const HERO_CAPTION_ROTATIONS: Record<
     {
       headline: "The kitchen is closed right now.",
       subtext:
-        "We open again at 7:00 in the morning for breakfast. Message us on WhatsApp to plan your next order.",
+        "We open again at 7:00 in the morning for breakfast. Contact us to plan your next order.",
     },
     {
       headline: "Rest, recharge, prep for tomorrow.",
       subtext:
-        "Browse the menu or leave a WhatsApp note. We pick it up when the stoves go on.",
+        "Browse the menu or send us an email. We pick it up when the stoves go on.",
     },
     {
       headline: "Al Quoz will be back at seven.",

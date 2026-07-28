@@ -9,7 +9,6 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { SeasonalPageExtras } from "@/components/seasonal/SeasonalPageExtras";
 import { SeasonalNotifyForm } from "@/components/seasonal/SeasonalNotifyForm";
 import { SeasonalOrderForm } from "@/components/seasonal/SeasonalOrderForm";
-import { WHATSAPP_ORDER_URL } from "@/lib/constants";
 import { SEASONAL_EVENTS } from "@/lib/seasonalData";
 import { getFestivalContent } from "@/lib/seasonalFestivalContent";
 import type { SeasonalResolvedState } from "@/lib/seasonalCalendar";
@@ -93,13 +92,11 @@ export default function SeasonalExperience({
               <AlertTitle>Orders closed for this stretch</AlertTitle>
               <AlertDescription>
                 The order window for this run has ended. You can still reach us
-                on WhatsApp for the daily menu or catering. The page will move
+                on the contact page for the daily menu or catering. The page will move
                 to the next festival automatically.
               </AlertDescription>
               <Button className="mt-4 bg-brand hover:bg-brand-hover" asChild>
-                <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer">
-                  WhatsApp the kitchen
-                </a>
+                <Link href="/contact">Contact the kitchen</Link>
               </Button>
             </Alert>
           )}
@@ -200,9 +197,7 @@ export default function SeasonalExperience({
               <p className="text-sm font-medium text-brand">{content.deadlineNote}</p>
               <div className="flex flex-wrap gap-3 pt-2">
                 <Button className="bg-brand hover:bg-brand-hover" asChild>
-                  <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer">
-                    Order on WhatsApp
-                  </a>
+                  <Link href="/contact">Contact us to order</Link>
                 </Button>
                 <Button variant="outline" asChild>
                   <Link href="/catering">Catering enquiry</Link>

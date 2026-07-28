@@ -3,7 +3,6 @@ import Link from "next/link";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { WHATSAPP_ORDER_URL } from "@/lib/constants";
 import { SeasonalPageExtras } from "@/components/seasonal/SeasonalPageExtras";
 
 type Props = {
@@ -74,9 +73,7 @@ export default function SeasonalPageTemplate({
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button className="bg-brand hover:bg-brand-hover" asChild>
-                <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer">
-                  Order on WhatsApp
-                </a>
+                <Link href="/contact">Contact us to order</Link>
               </Button>
               <Button variant="outline" asChild>
                 <Link href="/catering">Catering enquiry</Link>

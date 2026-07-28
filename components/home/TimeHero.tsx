@@ -11,6 +11,7 @@ import SteamEffect from "@/components/home/SteamEffect";
 import CTAButton from "@/components/shared/CTAButton";
 import Link from "next/link";
 import { HERO_CAPTION_ROTATIONS, HERO_SLIDES } from "@/lib/heroMedia";
+import { SITE } from "@/lib/constants";
 import { useRotatingIndex } from "@/components/home/useRotatingIndex";
 import { cn } from "@/lib/utils";
 
@@ -127,6 +128,14 @@ export default function TimeHero() {
       {/* Upper-middle: fixed band, left-aligned */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-start px-6 pt-[min(18vh,5.5rem)] md:px-16 md:pt-[min(22vh,6.5rem)]">
         <div className="pointer-events-auto w-full max-w-3xl text-left">
+          <p
+            className={cn(
+              "font-serif text-lg font-medium tracking-wide text-brand-light/95 md:text-xl",
+              heroSubtextShadow,
+            )}
+          >
+            {SITE.name}
+          </p>
           <AnimatePresence initial={false} mode="wait">
             <motion.div
               key={`cap-${timeState}-${captionIndex}`}

@@ -4,7 +4,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import ParallaxBanner from '@/components/ParallaxBanner';
 import Image from 'next/image';
-import { MapPin, Mail, Clock, Phone, Send, MessageSquare } from 'lucide-react';
+import { MapPin, Mail, Clock, Send, MessageSquare } from 'lucide-react';
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -13,6 +13,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { PageCrossLinks } from '@/components/shared/PageCrossLinks';
+import { CONTACT } from '@/lib/constants';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -25,9 +26,13 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! We will get back to you soon.');
-    setFormData({ name: '', email: '', phone: '', message: '', service: 'general' });
+    const subject = encodeURIComponent(
+      `[${formData.service}] Message from ${formData.name}`,
+    );
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone || "Not provided"}\nService: ${formData.service}\n\n${formData.message}`,
+    );
+    window.location.href = `mailto:${CONTACT.email}?subject=${subject}&body=${body}`;
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -48,16 +53,9 @@ export default function Contact() {
     {
       icon: Mail,
       title: 'Email',
-      content: 'info@sujaskitchen.com',
-      link: 'mailto:info@sujaskitchen.com',
+      content: CONTACT.email,
+      link: `mailto:${CONTACT.email}`,
       color: 'from-blue-500 to-blue-600',
-    },
-    {
-      icon: Phone,
-      title: 'Phone',
-      content: '+971 50 123 4567',
-      link: 'tel:+971501234567',
-      color: 'from-green-500 to-green-600',
     },
     {
       icon: Clock,
@@ -158,7 +156,7 @@ export default function Contact() {
                   <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Send us a Message</h2>
                   <div className="w-24 h-1 bg-brand mb-6"></div>
                   <p className="text-lg text-gray-600 leading-relaxed">
-                    Fill out the form below and we&apos;ll get back to you as soon as possible.
+                    Compose your message below. This opens your email app — nothing is sent until you send it there.
                   </p>
                 </div>
                 
@@ -243,7 +241,7 @@ export default function Contact() {
                         className="w-full bg-brand hover:bg-brand-hover text-white text-lg py-6 shadow-lg"
                       >
                         <Send className="w-5 h-5 mr-2" />
-                        Send Message
+                        Open in email app
                       </Button>
                     </form>
                   </CardContent>
