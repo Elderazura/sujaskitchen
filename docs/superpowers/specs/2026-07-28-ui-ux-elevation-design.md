@@ -1,4 +1,4 @@
-# Suja's Kitchen — UI/UX Elevation Design
+1# Suja's Kitchen — UI/UX Elevation Design
 
 **Date:** 2026-07-28  
 **Status:** Approved for planning  

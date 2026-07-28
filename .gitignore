@@ -46,5 +46,8 @@ next-env.d.ts
 /scraped-data
 /public/images/scraped
 
+# graphify outputs
+/graphify-out
+
 # Suja reel sources (repo keeps WebM only; re-encode with npm run video:suja)
 public/Suja/*.mp4
