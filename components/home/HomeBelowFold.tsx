@@ -8,7 +8,6 @@ import {
   useScroll,
 } from "framer-motion";
 import { CookingPot, Leaf, HandPlatter } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
 import FeaturedItems from "@/components/home/FeaturedItems";
 import HomeEatGather from "@/components/home/HomeEatGather";
 import HomeGoogleReviews from "@/components/home/HomeGoogleReviews";
@@ -19,7 +18,9 @@ import SeasonalHeartbeat from "@/components/home/SeasonalHeartbeat";
 import SnibblesBand from "@/components/home/SnibblesBand";
 import { useRotatingIndex } from "@/components/home/useRotatingIndex";
 import { useTimeConfig, useTimeOfDay } from "@/components/home/time-of-day-context";
+import { SectionEyebrow } from "@/components/shared/SectionEyebrow";
 import { ClosingCtaBand } from "@/components/shared/PageCrossLinks";
+import { cn } from "@/lib/utils";
 import { Reveal, RevealX } from "@/components/motion/Reveal";
 import { HOME_STORY_ROTATIONS } from "@/lib/heroMedia";
 import { HOW_WE_MAKE_ROTATIONS } from "@/lib/homeSectionCopy";
@@ -102,15 +103,18 @@ export default function HomeBelowFold() {
 
       <Reveal delay={0.05}>
         <section
-          className={`px-6 py-16 md:px-16 ${isNight ? "bg-brand-dark/25" : "bg-white/60"}`}
+          className={cn(
+            "section-y px-6 md:px-16",
+            isNight ? "bg-brand-dark/25" : "bg-white/60",
+          )}
         >
           <div className="mx-auto max-w-7xl">
-            <h2 className={`font-serif text-3xl md:text-4xl ${heading}`}>
+            <SectionEyebrow className={isNight ? "text-brand-gold" : "text-brand"}>
               How we make food
-            </h2>
-            <p className={`mt-2 max-w-2xl font-sans text-sm ${muted}`}>
+            </SectionEyebrow>
+            <h2 className={cn("text-section mt-3 text-3xl md:text-4xl", heading)}>
               Three truths. No shortcuts.
-            </p>
+            </h2>
             <div className="relative mt-3 min-h-[2.75rem] max-w-2xl">
               <AnimatePresence initial={false} mode="wait">
                 <motion.p
@@ -119,13 +123,16 @@ export default function HomeBelowFold() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={reduce ? undefined : { opacity: 0, x: 8 }}
                   transition={{ duration: reduce ? 0 : 0.4 }}
-                  className={`font-sans text-sm italic md:text-base ${isNight ? "text-brand-gold/90" : "text-brand-dark/80"}`}
+                  className={cn(
+                    "text-body-editorial italic",
+                    isNight ? "text-brand-gold/90" : "text-brand-dark/80",
+                  )}
                 >
                   {howLine}
                 </motion.p>
               </AnimatePresence>
             </div>
-            <div className="mt-10 grid gap-6 md:grid-cols-3">
+            <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-12">
               {[
                 {
                   Icon: CookingPot,
@@ -148,27 +155,21 @@ export default function HomeBelowFold() {
                   from={idx % 2 === 0 ? "left" : "right"}
                   delay={0.08 * idx}
                 >
-                  <Card
-                    className={
-                      isNight
-                        ? "h-full border-brand-mid/40 bg-brand-dark/70"
-                        : "h-full border-brand-mid/25 bg-white shadow-sm"
-                    }
-                  >
-                    <CardContent className="p-6">
-                      <Icon
-                        className={`h-10 w-10 ${isNight ? "text-brand-gold" : "text-brand-dark"}`}
-                      />
-                      <h3 className={`mt-4 font-serif text-xl ${heading}`}>
-                        {title}
-                      </h3>
-                      <p
-                        className={`mt-2 font-sans text-sm leading-relaxed ${bodyClass}`}
-                      >
-                        {copy}
-                      </p>
-                    </CardContent>
-                  </Card>
+                  <div className="h-full border-0 bg-transparent">
+                    <Icon
+                      className={cn(
+                        "h-10 w-10",
+                        isNight ? "text-brand-gold" : "text-brand",
+                      )}
+                      aria-hidden
+                    />
+                    <h3 className={cn("mt-4 font-serif text-xl", heading)}>
+                      {title}
+                    </h3>
+                    <p className={cn("text-body-editorial mt-2", bodyClass)}>
+                      {copy}
+                    </p>
+                  </div>
                 </RevealX>
               ))}
             </div>
