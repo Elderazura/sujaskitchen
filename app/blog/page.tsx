@@ -2,7 +2,7 @@
 
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import ParallaxBanner from '@/components/ParallaxBanner';
+import PageHero from '@/components/shared/PageHero';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -90,25 +90,13 @@ export default function Blog() {
       
       <main className="flex-grow">
         {/* Hero Section with Parallax */}
-        <ParallaxBanner
+        <PageHero
           image="/images/Sujas-Kitchen-scaled.jpg"
-          alt="Our Blog - Suja's Kitchen"
-          className="h-[70vh] min-h-[600px] flex items-center"
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/60 z-10"></div>
-          <div className="relative z-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <div className="inline-block bg-brand/20 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
-              <BookOpen className="w-6 h-6 inline-block mr-2" />
-              <span className="text-sm font-semibold">Our Blog</span>
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 drop-shadow-2xl animate-fade-in">
-              Stories & Recipes
-            </h1>
-            <p className="text-xl md:text-2xl text-white/90 drop-shadow-lg max-w-2xl mx-auto leading-relaxed animate-slide-up">
-              Discover the stories, recipes, and insights from Kerala cuisine
-            </p>
-          </div>
-        </ParallaxBanner>
+          alt="Suja's Kitchen journal"
+          eyebrow="The journal"
+          title="Stories & recipes from the kitchen"
+          subtitle="Kerala cooking notes, seasonal reads, and what the kitchen is making now."
+        />
 
         {/* Category Filter */}
         <section className="py-8 bg-white border-b sticky top-0 z-30 backdrop-blur-sm bg-white/95">
@@ -122,7 +110,7 @@ export default function Blog() {
                   className={
                     selectedCategory === category
                       ? 'bg-brand hover:bg-brand-hover text-white'
-                      : 'border-gray-300 hover:border-brand hover:text-brand'
+                      : 'border-brand-dark/15 hover:border-brand hover:text-brand'
                   }
                 >
                   {category}
@@ -133,11 +121,11 @@ export default function Blog() {
         </section>
 
         {/* Blog Posts */}
-        <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+        <section className="py-20 bg-gradient-to-b from-paper to-paper-deep">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {filteredPosts.length === 0 ? (
               <div className="text-center py-20">
-                <p className="text-xl text-gray-600">No posts found in this category.</p>
+                <p className="text-xl text-brand-mid">No posts found in this category.</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -162,12 +150,12 @@ export default function Blog() {
                         </div>
                       </div>
                       <CardHeader>
-                        <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
+                        <div className="flex items-center gap-4 text-sm text-brand-mid mb-3">
                           <div className="flex items-center gap-1">
                             <Calendar className="w-4 h-4" />
                             <span>{post.date}</span>
                           </div>
-                          <div className="h-4 w-px bg-gray-300"></div>
+                          <div className="h-4 w-px bg-brand-dark/20"></div>
                           <span>{post.readTime}</span>
                         </div>
                         <CardTitle className="text-xl group-hover:text-brand transition-colors line-clamp-2">
@@ -197,8 +185,8 @@ export default function Blog() {
         {/* Newsletter CTA */}
         <section className="py-20 bg-brand-gradient text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Stay Updated</h2>
-            <div className="w-24 h-1 bg-white/50 mx-auto mb-8"></div>
+            <h2 className="text-section text-4xl md:text-5xl mb-6">Stay Updated</h2>
+            <div className="w-16 h-px bg-brand-gold/60 mx-auto mb-8"></div>
             <p className="text-xl mb-10 text-white/90 leading-relaxed">
               Subscribe to our blog to get the latest recipes, stories, and culinary insights delivered to your inbox.
             </p>
@@ -206,9 +194,9 @@ export default function Blog() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-6 py-4 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
+                className="flex-1 px-6 py-4 rounded-lg text-brand-dark focus:outline-none focus:ring-2 focus:ring-white"
               />
-              <Button size="lg" variant="secondary" className="bg-white text-brand hover:bg-gray-100 shadow-xl">
+              <Button size="lg" variant="secondary" className="bg-white text-brand hover:bg-paper-deep shadow-xl">
                 Subscribe
               </Button>
             </div>

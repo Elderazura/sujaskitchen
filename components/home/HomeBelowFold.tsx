@@ -1,30 +1,26 @@
 "use client";
 
-import { useRef } from "react";
-import {
-  AnimatePresence,
-  motion,
-  useReducedMotion,
-  useScroll,
-} from "framer-motion";
-import { CookingPot, Leaf, HandPlatter } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import FeaturedItems from "@/components/home/FeaturedItems";
+import HomeTrustStrip from "@/components/home/HomeTrustStrip";
+import DishMarquee from "@/components/home/DishMarquee";
+import HomeCraftStory from "@/components/home/HomeCraftStory";
 import HomeEatGather from "@/components/home/HomeEatGather";
 import HomeGoogleReviews from "@/components/home/HomeGoogleReviews";
 import HomeInstagramFeed from "@/components/home/HomeInstagramFeed";
-import HomeParallaxBlock from "@/components/home/HomeParallaxBlock";
-import SujaStoryTicker from "@/components/home/SujaStoryTicker";
 import SeasonalHeartbeat from "@/components/home/SeasonalHeartbeat";
 import SnibblesBand from "@/components/home/SnibblesBand";
 import { useRotatingIndex } from "@/components/home/useRotatingIndex";
 import { useTimeConfig, useTimeOfDay } from "@/components/home/time-of-day-context";
-import { PageShell, PageSection } from "@/components/shared/PageShell";
-import { SectionHeader } from "@/components/shared/SectionHeader";
-import { ClosingCtaBand } from "@/components/shared/PageCrossLinks";
+import { PageShell } from "@/components/shared/PageShell";
+import { SectionEyebrow } from "@/components/shared/SectionEyebrow";
+import { ClosingCtaBand, MidPageBanner } from "@/components/shared/PageCrossLinks";
 import { cn } from "@/lib/utils";
 import { Reveal, RevealX } from "@/components/motion/Reveal";
 import { HOME_STORY_ROTATIONS } from "@/lib/heroMedia";
-import { HOW_WE_MAKE_ROTATIONS } from "@/lib/homeSectionCopy";
 
 export default function HomeBelowFold() {
   const config = useTimeConfig();
@@ -33,7 +29,6 @@ export default function HomeBelowFold() {
 
   const muted = isNight ? "text-brand-light/70" : "text-brand-mid";
   const heading = isNight ? "text-brand-light" : "text-brand-dark";
-  const bodyClass = isNight ? "text-brand-light/85" : "text-brand-dark/90";
 
   const storyIndex = useRotatingIndex(
     HOME_STORY_ROTATIONS.length,
@@ -43,45 +38,74 @@ export default function HomeBelowFold() {
   );
   const storyLine = HOME_STORY_ROTATIONS[storyIndex]?.line ?? "";
 
-  const howIndex = useRotatingIndex(
-    HOW_WE_MAKE_ROTATIONS.length,
-    6800,
-    !reduce,
-    `${timeState}-how`,
-  );
-  const howLine = HOW_WE_MAKE_ROTATIONS[howIndex] ?? HOW_WE_MAKE_ROTATIONS[0];
-
-  /** Full “The kitchen” block: same scroll span as Framer Ticker Scroll demo (section vs viewport). */
-  const kitchenSectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: kitchenStoryScrollProgress } = useScroll({
-    target: kitchenSectionRef,
-    offset: ["start end", "end start"],
-  });
-
   return (
     <div
       className="min-w-0 overflow-x-clip transition-[background-color] duration-[1500ms] ease-in-out"
-      style={{ backgroundColor: config.pageBg }}
+      style={{
+        backgroundColor: config.pageBg,
+        backgroundImage:
+          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E\")",
+        backgroundBlendMode: "soft-light",
+      }}
     >
+      <HomeTrustStrip />
+
       <FeaturedItems />
 
-      <div ref={kitchenSectionRef} className="min-w-0">
-        <HomeParallaxBlock range={36} className="will-change-transform">
-          <Reveal>
-            <section className="section-y">
-              <PageShell>
-                <SectionHeader
-                  eyebrow="The kitchen"
-                  title="Since 1999, every dish has been Suja&apos;s decision."
-                  eyebrowClassName={isNight ? "text-brand-gold" : "text-brand"}
-                  titleClassName={cn("text-3xl md:text-5xl leading-snug", heading)}
-                  className="max-w-4xl"
+      <DishMarquee />
+
+      {/* Founder moment */}
+      <section className="section-y">
+        <PageShell>
+          <div className="grid items-center gap-10 md:grid-cols-[0.8fr_1fr] md:gap-16">
+            <RevealX from="left">
+              <figure className="relative aspect-[4/5] overflow-hidden rounded-2xl shadow-[0_30px_60px_-30px_rgba(36,22,18,0.5)]">
+                <Image
+                  src="/images/suja-maam.jpg"
+                  alt="Suja Alex, founder of Suja's Kitchen, in the kitchen"
+                  fill
+                  sizes="(max-width:768px) 100vw, 42vw"
+                  className="object-cover object-center"
                 />
-                <SujaStoryTicker
-                  isNight={isNight}
-                  sectionScrollProgress={kitchenStoryScrollProgress}
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(to top, rgba(22,12,8,0.78) 0%, rgba(22,12,8,0.1) 42%, rgba(22,12,8,0) 70%)",
+                  }}
+                  aria-hidden
                 />
-                <div className="mt-6 min-h-[4.5rem] max-w-2xl md:min-h-[3.75rem]">
+                <figcaption className="absolute inset-x-0 bottom-0 p-5">
+                  <p className="text-eyebrow text-brand-gold">Suja Alex</p>
+                  <p className="mt-1 font-sans text-sm text-brand-light/90">
+                    Founder &amp; head cook, since 1999
+                  </p>
+                </figcaption>
+              </figure>
+            </RevealX>
+
+            <Reveal delay={0.08}>
+              <SectionEyebrow className={isNight ? "text-brand-gold" : "text-brand"}>
+                The kitchen
+              </SectionEyebrow>
+              <h2
+                className={cn(
+                  "text-section mt-4 text-3xl leading-[1.1] md:text-5xl",
+                  heading,
+                )}
+              >
+                Since 1999, every dish has been Suja&apos;s decision.
+              </h2>
+              <blockquote
+                className={cn(
+                  "mt-7 border-l-2 border-brand-gold/70 pl-5 font-serif text-xl italic leading-snug md:text-2xl",
+                  isNight ? "text-brand-light/90" : "text-brand-dark/85",
+                )}
+              >
+                &ldquo;Twenty-five years, from a home kitchen to a cloud kitchen.
+                The standard never moved.&rdquo;
+              </blockquote>
+              <div className="mt-6 min-h-[4.5rem] max-w-xl md:min-h-[3.75rem]">
                 <AnimatePresence initial={false} mode="wait">
                   <motion.p
                     key={storyIndex}
@@ -94,91 +118,47 @@ export default function HomeBelowFold() {
                     {storyLine}
                   </motion.p>
                 </AnimatePresence>
-                </div>
-              </PageShell>
-            </section>
-          </Reveal>
-        </HomeParallaxBlock>
-      </div>
+              </div>
+              <Link
+                href="/our-story"
+                className={cn(
+                  "group mt-6 inline-flex min-h-11 items-center gap-2 font-sans text-sm font-semibold transition-colors",
+                  isNight
+                    ? "text-brand-gold hover:text-brand-light"
+                    : "text-brand hover:text-brand-hover",
+                )}
+              >
+                Read our story
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
+              </Link>
+            </Reveal>
+          </div>
+        </PageShell>
+      </section>
 
-      <Reveal delay={0.05}>
-        <PageSection
-          className={isNight ? "bg-brand-dark/25" : "bg-white/60"}
-        >
-            <SectionHeader
-              eyebrow="How we make food"
-              title="Three truths. No shortcuts."
-              eyebrowClassName={isNight ? "text-brand-gold" : "text-brand"}
-              titleClassName={heading}
-            />
-            <div className="relative mt-2 min-h-[2.75rem] max-w-2xl">
-              <AnimatePresence initial={false} mode="wait">
-                <motion.p
-                  key={`${howIndex}-${timeState}`}
-                  initial={reduce ? false : { opacity: 0, x: -8 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={reduce ? undefined : { opacity: 0, x: 8 }}
-                  transition={{ duration: reduce ? 0 : 0.4 }}
-                  className={cn(
-                    "text-body-editorial italic",
-                    isNight ? "text-brand-gold/90" : "text-brand-dark/80",
-                  )}
-                >
-                  {howLine}
-                </motion.p>
-              </AnimatePresence>
-            </div>
-            <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-12">
-              {[
-                {
-                  Icon: CookingPot,
-                  title: "We cook in small batches.",
-                  body: "Every order is made fresh that day. We do not cook for tomorrow. We do not reheat from yesterday.",
-                },
-                {
-                  Icon: Leaf,
-                  title: "The spices come from Wayanad.",
-                  body: "Black pepper, cardamom, curry leaves from the same farms in Wayanad and Idukki we have trusted for two decades. No substitutes.",
-                },
-                {
-                  Icon: HandPlatter,
-                  title: "Suja still decides what goes in.",
-                  body: "Twenty-five years in, the woman who started this in her home kitchen still decides every recipe, every portion, every standard.",
-                },
-              ].map(({ Icon, title, body: copy }, idx) => (
-                <RevealX
-                  key={title}
-                  from={idx % 2 === 0 ? "left" : "right"}
-                  delay={0.08 * idx}
-                >
-                  <div className="h-full border-0 bg-transparent">
-                    <Icon
-                      className={cn(
-                        "h-10 w-10",
-                        isNight ? "text-brand-gold" : "text-brand",
-                      )}
-                      aria-hidden
-                    />
-                    <h3 className={cn("mt-4 font-serif text-xl", heading)}>
-                      {title}
-                    </h3>
-                    <p className={cn("text-body-editorial mt-2", bodyClass)}>
-                      {copy}
-                    </p>
-                  </div>
-                </RevealX>
-              ))}
-            </div>
-        </PageSection>
+      {/* Signature: pinned craft story */}
+      <HomeCraftStory />
+
+      {/* Full-bleed cinematic break */}
+      <Reveal className="w-full">
+        <MidPageBanner
+          image="/images/DSC04699-1-scaled.jpg"
+          alt="Kerala dishes freshly plated at Suja's Kitchen"
+          title="Cooked today. Sent to your door."
+          subtitle="Same-day Kerala cooking, delivered hot across Dubai and Abu Dhabi — breakfast through dinner."
+          href="/kitchen/menu"
+          cta="Order now"
+          tone="dark"
+        />
       </Reveal>
 
       <HomeEatGather />
 
       <HomeGoogleReviews />
 
-      <HomeInstagramFeed />
-
       <SeasonalHeartbeat />
+
+      <HomeInstagramFeed />
 
       <SnibblesBand />
 

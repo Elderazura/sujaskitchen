@@ -2,6 +2,7 @@
 
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import PageHero from '@/components/shared/PageHero';
 import ParallaxBanner from '@/components/ParallaxBanner';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -91,54 +92,32 @@ export default function Snibbles() {
       
       <main className="flex-grow">
         {/* Hero Section with Parallax */}
-        <ParallaxBanner
+        <PageHero
           image="/images/snibbles-mockup-scaled.jpg"
-          alt="Snibbles by Suja's Kitchen"
-          className="h-[85vh] min-h-[700px] flex items-center"
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/60 z-10"></div>
-          <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <div 
-              className="transform transition-all duration-700"
-              style={{
-                opacity: 1 - scrollY / 500,
-                transform: `translateY(${scrollY * 0.2}px)`,
-              }}
+          alt="Snibbles snacks by Suja's Kitchen"
+          eyebrow="By Suja's Kitchen"
+          title="Snibbles"
+          subtitle="Suja's love letter to anyone who misses home — Kerala snacks crafted to bring the four o'clock table a little closer, wherever you are."
+          actions={
+            <Button
+              asChild
+              size="lg"
+              className="min-h-12 bg-brand px-8 text-brand-light hover:bg-brand-hover"
             >
-              <div className="relative w-80 h-20 mx-auto mb-6 animate-fade-in">
-                <Image
-                  src="/images/snibbles-logo-tm-scaled.png"
-                  alt="Snibbles Logo"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
-              <p className="text-xl md:text-2xl mb-4 text-gray-100 drop-shadow-lg animate-slide-up-delay">
-                by Suja&apos;s Kitchen
-              </p>
-              <p className="text-lg md:text-xl mb-10 text-gray-200 drop-shadow-md max-w-3xl mx-auto leading-relaxed animate-fade-in-delay">
-                Snibbles is Suja&apos;s latest love letter to those who miss home. Inspired by decades of comforting meals, 
-                each bite is crafted to bring Kerala a little closer, wherever you are.
-              </p>
-              <Link href="#products" className="animate-fade-in-delay">
-                <Button size="lg" className="bg-brand hover:bg-brand-hover text-white text-lg px-10 py-6 shadow-xl">
-                  Explore Products
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </ParallaxBanner>
+              <Link href="#products">Explore products</Link>
+            </Button>
+          }
+        />
 
         {/* Why Snibbles Section with Animations */}
-        <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+        <section className="py-20 bg-gradient-to-b from-paper to-paper-deep">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold text-brand-dark mb-4">
                 Why Snibbles?
               </h2>
               <div className="w-24 h-1 bg-brand mx-auto mb-6"></div>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              <p className="text-xl text-brand-mid max-w-2xl mx-auto">
                 Freshly made, lovingly packed, and ready to reach your doorstep
               </p>
             </div>
@@ -165,7 +144,7 @@ export default function Snibbles() {
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-gray-600 leading-relaxed">
+                      <p className="text-brand-mid leading-relaxed">
                         {benefit.description}
                       </p>
                     </CardContent>
@@ -180,11 +159,11 @@ export default function Snibbles() {
         <section id="products" className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold text-brand-dark mb-4">
                 Our Product Range
               </h2>
               <div className="w-24 h-1 bg-brand mx-auto mb-6"></div>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              <p className="text-xl text-brand-mid max-w-2xl mx-auto">
                 Traditional Kerala snacks, packed fresh and ready to enjoy
               </p>
             </div>
@@ -198,7 +177,7 @@ export default function Snibbles() {
                     animationDelay: `${idx * 100}ms`,
                   }}
                 >
-                  <div className="relative h-72 bg-gradient-to-br from-gray-50 to-gray-100">
+                  <div className="relative h-72 bg-gradient-to-br from-paper to-paper-deep">
                     {product.popular && (
                       <div className="absolute top-4 right-4 z-10">
                         <Badge className="bg-brand text-white flex items-center gap-1">
@@ -226,7 +205,7 @@ export default function Snibbles() {
                   <CardContent>
                     <ul className="space-y-2 mb-6">
                       {product.features.map((feature, featureIdx) => (
-                        <li key={featureIdx} className="flex items-center gap-2 text-sm text-gray-600">
+                        <li key={featureIdx} className="flex items-center gap-2 text-sm text-brand-mid">
                           <div className="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0"></div>
                           <span>{feature}</span>
                         </li>
@@ -257,8 +236,8 @@ export default function Snibbles() {
                   <div className="bg-brand rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <Sparkles className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Small batches</h3>
-                  <p className="text-gray-600 text-sm">
+                  <h3 className="text-xl font-bold text-brand-dark mb-2">Small batches</h3>
+                  <p className="text-brand-mid text-sm">
                     Packed from the same kitchen standards as the restaurant line
                   </p>
                 </div>
@@ -266,8 +245,8 @@ export default function Snibbles() {
                   <div className="bg-brand rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <Truck className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Fast Delivery</h3>
-                  <p className="text-gray-600 text-sm">
+                  <h3 className="text-xl font-bold text-brand-dark mb-2">Fast Delivery</h3>
+                  <p className="text-brand-mid text-sm">
                     Quick and secure shipping across UAE
                   </p>
                 </div>
@@ -275,8 +254,8 @@ export default function Snibbles() {
                   <div className="bg-brand rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <Star className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Customer Favorite</h3>
-                  <p className="text-gray-600 text-sm">
+                  <h3 className="text-xl font-bold text-brand-dark mb-2">Customer Favorite</h3>
+                  <p className="text-brand-mid text-sm">
                     Loved by thousands of customers across UAE
                   </p>
                 </div>
@@ -302,25 +281,25 @@ export default function Snibbles() {
                 <div className="inline-block bg-brand/10 text-brand px-4 py-2 rounded-full text-sm font-semibold mb-4">
                   The Snibbles Story
                 </div>
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                <h2 className="text-4xl md:text-5xl font-bold text-brand-dark">
                   Bringing Home Closer
                 </h2>
-                <p className="text-lg text-gray-700 leading-relaxed">
+                <p className="text-lg text-brand-dark/80 leading-relaxed">
                   Snibbles came from the four o&apos;clock table: something crisp, something sweet,
                   and chai. Each pack leaves the same Al Quoz kitchen where Suja still approves
                   recipes.
                 </p>
-                <p className="text-lg text-gray-700 leading-relaxed">
+                <p className="text-lg text-brand-dark/80 leading-relaxed">
                   Same spices from Wayanad and Idukki, same coconut, smaller format. Dubai, Abu
                   Dhabi, or anywhere we deliver — it should taste like you remembered.
                 </p>
                 <div className="flex items-center gap-4 pt-4">
                   <div className="flex items-center gap-2">
                     <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-                    <span className="font-semibold text-gray-900">4.8/5</span>
+                    <span className="font-semibold text-brand-dark">4.8/5</span>
                   </div>
                   <div className="h-6 w-px bg-gray-300"></div>
-                  <span className="text-gray-600">500+ Happy Customers</span>
+                  <span className="text-brand-mid">500+ Happy Customers</span>
                 </div>
               </div>
             </div>
@@ -340,7 +319,7 @@ export default function Snibbles() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
-                <Button size="lg" variant="secondary" className="bg-white text-brand hover:bg-gray-100 shadow-xl">
+                <Button size="lg" variant="secondary" className="bg-white text-brand hover:bg-paper-deep shadow-xl">
                   Contact Us
                 </Button>
               </Link>

@@ -16,12 +16,12 @@ export function SeasonalPageExtras({
   return (
     <>
       <Reveal>
-        <section className="border-t border-stone-200 bg-white px-6 py-14 md:px-16">
+        <section className="border-t border-brand-dark/10 bg-paper px-6 py-14 md:px-16">
           <div className="mx-auto max-w-6xl">
-            <h2 className="font-serif text-2xl text-stone-900 md:text-3xl">
+            <h2 className="font-serif text-2xl text-brand-dark md:text-3xl">
               How orders work
             </h2>
-            <p className="mt-3 max-w-2xl font-sans text-sm text-stone-600 md:text-base">
+            <p className="mt-3 max-w-2xl font-sans text-sm text-brand-mid md:text-base">
               Festival food needs time. We confirm headcount, date, and delivery or pickup by
               email, then lock the kitchen schedule.
             </p>
@@ -40,10 +40,10 @@ export function SeasonalPageExtras({
                   b: "Small batches so nothing sits. Pickup from Al Quoz or arranged drops.",
                 },
               ].map((x) => (
-                <Card key={x.t} className="border-stone-200">
+                <Card key={x.t} className="border-brand-dark/10">
                   <CardContent className="p-5">
-                    <p className="font-serif text-lg text-stone-900">{x.t}</p>
-                    <p className="mt-2 font-sans text-sm text-stone-600">{x.b}</p>
+                    <p className="font-serif text-lg text-brand-dark">{x.t}</p>
+                    <p className="mt-2 font-sans text-sm text-brand-mid">{x.b}</p>
                   </CardContent>
                 </Card>
               ))}

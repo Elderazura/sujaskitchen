@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
 import { Reveal, RevealStagger, RevealStaggerItem } from "@/components/motion/Reveal";
 import ScrollParallaxMedia from "@/components/motion/ScrollParallaxMedia";
+import DeliveryPlatforms from "@/components/shared/DeliveryPlatforms";
 
 const LINKS = [
   {
@@ -213,36 +214,45 @@ export function ClosingCtaBand({
 }) {
   const reduce = useReducedMotion();
   return (
-    <section className="bg-brand-gradient px-4 py-14 text-brand-light sm:px-6 md:py-20">
+    <section className="bg-brand-gradient grain px-4 py-16 text-brand-light sm:px-6 md:py-24">
       <div className="mx-auto max-w-4xl text-center">
-        <motion.h2
-          className="font-serif text-3xl md:text-5xl"
-          initial={reduce ? false : { opacity: 0, y: 16 }}
+        <motion.p
+          className="text-eyebrow text-brand-light/70"
+          initial={reduce ? false : { opacity: 0, y: 12 }}
           whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
+          From our kitchen to your table
+        </motion.p>
+        <motion.h2
+          className="text-display mt-4 text-4xl md:text-6xl"
+          initial={reduce ? false : { opacity: 0, y: 16 }}
+          whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.06 }}
+        >
           {title}
         </motion.h2>
         <motion.p
-          className="mx-auto mt-4 max-w-2xl font-sans text-sm text-brand-light/90 md:text-base"
+          className="mx-auto mt-5 max-w-2xl font-sans text-base leading-relaxed text-brand-light/90"
           initial={reduce ? false : { opacity: 0, y: 12 }}
           whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.08 }}
+          transition={{ duration: 0.5, delay: 0.12 }}
         >
           {body}
         </motion.p>
         <motion.div
-          className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
+          className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"
           initial={reduce ? false : { opacity: 0, y: 12 }}
           whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.15 }}
+          transition={{ duration: 0.5, delay: 0.18 }}
         >
           <Button
             size="lg"
-            className="min-h-12 bg-white text-brand hover:bg-brand-light"
+            className="min-h-12 bg-white px-8 text-brand shadow-md hover:bg-brand-light"
             asChild
           >
             <Link href="/kitchen/menu">See the menu</Link>
@@ -250,19 +260,20 @@ export function ClosingCtaBand({
           <Button
             size="lg"
             variant="outline"
-            className="min-h-12 border-2 border-brand-light/80 bg-transparent text-brand-light hover:bg-brand-dark/30"
+            className="min-h-12 border border-brand-light/70 bg-transparent px-8 text-brand-light hover:bg-brand-dark/30 hover:text-brand-light"
             asChild
           >
-            <Link href="/contact">Email us</Link>
+            <Link href="/contact">Talk to us</Link>
           </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="min-h-12 border-2 border-brand-light/80 bg-transparent text-brand-light hover:bg-brand-dark/30"
-            asChild
-          >
-            <Link href="/contact">Contact</Link>
-          </Button>
+        </motion.div>
+        <motion.div
+          className="mt-9 flex justify-center"
+          initial={reduce ? false : { opacity: 0, y: 12 }}
+          whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.24 }}
+        >
+          <DeliveryPlatforms variant="onDark" className="justify-center" />
         </motion.div>
       </div>
     </section>

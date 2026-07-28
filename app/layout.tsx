@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
-import { Karla, Playfair_Display } from "next/font/google";
+import { Hanken_Grotesk, Fraunces } from "next/font/google";
 import "./globals.css";
+import MobileOrderBar from "@/components/shared/MobileOrderBar";
 
-const karla = Karla({
+const hanken = Hanken_Grotesk({
   subsets: ["latin"],
-  variable: "--font-karla",
+  variable: "--font-hanken",
   display: "swap",
 });
 
-const playfair = Playfair_Display({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-fraunces",
   display: "swap",
+  style: ["normal", "italic"],
+  axes: ["opsz", "SOFT"],
 });
 
 export const metadata: Metadata = {
@@ -31,9 +34,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${karla.variable} ${playfair.variable} ${karla.className} antialiased`}
+        className={`${hanken.variable} ${fraunces.variable} ${hanken.className} antialiased`}
       >
         {children}
+        <MobileOrderBar />
       </body>
     </html>
   );

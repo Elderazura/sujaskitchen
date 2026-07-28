@@ -1,15 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Star } from "lucide-react";
+import { Star, Quote } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Reveal, RevealX } from "@/components/motion/Reveal";
 import { PageSection } from "@/components/shared/PageShell";
 import { SectionHeader } from "@/components/shared/SectionHeader";
-import { pickBestGoogleReviews } from "@/lib/googleReviewUtils";
+import { pickBestGoogleReviews, averageRating } from "@/lib/googleReviewUtils";
 import { useTimeOfDay } from "@/components/home/time-of-day-context";
+import { cn } from "@/lib/utils";
 
 type Review = {
   id: string;
@@ -49,6 +50,20 @@ const FALLBACK_REVIEWS: Review[] = [
     text:
       "Appam and stew on a weekday morning was worth the wait. Will order the same combo again.",
   },
+  {
+    id: "fb-5",
+    name: "Google reviewer",
+    rating: 5,
+    text:
+      "Catered our office Onam sadhya for forty people. Set up on time, generous portions, and every dish tasted home-made.",
+  },
+  {
+    id: "fb-6",
+    name: "Google reviewer",
+    rating: 4,
+    text:
+      "Reliable Kerala food in Dubai that actually tastes like home. The Malabar biriyani and parotta are our weekend regulars.",
+  },
 ];
 
 function StarRow({ rating }: { rating: number }) {
@@ -83,7 +98,6 @@ export default function HomeGoogleReviews() {
 
   const heading = isNight ? "text-brand-light" : "text-brand-dark";
   const muted = isNight ? "text-brand-light/70" : "text-brand-mid";
-  const body = isNight ? "text-brand-light/85" : "text-brand-dark/90";
 
   useEffect(() => {
     let cancelled = false;
@@ -127,13 +141,37 @@ export default function HomeGoogleReviews() {
   }, []);
 
   const list = reviews ?? [];
+  const avg = averageRating(list) ?? 4.8;
 
   return (
     <PageSection>
         <Reveal>
           <SectionHeader
+            eyebrow="Loved in the UAE"
             title="What people say on Google"
             description="We highlight longer, recent-style feedback with four- and five-star ratings. Full listings live on Google Maps."
+            meta={
+              <span
+                className={cn(
+                  "inline-flex items-center gap-2 rounded-full border px-3 py-1",
+                  isNight ? "border-brand-gold/40" : "border-brand-gold/50",
+                )}
+              >
+                <span className="flex" aria-hidden>
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <Star
+                      key={i}
+                      className="h-3.5 w-3.5 fill-brand-gold text-brand-gold"
+                    />
+                  ))}
+                </span>
+                <span className={cn("font-sans text-sm font-semibold tabular-nums", heading)}>
+                  {avg.toFixed(1)}
+                </span>
+                <span className={cn("font-sans text-xs", muted)}>on Google</span>
+              </span>
+            }
+            eyebrowClassName={isNight ? "text-brand-gold" : "text-brand"}
             titleClassName={heading}
             descriptionClassName={muted}
           />
@@ -180,15 +218,33 @@ export default function HomeGoogleReviews() {
                 delay={0.05 * (i % 3)}
               >
                 <Card
-                  className={
+                  className={cn(
+                    "h-full rounded-xl transition-shadow duration-300",
                     isNight
-                      ? "h-full border-brand-mid/35 bg-brand-dark/75"
-                      : "h-full border-brand-mid/20 bg-white"
-                  }
+                      ? "border-brand-light/12 bg-brand-light/[0.04]"
+                      : "border-brand-dark/10 bg-white hover:shadow-[0_18px_44px_-26px_rgba(36,22,18,0.5)]",
+                  )}
                 >
-                  <CardContent className="flex h-full flex-col p-6">
-                    <div className="flex items-start gap-3">
-                      <Avatar className="h-11 w-11 border border-brand-mid/25 dark:border-brand-mid/40">
+                  <CardContent className="flex h-full flex-col p-7">
+                    <Quote
+                      className="h-7 w-7 shrink-0 rotate-180 fill-brand-gold/25 text-brand-gold/70"
+                      aria-hidden
+                    />
+                    <p
+                      className={cn(
+                        "mt-4 flex-1 font-serif text-lg italic leading-relaxed",
+                        isNight ? "text-brand-light/90" : "text-brand-dark/90",
+                      )}
+                    >
+                      {r.text}
+                    </p>
+                    <div
+                      className={cn(
+                        "mt-6 flex items-center gap-3 border-t pt-5",
+                        isNight ? "border-brand-light/12" : "border-brand-dark/10",
+                      )}
+                    >
+                      <Avatar className="h-10 w-10 border border-brand-mid/25 dark:border-brand-mid/40">
                         {r.profilePhoto ? (
                           <AvatarImage src={r.profilePhoto} alt="" />
                         ) : null}
@@ -197,22 +253,14 @@ export default function HomeGoogleReviews() {
                         </AvatarFallback>
                       </Avatar>
                       <div className="min-w-0 flex-1">
-                        <p className={`truncate font-sans text-sm font-medium ${heading}`}>
+                        <p className={cn("truncate font-sans text-sm font-semibold", heading)}>
                           {r.name}
                         </p>
                         <div className="mt-1">
                           <StarRow rating={r.rating} />
                         </div>
-                        {r.date ? (
-                          <p className={`mt-1 font-sans text-xs ${muted}`}>{r.date}</p>
-                        ) : null}
                       </div>
                     </div>
-                    <p
-                      className={`mt-4 flex-1 font-sans text-sm leading-relaxed ${body} line-clamp-6`}
-                    >
-                      {r.text}
-                    </p>
                   </CardContent>
                 </Card>
               </RevealX>

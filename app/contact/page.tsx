@@ -2,7 +2,7 @@
 
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import ParallaxBanner from '@/components/ParallaxBanner';
+import PageHero from '@/components/shared/PageHero';
 import Image from 'next/image';
 import { MapPin, Mail, Clock, Send, MessageSquare } from 'lucide-react';
 import { useState } from 'react';
@@ -72,32 +72,24 @@ export default function Contact() {
       
       <main className="flex-grow">
         {/* Hero Section with Parallax */}
-        <ParallaxBanner
+        <PageHero
           image="/images/Sujas-Kitchen-scaled.jpg"
-          alt="Contact Us - Suja's Kitchen"
-          className="h-[70vh] min-h-[600px] flex items-center"
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/60 z-10"></div>
-          <div className="relative z-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 drop-shadow-2xl animate-fade-in">
-              Contact Us
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-100 drop-shadow-lg max-w-2xl mx-auto leading-relaxed animate-slide-up">
-              We&apos;d love to hear from you. Get in touch for orders, catering, or any inquiries.
-            </p>
-          </div>
-        </ParallaxBanner>
+          alt="Suja's Kitchen, Al Quoz, Dubai"
+          eyebrow="Contact"
+          title="We'd love to hear from you."
+          subtitle="Get in touch for orders, catering, or any question — we reply during kitchen hours."
+        />
 
         {/* Contact Content */}
-        <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+        <section className="py-20 bg-gradient-to-b from-paper to-paper-deep">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Contact Information */}
               <div>
                 <div className="mb-8">
-                  <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Get in Touch</h2>
-                  <div className="w-24 h-1 bg-brand mb-6"></div>
-                  <p className="text-lg text-gray-600 leading-relaxed">
+                  <h2 className="text-section text-4xl md:text-5xl text-brand-dark mb-4">Get in Touch</h2>
+                  <div className="w-16 h-px bg-brand-gold mb-6"></div>
+                  <p className="text-lg text-brand-mid leading-relaxed">
                     Have a question or want to place an order? We&apos;re here to help!
                   </p>
                 </div>
@@ -116,7 +108,7 @@ export default function Contact() {
                           </CardTitle>
                         </CardHeader>
                         <CardContent>
-                          <CardDescription className="text-gray-700 whitespace-pre-line leading-relaxed">
+                          <CardDescription className="text-brand-dark/80 whitespace-pre-line leading-relaxed">
                             {info.content}
                           </CardDescription>
                         </CardContent>
@@ -142,7 +134,7 @@ export default function Contact() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-700 leading-relaxed">
+                    <p className="text-brand-dark/80 leading-relaxed">
                       Please contact us at least 48 hours in advance for catering orders. 
                       We offer customized menus for events of all sizes.
                     </p>
@@ -153,9 +145,9 @@ export default function Contact() {
               {/* Contact Form */}
               <div>
                 <div className="mb-8">
-                  <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Send us a Message</h2>
-                  <div className="w-24 h-1 bg-brand mb-6"></div>
-                  <p className="text-lg text-gray-600 leading-relaxed">
+                  <h2 className="text-section text-4xl md:text-5xl text-brand-dark mb-4">Send us a Message</h2>
+                  <div className="w-16 h-px bg-brand-gold mb-6"></div>
+                  <p className="text-lg text-brand-mid leading-relaxed">
                     Compose your message below. This opens your email app — nothing is sent until you send it there.
                   </p>
                 </div>
@@ -254,11 +246,11 @@ export default function Contact() {
         {/* Map/Additional Info Section */}
         <section className="py-20 bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 md:p-12 shadow-xl">
+            <div className="bg-gradient-to-br from-paper-deep to-paper rounded-2xl p-8 md:p-12 shadow-xl">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div>
-                  <h3 className="text-3xl font-bold text-gray-900 mb-6">Visit Our Kitchen</h3>
-                  <p className="text-gray-700 leading-relaxed mb-6">
+                  <h3 className="text-section text-3xl text-brand-dark mb-6">Visit Our Kitchen</h3>
+                  <p className="text-brand-dark/80 leading-relaxed mb-6">
                     While we primarily operate as a cloud kitchen with delivery and catering services, 
                     you&apos;re welcome to contact us for any inquiries or to discuss your catering needs.
                   </p>
@@ -266,15 +258,15 @@ export default function Contact() {
                     <div className="flex items-start gap-3">
                       <MapPin className="w-5 h-5 text-brand mt-1 flex-shrink-0" />
                       <div>
-                        <p className="font-semibold text-gray-900">Location</p>
-                        <p className="text-gray-600">Al Quoz Warehouse, Dubai, UAE</p>
+                        <p className="font-semibold text-brand-dark">Location</p>
+                        <p className="text-brand-mid">Al Quoz Warehouse, Dubai, UAE</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
                       <Clock className="w-5 h-5 text-brand mt-1 flex-shrink-0" />
                       <div>
-                        <p className="font-semibold text-gray-900">Operating Hours</p>
-                        <p className="text-gray-600">Monday - Sunday<br />Delivery and Catering Services Available</p>
+                        <p className="font-semibold text-brand-dark">Operating Hours</p>
+                        <p className="text-brand-mid">Monday - Sunday<br />Delivery and Catering Services Available</p>
                       </div>
                     </div>
                   </div>

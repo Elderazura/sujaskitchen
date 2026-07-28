@@ -2,7 +2,9 @@
 
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import DeliveryPlatforms from "@/components/shared/DeliveryPlatforms";
 import {
   useTimeConfig,
   useTimeOfDay,
@@ -24,11 +26,11 @@ const CAPTION_INTERVAL_MS = 11_000;
 const easeCrossfade = [0.4, 0, 0.2, 1] as const;
 const easeCaption = [0.22, 1, 0.36, 1] as const;
 
-/** Layered shadows for light text on photos (no extra BG scrim). */
+/** Soft shadows for light text — the .hero-scrim carries most of the contrast. */
 const heroHeadlineShadow =
-  "[text-shadow:0_0_1px_rgba(45,20,12,0.98),0_1px_2px_rgba(45,20,12,0.92),0_2px_14px_rgba(45,20,12,0.72),0_5px_44px_rgba(45,20,12,0.42)]";
+  "[text-shadow:0_1px_20px_rgba(20,11,8,0.55),0_1px_2px_rgba(20,11,8,0.4)]";
 const heroSubtextShadow =
-  "[text-shadow:0_1px_2px_rgba(45,20,12,0.92),0_2px_18px_rgba(45,20,12,0.55)]";
+  "[text-shadow:0_1px_16px_rgba(20,11,8,0.5)]";
 
 export default function TimeHero() {
   const config = useTimeConfig();
@@ -110,9 +112,19 @@ export default function TimeHero() {
         aria-hidden
       />
 
+      {/* Directional scrim: anchors the copy on the left, keeps food visible on the right */}
+      <div
+        className="absolute inset-0 z-[2]"
+        style={{
+          backgroundImage:
+            "linear-gradient(94deg, rgba(22,12,8,0.72) 0%, rgba(22,12,8,0.54) 30%, rgba(22,12,8,0.3) 48%, rgba(22,12,8,0.08) 64%, rgba(22,12,8,0) 80%), linear-gradient(to top, rgba(22,12,8,0.42) 0%, rgba(22,12,8,0) 32%)",
+        }}
+        aria-hidden
+      />
+
       <SteamEffect />
 
-      <div className="pointer-events-none absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 gap-1.5 md:bottom-8">
+      <div className="pointer-events-none absolute bottom-6 right-4 z-20 flex gap-1.5 sm:right-6 md:bottom-8 lg:right-8">
         {slides.map((s, i) => (
           <span
             key={s.src}
@@ -127,12 +139,30 @@ export default function TimeHero() {
         ))}
       </div>
 
+      <motion.div
+        className="pointer-events-none absolute bottom-6 left-1/2 z-20 -translate-x-1/2 md:bottom-8"
+        animate={liveMotion ? { y: [0, 7, 0] } : { y: 0 }}
+        transition={{ duration: 1.9, repeat: liveMotion ? Infinity : 0, ease: "easeInOut" }}
+        aria-hidden
+      >
+        <ChevronDown className={cn("h-6 w-6 text-brand-light/70", heroSubtextShadow)} />
+      </motion.div>
+
       {/* Upper-middle: aligned to site grid */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10 pt-[min(18vh,5.5rem)] md:pt-[min(22vh,6.5rem)]">
         <PageShell className="pointer-events-auto">
           <div className="max-w-3xl text-left">
-          <SectionEyebrow className={cn("text-brand-light/90", heroSubtextShadow)}>
-            {SITE.name}
+          <SectionEyebrow
+            className={cn(
+              "flex items-center gap-3 text-brand-light",
+              heroSubtextShadow,
+            )}
+          >
+            <span
+              className="h-px w-7 bg-brand-gold"
+              aria-hidden
+            />
+            {SITE.name} · Est. 1999
           </SectionEyebrow>
           <AnimatePresence initial={false} mode="wait">
             <motion.div
@@ -149,7 +179,7 @@ export default function TimeHero() {
             >
               <p
                 className={cn(
-                  "text-display mt-4 max-w-4xl text-4xl text-brand-light md:text-5xl lg:text-6xl",
+                  "text-display mt-4 max-w-4xl text-[clamp(2.6rem,1.4rem+4.6vw,5rem)] text-brand-light",
                   heroHeadlineShadow,
                 )}
               >
@@ -184,6 +214,19 @@ export default function TimeHero() {
             >
               Plan catering
             </CTAButton>
+          </motion.div>
+
+          <motion.div
+            initial={false}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: liveMotion ? 0.32 : 0,
+              duration: liveMotion ? 1.1 : 0,
+              ease: easeCaption,
+            }}
+            className="mt-7"
+          >
+            <DeliveryPlatforms variant="onDark" className={heroSubtextShadow} />
           </motion.div>
 
           {timeState === "chaya" && (

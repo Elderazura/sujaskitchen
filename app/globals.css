@@ -55,6 +55,13 @@ body {
   touch-action: manipulation;
 }
 
+/* Clear the fixed mobile ordering bar (md:hidden → shown below 768px) */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(6.25rem + env(safe-area-inset-bottom));
+  }
+}
+
 /* Mobile and tablet optimizations */
 @media (max-width: 768px) {
   * {
@@ -184,15 +191,24 @@ html {
 @theme inline {
   /* Primary brand (Suja's Kitchen red) — use bg-brand, text-brand, etc. */
   --color-brand: #c91432;
-  --color-brand-hover: #a01026;
-  /* Deep accent (headers, rich panels) */
-  --color-brand-dark: #7c2d12;
-  --color-brand-mid: #92400e;
-  --color-brand-light: #fef3c7;
-  --color-brand-gold: #d97706;
-  --color-brand-leaf: #365314;
-  --font-sans: var(--font-karla), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+  --color-brand-hover: #9c0f22;
+  /* Warm-editorial supporting palette (refined 2026) */
+  /* Deep espresso ink — headings, body text, rich dark panels */
+  --color-brand-dark: #241612;
+  /* Warm stone/taupe — muted secondary text */
+  --color-brand-mid: #6f5d4e;
+  /* Warm ivory — light text on photos, light surfaces */
+  --color-brand-light: #f7efe1;
+  /* Antique gold — restrained accent (was bright orange) */
+  --color-brand-gold: #b0813f;
+  /* Muted olive — seasonal / leaf accents */
+  --color-brand-leaf: #4a5a2b;
+  /* Editorial paper surfaces */
+  --color-paper: #f6efe3;
+  --color-paper-deep: #efe4d2;
+  --color-ink: #241612;
+  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, "Times New Roman", serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -277,54 +293,58 @@ html {
   }
 }
 
-@layer utilities {
-  .text-eyebrow {
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-  }
-  .text-display {
-    font-family: var(--font-serif);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-  }
-  .text-section {
-    font-family: var(--font-serif);
-    font-weight: 700;
-    line-height: 1.2;
-  }
-  .text-body-editorial {
-    font-family: var(--font-sans);
-    font-size: 1rem;
-    line-height: 1.65;
-  }
-  .text-caption {
-    font-family: var(--font-sans);
-    font-size: 0.875rem;
-    line-height: 1.5;
-  }
-  .section-y {
-    padding-block: 4.5rem;
-  }
-  .scroll-rail {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    -webkit-overflow-scrolling: touch;
-  }
-  .scroll-rail-inner {
-    display: flex;
-    width: max-content;
-    gap: 1rem;
-  }
-  @media (min-width: 768px) {
-    .section-y {
-      padding-block: 6rem;
-    }
-  }
+/*
+ * Custom utilities MUST use Tailwind v4's @utility directive. Plain classes
+ * inside @layer utilities are not emitted in this setup — which had silently
+ * broken the entire editorial type system (serif display, eyebrows, etc.).
+ */
+@utility text-eyebrow {
+  font-family: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+@utility text-display {
+  font-family: var(--font-fraunces), ui-serif, Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.04;
+}
+@utility text-section {
+  font-family: var(--font-fraunces), ui-serif, Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+@utility text-body-editorial {
+  font-family: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+@utility text-caption {
+  font-family: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+@utility section-y {
+  padding-block: clamp(4.5rem, 3.5rem + 3vw, 6rem);
+}
+@utility scroll-rail {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+@utility scroll-rail-inner {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+}
+/* Subtle paper/film grain — layered over a background-color via blend mode */
+@utility grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  background-blend-mode: soft-light;
 }
